@@ -1,0 +1,84 @@
+:root {
+  // font
+  --font-heading: "", sans-serif;
+  --font-body: "Averta", sans-serif;
+  // color
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-primary: #2a3580;
+  --color-secondary: #ca6627;
+  --color-third: #0084ae;
+  --color-bg: #d9bb9b;
+  //
+}
+// font variable
+// color variable
+.color-black {
+  color: var(--color-black);
+}
+.color-white {
+  color: var(--color-white);
+}
+.color-primary {
+  color: var(--color-primary);
+}
+.color-secondary {
+  color: var(--color-secondary);
+}
+.color-third {
+  color: var(--color-third);
+}
+.limit-width {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+// font
+.font-heading {
+  font-family: var(--font-heading);
+}
+.font-body {
+  font-family: var(--font-body);
+}
+.h0-font {
+  font-size: 56px;
+  line-height: 64px;
+  font-weight: 400;
+}
+.h1-font {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 400;
+  @media (max-width: 991px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+.h2-font {
+  font-size: 24px;
+  line-height: 40px;
+  font-weight: 400;
+  @media (max-width: 991px) {
+    font-size: 20px;
+    line-height: 32px;
+  }
+}
+.b0-font {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+.b1-font {
+  font-size: 16px;
+  line-height: 28px;
+}
+.b2-font {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: bold;
+}
+.b2-medium {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
