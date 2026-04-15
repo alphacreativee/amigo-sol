@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'VL NewParis Headline';
+    src: url('VLNewParisHeadline.eot');
+    src: url('VLNewParisHeadline.eot?#iefix') format('embedded-opentype'),
+        url('VLNewParisHeadline.woff2') format('woff2'),
+        url('VLNewParisHeadline.woff') format('woff'),
+        url('VLNewParisHeadline.ttf') format('truetype'),
+        url('VLNewParisHeadline.svg#VLNewParisHeadline') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

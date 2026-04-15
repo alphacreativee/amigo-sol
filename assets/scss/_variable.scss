@@ -1,6 +1,6 @@
 :root {
   // font
-  --font-heading: "", sans-serif;
+  --font-heading: "VL NewParis Headline", sans-serif;
   --font-body: "Averta", sans-serif;
   // color
   --color-black: #000000;
@@ -54,6 +54,11 @@
     line-height: 40px;
   }
 }
+.h1-mobile {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 400;
+}
 .h2-font {
   font-size: 24px;
   line-height: 40px;
@@ -62,6 +67,11 @@
     font-size: 20px;
     line-height: 32px;
   }
+}
+.h2-mobile {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 400;
 }
 .b0-font {
   font-size: 20px;
