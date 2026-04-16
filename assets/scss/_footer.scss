@@ -3,7 +3,7 @@ footer {
   position: relative;
   overflow: hidden;
   z-index: 2;
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
 
   .animation-text-v3 {
     &:hover {
@@ -32,6 +32,7 @@ footer {
   .footer {
     &-top {
       padding-top: 40px;
+      padding-bottom: 40px;
       position: relative;
       @media (max-width: 991px) {
         padding-top: 48px;
@@ -175,12 +176,16 @@ footer {
 
     &-menu {
       margin-right: 40px;
+      padding-right: 12px;
       position: relative;
       @media (max-width: 991px) {
         margin-right: 0;
         padding: 24px 0;
       }
       .menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px 16px;
         @media (max-width: 991px) {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -207,17 +212,10 @@ footer {
         li {
           display: flex;
           a {
-            font-size: 13px;
+            font-size: 14px;
             line-height: 20px;
             font-weight: 500;
             color: var(--color-white);
-          }
-
-          &:not(:first-child) {
-            margin-top: 16px;
-            @media (max-width: 991px) {
-              margin-top: 0;
-            }
           }
         }
       }
@@ -234,8 +232,8 @@ footer {
     }
 
     &-location {
-      margin-right: 40px;
-      padding-right: 50px;
+      margin-right: 32px;
+      padding-right: 18px;
       position: relative;
       @media (max-width: 991px) {
         margin-right: 0;
@@ -262,7 +260,11 @@ footer {
       p {
         margin-bottom: 8px;
       }
-
+      & > * {
+        font-size: 14px;
+        left: 20px;
+        font-weight: 400;
+      }
       a:hover {
         color: var(--color-white);
       }
@@ -271,7 +273,7 @@ footer {
     &-headquarter {
       display: grid;
       grid-template-columns: calc(6 / 9 * 100%) calc(3 / 9 * 100%);
-      padding: 36px 0 32px;
+      padding: 36px 0 0;
       position: relative;
       @media (max-width: 991px) {
         grid-template-columns: 1fr;
