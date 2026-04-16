@@ -638,9 +638,9 @@ body {
   position: absolute;
   left: 40px;
   z-index: 5;
-  bottom: 50px;
+  bottom: 40px;
   width: 33%;
-  height: calc(100svh - 175px);
+  height: calc(100svh - 150px);
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
 }
@@ -650,6 +650,60 @@ body {
   align-items: center;
   padding: 16px;
   background-color: var(--color-secondary);
+}
+.section-banner .booking-form-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 40px;
+}
+.section-banner .booking-form-main > * {
+  font-size: 14px;
+  line-height: 20px;
+}
+.section-banner .booking-form-main .input-item {
+  position: relative;
+  background-color: var(--color-white);
+  padding: 14px 16px;
+}
+.section-banner .booking-form-main .input-item textarea,
+.section-banner .booking-form-main .input-item input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+.section-banner .booking-form-main .input-item textarea:focus + label, .section-banner .booking-form-main .input-item textarea:not(:placeholder-shown) + label,
+.section-banner .booking-form-main .input-item input:focus + label,
+.section-banner .booking-form-main .input-item input:not(:placeholder-shown) + label {
+  opacity: 0;
+  pointer-events: none;
+}
+.section-banner .booking-form-main .input-item textarea {
+  resize: none;
+}
+.section-banner .booking-form-main .input-item label {
+  position: absolute;
+  left: 16px;
+}
+.section-banner .booking-form-main .input-item label span {
+  color: red;
+}
+.section-banner .booking-form-main .form-row.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.section-banner .booking-form-main button {
+  margin-top: 28px;
+  height: 40px;
+  background-color: var(--color-secondary);
+  width: max-content;
+  padding: 10px 24px;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+.section-banner .booking-form-main button:hover {
+  background-color: var(--color-primary);
 }
 @media (max-width: 991px) {
   .section-banner {
