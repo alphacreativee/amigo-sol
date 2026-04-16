@@ -69,11 +69,29 @@ function headerMenu() {
     $(".menu-item-has-children.open").removeClass("open");
   });
 }
+function bannerSlider() {
+  if (!document.querySelector(".banner-slider")) return;
+  const bannerSlider = new Swiper(".banner-slider", {
+    effect: "fade",
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    speed: 1500,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".section-banner .swiper-pagination",
+    },
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
   createFilterTab();
   headerMenu();
+  bannerSlider();
 };
 preloadImages("img").then(() => {
   init();

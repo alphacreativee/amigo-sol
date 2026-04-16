@@ -634,6 +634,23 @@ body {
   position: relative;
   height: 100vh;
 }
+.section-banner .booking-form {
+  position: absolute;
+  left: 40px;
+  z-index: 5;
+  bottom: 50px;
+  width: 33%;
+  height: calc(100svh - 175px);
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+}
+.section-banner .booking-form-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--color-secondary);
+}
 @media (max-width: 991px) {
   .section-banner {
     max-height: 640px;
@@ -741,4 +758,13 @@ body {
 .section-banner .banner-slider .swiper-btn-custom svg {
   width: auto;
   height: auto;
+}
+.section-banner .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-white);
+  opacity: 1;
+}
+.section-banner .swiper-pagination-bullet-active {
+  background-color: var(--color-secondary);
 }
