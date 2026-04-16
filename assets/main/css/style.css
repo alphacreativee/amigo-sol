@@ -629,3 +629,116 @@ body {
   align-items: center;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+.section-banner {
+  position: relative;
+  height: 100vh;
+}
+@media (max-width: 991px) {
+  .section-banner {
+    max-height: 640px;
+  }
+}
+.section-banner__container {
+  width: 100%;
+  height: 100vh;
+}
+@media (max-width: 991px) {
+  .section-banner__container {
+    max-height: 640px;
+  }
+}
+.section-banner__wrapper {
+  width: 100%;
+  height: 100%;
+}
+@media (min-width: 991px) {
+  .section-banner__wrapper {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+.section-banner__wrapper .video {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  height: 0;
+  max-width: 100%;
+}
+@media (max-width: 991px) {
+  .section-banner__wrapper .video {
+    height: 100%;
+  }
+}
+.section-banner__wrapper .video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 1400px) {
+  .section-banner__wrapper .video iframe {
+    height: 100vh;
+    width: 177.78vh;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding-bottom: 0;
+  }
+}
+.section-banner__wrapper video {
+  object-fit: cover;
+}
+.section-banner__wrapper picture {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.section-banner__wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.section-banner .banner-slider {
+  width: 100%;
+  height: 100%;
+}
+.section-banner .banner-slider-img {
+  width: 100%;
+  height: 100%;
+}
+.section-banner .banner-slider-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.section-banner .banner-slider .swiper-btn-custom {
+  margin: 0;
+  width: 80px;
+  height: 80px;
+  background-color: var(--color-pattern);
+  border: 1px solid var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  z-index: 999;
+  cursor: none;
+}
+.section-banner .banner-slider .swiper-btn-custom::after {
+  content: unset;
+  font-size: 0;
+}
+.section-banner .banner-slider .swiper-btn-custom svg {
+  width: auto;
+  height: auto;
+}
