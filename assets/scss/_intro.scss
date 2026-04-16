@@ -1,0 +1,31 @@
+.intro {
+  position: relative;
+  width: 100%;
+  padding: 175px 0;
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  &-box {
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  &-artwork {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    &.top-right {
+      top: 0;
+      right: 0;
+      transform: translateY(-50%);
+    }
+    &.left-bottom {
+      bottom: 0;
+      left: 0;
+      transform: translateY(50%);
+    }
+  }
+}

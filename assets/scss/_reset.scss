@@ -91,6 +91,9 @@ body {
   -webkit-font-smoothing: auto !important;
   -moz-osx-font-smoothing: grayscale !important;
   font-family: var(--font-body);
-  // background-color: var(--color-bg);
-  background-color: var(--color-primary);
+  background-color: var(--color-bg);
+}
+.bg-pattern {
+  background-image: url("../../images/icons/bg.png");
+  background-repeat: repeat-y;
 }

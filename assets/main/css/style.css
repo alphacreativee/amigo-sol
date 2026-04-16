@@ -214,7 +214,12 @@ body {
   -webkit-font-smoothing: auto !important;
   -moz-osx-font-smoothing: grayscale !important;
   font-family: var(--font-body);
-  background-color: var(--color-primary);
+  background-color: var(--color-bg);
+}
+
+.bg-pattern {
+  background-image: url("../../images/icons/bg.png");
+  background-repeat: repeat-y;
 }
 
 .hover-underline-black,
@@ -1164,4 +1169,36 @@ footer .footer-bottom .menu a {
 }
 footer .footer-alpha a:hover {
   color: var(--color-white);
+}
+
+.intro {
+  position: relative;
+  width: 100%;
+  padding: 175px 0;
+}
+.intro-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.intro-box {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.intro-artwork {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+.intro-artwork.top-right {
+  top: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+.intro-artwork.left-bottom {
+  bottom: 0;
+  left: 0;
+  transform: translateY(50%);
 }
