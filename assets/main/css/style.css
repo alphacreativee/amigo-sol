@@ -1221,6 +1221,7 @@ footer .footer-alpha a:hover {
 
 .amigo-content {
   padding: 0 40px;
+  margin-bottom: 160px;
 }
 .amigo-content-top {
   display: flex;
@@ -1234,4 +1235,22 @@ footer .footer-alpha a:hover {
 }
 .amigo-content-top .content-right .description {
   margin-bottom: 32px;
+}
+.amigo-content .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-white);
+  opacity: 1;
+}
+.amigo-content .swiper-pagination-bullet-active {
+  background-color: var(--color-secondary);
+}
+.amigo-content .slider-amigo-content-import {
+  padding-right: calc(8.3333333333% + 40px);
+}
+.amigo-content .slider-amigo-content-import .current-button {
+  margin-top: 120px;
+}
+.amigo-content .slider-amigo-content-import .current-name {
+  margin-bottom: 24px;
 }
