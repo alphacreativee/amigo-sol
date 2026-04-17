@@ -61,15 +61,6 @@
       }
       button {
         margin-top: 28px;
-        height: 40px;
-        background-color: var(--color-secondary);
-        width: max-content;
-        padding: 10px 24px;
-        color: var(--color-white);
-        transition: all 0.3s ease;
-        &:hover {
-          background-color: var(--color-primary);
-        }
       }
     }
   }

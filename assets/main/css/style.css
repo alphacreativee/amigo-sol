@@ -254,6 +254,21 @@ body {
   background-color: var(--color-white);
 }
 
+.global-button {
+  height: 40px;
+  background-color: var(--color-secondary);
+  width: max-content;
+  padding: 10px 24px;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: bold;
+}
+.global-button:hover {
+  background-color: var(--color-primary);
+}
+
 #header {
   position: fixed;
   top: 0;
@@ -700,15 +715,6 @@ body {
 }
 .section-banner .booking-form-main button {
   margin-top: 28px;
-  height: 40px;
-  background-color: var(--color-secondary);
-  width: max-content;
-  padding: 10px 24px;
-  color: var(--color-white);
-  transition: all 0.3s ease;
-}
-.section-banner .booking-form-main button:hover {
-  background-color: var(--color-primary);
 }
 @media (max-width: 991px) {
   .section-banner {

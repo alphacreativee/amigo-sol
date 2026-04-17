@@ -29,3 +29,17 @@
     background-color: var(--color-white);
   }
 }
+.global-button {
+  height: 40px;
+  background-color: var(--color-secondary);
+  width: max-content;
+  padding: 10px 24px;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: bold;
+  &:hover {
+    background-color: var(--color-primary);
+  }
+}
