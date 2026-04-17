@@ -29,7 +29,8 @@
     background-color: var(--color-white);
   }
 }
-.global-button {
+.global-button,
+.btn-general {
   display: block;
   height: 40px;
   background-color: var(--color-secondary);
@@ -46,6 +47,6 @@
   }
 }
 
-.spacing {
+.spacing-120 {
   height: 120px;
 }
