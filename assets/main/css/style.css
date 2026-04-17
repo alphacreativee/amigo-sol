@@ -264,6 +264,7 @@ main::before {
 }
 
 .global-button {
+  display: block;
   height: 40px;
   background-color: var(--color-secondary);
   width: max-content;
@@ -1244,6 +1245,22 @@ footer .footer-alpha a:hover {
 }
 .amigo-content .swiper-pagination-bullet-active {
   background-color: var(--color-secondary);
+}
+.amigo-content .slider-amigo-image {
+  height: 500px;
+}
+.amigo-content .slider-amigo-image .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+.amigo-content .slider-amigo-image .swiper-slide .amigo-image {
+  width: 100%;
+  height: 100%;
+}
+.amigo-content .slider-amigo-image .swiper-slide .amigo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .amigo-content .slider-amigo-content-import {
   padding-right: calc(8.3333333333% + 40px);
