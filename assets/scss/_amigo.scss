@@ -4,6 +4,18 @@
     .amigo-content-top .content-left {
       width: 40%;
     }
+    .amigo-service-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: calc(calc(1 / 12) * 100% + 64px);
+      .item-title {
+        transition: color 0.3s ease-in-out;
+        &.active {
+          color: var(--color-secondary);
+        }
+      }
+    }
   }
   &-top {
     display: flex;

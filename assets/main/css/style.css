@@ -1236,6 +1236,18 @@ footer .footer-alpha a:hover {
 .amigo-content.service-section .amigo-content-top .content-left {
   width: 40%;
 }
+.amigo-content.service-section .amigo-service-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: calc(8.3333333333% + 64px);
+}
+.amigo-content.service-section .amigo-service-titles .item-title {
+  transition: color 0.3s ease-in-out;
+}
+.amigo-content.service-section .amigo-service-titles .item-title.active {
+  color: var(--color-secondary);
+}
 .amigo-content-top {
   display: flex;
   align-items: flex-start;
