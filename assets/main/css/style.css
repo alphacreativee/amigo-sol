@@ -214,12 +214,21 @@ body {
   -webkit-font-smoothing: auto !important;
   -moz-osx-font-smoothing: grayscale !important;
   font-family: var(--font-body);
-  background-color: var(--color-bg);
 }
 
-.bg-pattern {
+main {
+  position: relative;
+}
+main::before {
+  content: "";
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url("../../images/icons/bg.png");
-  background-repeat: repeat-y;
+  background-repeat: repeat;
+  z-index: -1;
 }
 
 .hover-underline-black,
@@ -1208,4 +1217,21 @@ footer .footer-alpha a:hover {
   bottom: 0;
   left: 0;
   transform: translateY(50%);
+}
+
+.amigo-content {
+  padding: 0 40px;
+}
+.amigo-content-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 64px;
+}
+.amigo-content-top .content-left,
+.amigo-content-top .content-right {
+  width: 33.3333333333%;
+}
+.amigo-content-top .content-right .description {
+  margin-bottom: 32px;
 }

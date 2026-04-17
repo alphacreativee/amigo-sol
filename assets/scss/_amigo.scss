@@ -1,0 +1,18 @@
+.amigo-content {
+  padding: 0 40px;
+  &-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 64px;
+    .content-left,
+    .content-right {
+      width: calc(calc(4 / 12) * 100%);
+    }
+    .content-right {
+      .description {
+        margin-bottom: 32px;
+      }
+    }
+  }
+}
