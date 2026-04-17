@@ -151,7 +151,49 @@ function bookingTime() {
     bookingCalendar.style.cursor = "pointer";
   }
 }
+function sliderService() {
+  if (!document.querySelector(".swiper-serivce")) return;
 
+  const titleService = document.querySelectorAll(
+    ".amigo-service-titles .item-title"
+  );
+  let activeElms = titleService[0];
+
+  function setActiveTitle(index) {
+    if (activeElms) activeElms.classList.remove("active");
+    activeElms = titleService[index];
+    if (activeElms) activeElms.classList.add("active");
+  }
+
+  const swiperService = new Swiper(".swiper-serivce", {
+    effect: "fade",
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    speed: 1500,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    },
+    pagination: {
+      el: ".swiper-serivce .swiper-pagination"
+    },
+    on: {
+      slideChange: function () {
+        setActiveTitle(this.realIndex);
+      }
+    }
+  });
+
+  setActiveTitle(0);
+
+  titleService.forEach((el, index) => {
+    el.addEventListener("mouseover", function () {
+      swiperService.slideToLoop(index);
+      setActiveTitle(index);
+    });
+  });
+}
 function fadeTextFooter() {
   gsap.set("data-text-footer", {
     opacity: 0,
@@ -223,6 +265,7 @@ const init = () => {
   bannerSlider();
   bookingTime();
   sliderAmigo();
+  sliderService();
   fadeTextFooter();
   imgWithText();
 };
