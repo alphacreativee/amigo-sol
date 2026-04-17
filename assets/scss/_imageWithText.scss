@@ -1,0 +1,244 @@
+section.image-with-text {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+
+  &.parallax {
+    padding: 0 40px;
+
+    .content {
+      @media (max-width: 991px) {
+        top: 90px;
+      }
+    }
+
+    .section-wrapper {
+      overflow: hidden;
+
+      img {
+        transform: scale(1.15);
+      }
+    }
+  }
+
+  .ilus-right {
+    width: 365px;
+    height: auto;
+    position: absolute;
+    right: 0;
+    top: -25%;
+    z-index: -1;
+  }
+  @media (max-width: 991px) {
+    overflow: unset;
+  }
+  .main-image {
+    width: 100%;
+    max-height: 100vh;
+    aspect-ratio: 1440 / 843;
+    object-position: bottom;
+    object-fit: cover;
+    @media (max-width: 991px) {
+      aspect-ratio: 375 / 800;
+    }
+
+    @media (max-width: 480px) {
+      aspect-ratio: 375 / 600;
+      max-height: 80vh;
+    }
+  }
+
+  .detail-slider {
+    max-height: 100vh;
+    width: 100%;
+
+    .swiper-slide {
+      overflow: hidden;
+    }
+
+    &__image {
+      position: relative;
+
+      img {
+        width: 100%;
+        aspect-ratio: 1440 / 843;
+        object-position: center;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .swiper-button-next {
+    right: 0;
+  }
+
+  .swiper-button-prev {
+    left: 0;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    margin: 0;
+    width: 80px;
+    height: 80px;
+    // background: url("../../images/img-frame-circle.svg");
+    background-color: var(--color-pattern);
+    border: 1px solid var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition:
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+    z-index: 999;
+    cursor: none;
+    svg {
+      width: auto;
+      height: auto;
+    }
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    display: none;
+  }
+
+  .mask {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+    height: 50vh;
+    background: var(--color-pattern) url(../../images/bg-body.png);
+    background-size: contain;
+  }
+
+  .mask.top {
+    top: 0%;
+
+    &::after {
+      content: "";
+      background: var(--color-pattern) url(../../images/bg-body.png);
+      mask: url(../../images/mask-top.png);
+      mask-size: 100% 100%;
+      background-size: contain;
+      background-repeat: repeat-y;
+      width: 100%;
+      aspect-ratio: 1440 / 104;
+      height: auto;
+      position: absolute;
+      left: 0;
+      top: 95%;
+      transform: translateY(-10px);
+    }
+  }
+
+  .section-wrapper {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .mask.bottom {
+    bottom: 0;
+
+    &::after {
+      content: "";
+      background: var(--color-pattern) url(../../images/bg-body.png);
+      mask: url(../../images/mask-bottom.png);
+      mask-size: 100% 100%;
+      width: 100%;
+      aspect-ratio: 1440 / 210;
+      // height: auto;
+      background-size: contain;
+      background-repeat: repeat-y;
+      position: absolute;
+      left: 0;
+      bottom: 100%;
+      transform: translateY(1px);
+      pointer-events: none;
+    }
+  }
+  .content {
+    position: absolute;
+    z-index: 2;
+    top: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 52%;
+    width: 100%;
+    padding: 0 40px;
+    @media (max-width: 991px) {
+      top: 64px;
+      max-width: 100%;
+      padding: 0 40px;
+
+      .content-box {
+        transform: none !important;
+      }
+    }
+
+    h1 {
+      margin-bottom: 24px;
+      text-align: center;
+
+      @media (max-width: 991px) {
+        margin: 0 auto 24px;
+        max-width: 80%;
+      }
+
+      @media (max-width: 480px) {
+        max-width: 200px;
+      }
+    }
+    .desc {
+      text-align: center;
+      margin-bottom: 40px;
+
+      @media (max-width: 991px) {
+        margin-bottom: 32px;
+      }
+    }
+  }
+
+  &.reverse-mask {
+    .mask.top::after {
+      transform: translateY(-10px) scaleX(-1);
+    }
+    .mask.bottom::after {
+      transform: translateY(1px) scaleX(-1);
+    }
+  }
+  .swiper-pagination {
+    top: unset;
+    bottom: -48px;
+    width: 150px;
+    height: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #b7b4bc;
+    span {
+      background-color: var(--color-primary);
+    }
+  }
+}
+.page-home {
+  section.image-with-text {
+    @media (max-width: 991px) {
+      overflow: hidden;
+    }
+  }
+}
+.modal-dialog {
+  pointer-events: auto;
+}
+.home {
+  .image-with-text {
+    overflow: hidden;
+  }
+}

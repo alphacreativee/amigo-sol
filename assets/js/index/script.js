@@ -23,7 +23,7 @@ function headerMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.3,
-    ease: "power2.out",
+    ease: "power2.out"
   });
 
   // console.log($(".header-sub-menu .sub-menu-container .sub-menu > ul > li"));
@@ -35,8 +35,8 @@ function headerMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.3,
-      ease: "power2.out",
-    },
+      ease: "power2.out"
+    }
   );
 
   $btnMenu.on("click", function () {
@@ -80,11 +80,11 @@ function bannerSlider() {
     speed: 1500,
     autoplay: {
       delay: 3000,
-      disableOnInteraction: false,
+      disableOnInteraction: false
     },
     pagination: {
-      el: ".section-banner .swiper-pagination",
-    },
+      el: ".section-banner .swiper-pagination"
+    }
   });
 }
 function bookingTime() {
@@ -137,7 +137,7 @@ function bookingTime() {
 
     onYearChange: function () {
       setTimeout(positionCalendar, 10);
-    },
+    }
   });
 
   const bookingCalendar = document.querySelector(".booking-calendar");
@@ -152,6 +152,69 @@ function bookingTime() {
   }
 }
 
+function fadeTextFooter() {
+  gsap.set("data-text-footer", {
+    opacity: 0,
+    y: 20
+  });
+  let tlf = gsap.timeline({ paused: true });
+
+  tlf.fromTo(
+    "[data-text-footer]",
+    {
+      opacity: 0,
+      y: 20
+    },
+    {
+      opacity: 1,
+      y: 0,
+      stagger: 0.05,
+      duration: 0.6,
+      ease: "power2.out"
+    }
+  );
+  ScrollTrigger.create({
+    trigger: "footer",
+    start: "top 80%",
+    // markers: true,
+    animation: tlf,
+    toggleActions: "play none none none"
+  });
+
+  return tlf;
+}
+
+function imgWithText() {
+  if ($(".image-with-text").length < 1) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll(".image-with-text.parallax").forEach((section) => {
+    const img = section.querySelector("img");
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        scrub: true,
+        pin: false
+        // markers: true
+      }
+    });
+
+    tl.fromTo(
+      img,
+      {
+        yPercent: -15,
+        ease: "none"
+      },
+      {
+        yPercent: 15,
+        ease: "none"
+      }
+    );
+  });
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -160,6 +223,8 @@ const init = () => {
   bannerSlider();
   bookingTime();
   sliderAmigo();
+  fadeTextFooter();
+  imgWithText();
 };
 preloadImages("img").then(() => {
   init();
