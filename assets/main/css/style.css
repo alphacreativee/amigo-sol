@@ -1545,6 +1545,13 @@ footer .footer-alpha a:hover {
   padding-top: 80px;
   position: relative;
 }
+.section-contact .amigo-artwork {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-25%);
+  pointer-events: none;
+}
 .section-contact__bg {
   position: absolute;
   left: 0;
@@ -2057,6 +2064,14 @@ section.image-with-text .swiper-pagination span {
 
 .section-offer {
   position: relative;
+}
+.section-offer .amigo-artwork {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 @media (max-width: 991px) {
   .section-offer.related .section-offer__content {

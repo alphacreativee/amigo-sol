@@ -1,7 +1,13 @@
 .section-contact {
   padding-top: 80px;
   position: relative;
-
+  .amigo-artwork {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateY(-25%);
+    pointer-events: none;
+  }
   &__bg {
     position: absolute;
     left: 0;
