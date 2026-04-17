@@ -214,6 +214,7 @@ body {
   -webkit-font-smoothing: auto !important;
   -moz-osx-font-smoothing: grayscale !important;
   font-family: var(--font-body);
+  overflow-x: hidden;
 }
 
 .background-pattern {
@@ -1262,6 +1263,7 @@ footer .footer-alpha a:hover {
 
 .amigo-content {
   padding: 0 40px;
+  position: relative;
 }
 .amigo-content.service-section .amigo-content-top .content-left {
   width: 40%;
@@ -1277,6 +1279,11 @@ footer .footer-alpha a:hover {
 }
 .amigo-content.service-section .amigo-service-titles .item-title.active {
   color: var(--color-secondary);
+}
+.amigo-content.service-section .amigo-artwork.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: scaleX(-1) translateY(50%);
 }
 .amigo-content-top {
   display: flex;
@@ -1331,6 +1338,21 @@ footer .footer-alpha a:hover {
 .amigo-content .slider-amigo-wrapper.flex-row-reverse .slider-amigo-content-import {
   padding-right: 0;
   padding-left: calc(8.3333333333% + 64px);
+}
+.amigo-content .amigo-artwork {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.amigo-content .amigo-artwork.top-right {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1) translateY(-50%);
+}
+.amigo-content .amigo-artwork.left-bottom {
+  left: 0;
+  bottom: 0;
+  transform: translateY(50%);
 }
 
 .section-map {
@@ -1525,6 +1547,13 @@ footer .footer-alpha a:hover {
 .section-contact {
   padding-top: 80px;
   position: relative;
+}
+.section-contact .amigo-artwork {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-25%);
+  pointer-events: none;
 }
 .section-contact__bg {
   position: absolute;
@@ -2038,6 +2067,14 @@ section.image-with-text .swiper-pagination span {
 
 .section-offer {
   position: relative;
+}
+.section-offer .amigo-artwork {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 @media (max-width: 991px) {
   .section-offer.related .section-offer__content {

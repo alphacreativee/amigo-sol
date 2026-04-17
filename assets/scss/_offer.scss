@@ -1,5 +1,13 @@
 .section-offer {
   position: relative;
+  .amigo-artwork {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
   &.related {
     .section-offer__content {
       @media (max-width: 991px) {
