@@ -1,111 +1,108 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <!-- import favicon -->
-    <link
-      rel="icon"
-      href="./assets/images/icons/favicon.svg"
-      type="image/x-icon"
-    />
-    <!-- meta -->
-    <meta property="og:url" content="" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-    <!-- meta -->
-    <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/libs/lenis.css" />
-    <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="./assets/libs/lightpick.min.css" />
-    <!-- end meta -->
-    <!-- link custom css page -->
-    <link rel="stylesheet" href="./assets/fonts/VLNewParisHeadline/font.css" />
-    <link rel="stylesheet" href="./assets/fonts/averta/font.css" />
-    <link rel="stylesheet" href="./assets/main/css/style.min.css" />
-    <!-- end link custom css page -->
-    <!-- scrollRestoration -->
-    <script>
-      if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
-      }
-    </script>
-  </head>
 
-  <body>
-    <!-- layout -->
-    <!-- header -->
-    <script>
-      fetch("./components/header.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("header").innerHTML = data;
-          const currentPath = window.location.pathname || "/";
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <!-- import favicon -->
+  <link rel="icon" href="./assets/images/icons/favicon.svg" type="image/x-icon" />
+  <!-- meta -->
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <!-- meta -->
+  <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lenis.css" />
+  <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lightpick.min.css" />
+  <!-- end meta -->
+  <!-- link custom css page -->
+  <link rel="stylesheet" href="./assets/fonts/VLNewParisHeadline/font.css" />
+  <link rel="stylesheet" href="./assets/fonts/averta/font.css" />
+  <link rel="stylesheet" href="./assets/main/css/style.min.css" />
+  <!-- end link custom css page -->
+  <!-- scrollRestoration -->
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+  </script>
+</head>
 
-          const navLinks = document.querySelectorAll(".header-menu ul>li>a");
-          navLinks.forEach((link) => {
-            const linkPath = link.getAttribute("href");
+<body>
+  <!-- layout -->
+  <!-- header -->
+  <script>
+    fetch("./components/header.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("header").innerHTML = data;
+        const currentPath = window.location.pathname || "/";
 
-            // Normalize paths for comparison
-            let normalizedCurrentPath = currentPath;
-            let normalizedLinkPath = linkPath;
+        const navLinks = document.querySelectorAll(".header-menu ul>li>a");
+        navLinks.forEach((link) => {
+          const linkPath = link.getAttribute("href");
 
-            // Remove leading "./" from link path
-            if (normalizedLinkPath.startsWith("./")) {
-              normalizedLinkPath = normalizedLinkPath.substring(1);
-            }
+          // Normalize paths for comparison
+          let normalizedCurrentPath = currentPath;
+          let normalizedLinkPath = linkPath;
 
-            // Get the last segment of the path
-            const currentSegment = normalizedCurrentPath.split("/").pop() || "";
-            const linkSegment = normalizedLinkPath.split("/").pop() || "";
+          // Remove leading "./" from link path
+          if (normalizedLinkPath.startsWith("./")) {
+            normalizedLinkPath = normalizedLinkPath.substring(1);
+          }
 
-            // Check if current path is root or ends with /
-            const isRootPath =
-              currentPath === "/" ||
-              currentPath.endsWith("/") ||
-              currentSegment === "";
+          // Get the last segment of the path
+          const currentSegment = normalizedCurrentPath.split("/").pop() || "";
+          const linkSegment = normalizedLinkPath.split("/").pop() || "";
 
-            // Check if link is home/index
-            const isHomeLink =
-              linkPath === "/" ||
-              linkPath === "./" ||
-              linkPath === "./index.html" ||
-              linkPath === "index.html" ||
-              linkSegment === "index.html";
+          // Check if current path is root or ends with /
+          const isRootPath =
+            currentPath === "/" ||
+            currentPath.endsWith("/") ||
+            currentSegment === "";
 
-            // Match logic
-            const isMatch =
-              normalizedLinkPath === normalizedCurrentPath || // Exact match
-              currentSegment === linkSegment || // Segment match
-              (isRootPath && isHomeLink) || // Root path matches home link
-              (currentPath.endsWith(normalizedLinkPath) &&
-                normalizedLinkPath !== "/");
+          // Check if link is home/index
+          const isHomeLink =
+            linkPath === "/" ||
+            linkPath === "./" ||
+            linkPath === "./index.html" ||
+            linkPath === "index.html" ||
+            linkSegment === "index.html";
 
-            if (isMatch) {
-              link.classList.add("active");
-            }
-          });
+          // Match logic
+          const isMatch =
+            normalizedLinkPath === normalizedCurrentPath || // Exact match
+            currentSegment === linkSegment || // Segment match
+            (isRootPath && isHomeLink) || // Root path matches home link
+            (currentPath.endsWith(normalizedLinkPath) &&
+              normalizedLinkPath !== "/");
+
+          if (isMatch) {
+            link.classList.add("active");
+          }
         });
-    </script>
-    <header id="header" class="header"></header>
-    <!-- end header -->
-    <main>
-      <section class="section-banner">
-        <div class="container-fluid p-0">
-          <div class="section-banner__container">
-            <div class="section-banner__wrapper">
-              <!-- <div class="video">
+      });
+  </script>
+  <header id="header" class="header"></header>
+  <!-- end header -->
+  <main>
+    <section class="section-banner">
+      <div class="container-fluid p-0">
+        <div class="section-banner__container">
+          <div class="section-banner__wrapper">
+            <!-- <div class="video">
               <iframe title="vimeo-player"
                 src="https://player.vimeo.com/video/1082441138?h=9ec1257b5f&controls=0&autoplay=1&loop=1&muted=1&playsinline=1"
                 width="640" height="360" frameborder="0" allowfullscreen></iframe>
             </div> -->
-              <picture>
-                <img src="./assets/images/del/banner.webp" alt="" />
-              </picture>
-              <!-- <div class="swiper banner-slider">
+            <picture>
+              <img src="./assets/images/del/banner.webp" alt="" />
+            </picture>
+            <!-- <div class="swiper banner-slider">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="banner-slider-img">
@@ -120,203 +117,284 @@
               </div>
             </div>
             <div class="swiper-pagination"></div> -->
-            </div>
           </div>
         </div>
-        <div class="booking-form">
-          <div class="booking-form-wrapper">
-            <div class="booking-form-head">
-              <h3 class="h1-mobile font-heading color-white">Đặt phòng</h3>
+      </div>
+      <div class="booking-form">
+        <div class="booking-form-wrapper">
+          <div class="booking-form-head">
+            <h3 class="h1-mobile font-heading color-white">Đặt phòng</h3>
+          </div>
+          <form action="" class="booking-form-main">
+            <div class="form-row">
+              <div class="input-item">
+                <input type="text" placeholder=" " />
+                <label for="">Họ và tên <span> *</span></label>
+              </div>
             </div>
-            <form action="" class="booking-form-main">
-              <div class="form-row">
-                <div class="input-item">
-                  <input type="text" placeholder=" " />
-                  <label for="">Họ và tên <span> *</span></label>
-                </div>
+            <div class="form-row">
+              <div class="input-item">
+                <input type="tel" placeholder=" " />
+                <label for="">Số điện thoại<span> *</span></label>
               </div>
-              <div class="form-row">
-                <div class="input-item">
-                  <input type="tel" placeholder=" " />
-                  <label for="">Số điện thoại<span> *</span></label>
-                </div>
-              </div>
-              <div class="form-row two-col">
-                <div class="input-item">
-                  <input type="text" id="checkInDate" />
-                  <!-- <label for="">Ngày đến<span>
+            </div>
+            <div class="form-row two-col">
+              <div class="input-item">
+                <input type="text" id="checkInDate" />
+                <!-- <label for="">Ngày đến<span>
                     *</span></label> -->
-                </div>
-                <div class="input-item">
-                  <input type="text" id="checkOutDate" />
-                  <!-- <label for="">Ngày đi<span>
+              </div>
+              <div class="input-item">
+                <input type="text" id="checkOutDate" />
+                <!-- <label for="">Ngày đi<span>
                     *</span></label> -->
-                </div>
               </div>
-              <div class="form-row two-col">
-                <div class="input-item">
-                  <input type="text" placeholder=" " />
-                  <label for="">Người lớn<span> *</span></label>
-                </div>
-                <div class="input-item">
-                  <input type="text" placeholder=" " />
-                  <label for="">Trẻ em<span> *</span></label>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="input-item">
-                  <textarea placeholder=" "></textarea>
-                  <label for="">Lời nhắn</label>
-                </div>
-              </div>
-              <button class="global-button">Gửi thông tin</button>
-            </form>
-          </div>
-        </div>
-      </section>
-      <!-- trừ banner ra -->
-      <section class="intro">
-        <div class="intro-wrapper">
-          <div class="intro-box">
-            <h5 class="b0-font color-secondary">
-              Chào mừng đến Amigo Sol Phan Thiết
-            </h5>
-            <h2 class="h0-font font-heading color-secondary">
-              Màu sắc của nơi ánh nắng hài hòa với sự bình yên
-            </h2>
-            <p class="b1-font color-black">
-              Nằm nép mình dọc theo bờ biển hoang sơ của Hàm Thuận Nam - một
-              viên ngọc ẩn của miền Nam Việt Nam - Amigo Sol Phan Thiết là một
-              thành viên của hệ sinh thái nghỉ dưỡng Costamigo. Được bao quanh
-              bởi những khu vườn nhiệt đới tươi tốt, tắm mình trong ánh nắng rực
-              rỡ và những con sóng biển lấp lánh, đây là nơi bạn có thể thực sự
-              thư giãn trong một khu nghỉ dưỡng thanh bình hòa quyện với thiên
-              nhiên.
-            </p>
-          </div>
-        </div>
-        <div class="intro-artwork top-right">
-          <img src="./assets/images/icons/leaf-right.png" alt="" />
-        </div>
-        <div class="intro-artwork left-bottom">
-          <img src="./assets/images/icons/leaf-left.png" alt="" />
-        </div>
-      </section>
-      <section class="amigo-content">
-        <div class="amigo-content-top">
-          <div class="content-left">
-            <div class="tag b0-font color-secondary">Amigo Sol Phan Thiết</div>
-            <h3 class="h0-font color-secondary font-heading">
-              Friend of the Sun
-            </h3>
-          </div>
-          <div class="content-right">
-            <div class="description b1-font color-black">
-              Cho dù đó là một chuyến đi nghỉ dưỡng đặc biệt hay chỉ là một
-              khoảng thời gian ngắn tạm rời xa nhịp sống bận rộn, Amigo Sol Phan
-              Thiết là nơi bạn có thể nạp lại năng lượng, tận hưởng niềm vui
-              thuần khiết và trải nghiệm những kết nối sâu sắc.
             </div>
-            <a href="" class="global-button">Xem tất cả</a>
-          </div>
-        </div>
-        <div class="amigo-content-bottom container-fluid p-0">
-          <div class="slider-amigo-wrapper row g-0">
-            <div class="col-lg-5">
-              <div
-                class="slider-amigo-content-box d-flex align-items-end h-100"
-              >
-                <div class="slider-amigo-content-import"></div>
+            <div class="form-row two-col">
+              <div class="input-item">
+                <input type="text" placeholder=" " />
+                <label for="">Người lớn<span> *</span></label>
               </div>
-              <!-- Nơi inject tag + title có animation -->
+              <div class="input-item">
+                <input type="text" placeholder=" " />
+                <label for="">Trẻ em<span> *</span></label>
+              </div>
             </div>
-            <div class="col-lg-7">
-              <!-- Image slider (master) -->
-              <div class="slider-amigo-image position-relative">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="amigo-image">
-                      <img src="./assets/images/del/room-1.webp" />
-                    </div>
-                    <!-- Data source cho content import -->
-                    <div class="amigo-slide-content" hidden>
-                      <div class="amigo-name">Superior room</div>
-                      <div class="amigo-description">
-                        Superior room sở hữu tầm nhìn hướng biển tuyệt đẹp.
-                        Superior room gồm 3 phòng ngủ với thiết kế hiện đại và
-                        tiện nghi đẳng cấp, mang đến không gian nghỉ dưỡng lý
-                        tưởng cho nhóm bạn hoặc gia đình đa thế hệ.
-                      </div>
-                      <div class="amigo-button"><a href="#">Xem thêm</a></div>
-                    </div>
+            <div class="form-row">
+              <div class="input-item">
+                <textarea placeholder=" "></textarea>
+                <label for="">Lời nhắn</label>
+              </div>
+            </div>
+            <button class="global-button">Gửi thông tin</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- trừ banner ra -->
+    <section class="intro">
+      <div class="intro-wrapper">
+        <div class="intro-box">
+          <h5 class="b0-font color-secondary">
+            Chào mừng đến Amigo Sol Phan Thiết
+          </h5>
+          <h2 class="h0-font font-heading color-secondary">
+            Màu sắc của nơi ánh nắng hài hòa với sự bình yên
+          </h2>
+          <p class="b1-font color-black">
+            Nằm nép mình dọc theo bờ biển hoang sơ của Hàm Thuận Nam - một
+            viên ngọc ẩn của miền Nam Việt Nam - Amigo Sol Phan Thiết là một
+            thành viên của hệ sinh thái nghỉ dưỡng Costamigo. Được bao quanh
+            bởi những khu vườn nhiệt đới tươi tốt, tắm mình trong ánh nắng rực
+            rỡ và những con sóng biển lấp lánh, đây là nơi bạn có thể thực sự
+            thư giãn trong một khu nghỉ dưỡng thanh bình hòa quyện với thiên
+            nhiên.
+          </p>
+        </div>
+      </div>
+      <div class="intro-artwork top-right">
+        <img src="./assets/images/icons/leaf-right.png" alt="" />
+      </div>
+      <div class="intro-artwork left-bottom">
+        <img src="./assets/images/icons/leaf-left.png" alt="" />
+      </div>
+    </section>
+    <section class="amigo-content">
+      <div class="amigo-content-top">
+        <div class="content-left">
+          <div class="tag b0-font color-secondary">Amigo Sol Phan Thiết</div>
+          <h3 class="h0-font color-secondary font-heading">
+            Friend of the Sun
+          </h3>
+        </div>
+        <div class="content-right">
+          <div class="description b1-font color-black">
+            Cho dù đó là một chuyến đi nghỉ dưỡng đặc biệt hay chỉ là một
+            khoảng thời gian ngắn tạm rời xa nhịp sống bận rộn, Amigo Sol Phan
+            Thiết là nơi bạn có thể nạp lại năng lượng, tận hưởng niềm vui
+            thuần khiết và trải nghiệm những kết nối sâu sắc.
+          </div>
+          <a href="" class="global-button">Xem tất cả</a>
+        </div>
+      </div>
+      <div class="amigo-content-bottom container-fluid p-0">
+        <div class="slider-amigo-wrapper row g-0">
+          <div class="col-lg-5">
+            <div class="slider-amigo-content-box d-flex align-items-end h-100">
+              <div class="slider-amigo-content-import"></div>
+            </div>
+            <!-- Nơi inject tag + title có animation -->
+          </div>
+          <div class="col-lg-7">
+            <!-- Image slider (master) -->
+            <div class="slider-amigo-image position-relative">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="amigo-image">
+                    <img src="./assets/images/del/room-1.webp" />
                   </div>
-                  <div class="swiper-slide">
-                    <div class="amigo-image">
-                      <img src="./assets/images/del/room-2.webp" />
+                  <!-- Data source cho content import -->
+                  <div class="amigo-slide-content" hidden>
+                    <div class="amigo-name">Superior room</div>
+                    <div class="amigo-description">
+                      Superior room sở hữu tầm nhìn hướng biển tuyệt đẹp.
+                      Superior room gồm 3 phòng ngủ với thiết kế hiện đại và
+                      tiện nghi đẳng cấp, mang đến không gian nghỉ dưỡng lý
+                      tưởng cho nhóm bạn hoặc gia đình đa thế hệ.
                     </div>
-                    <div class="amigo-slide-content" hidden>
-                      <div class="amigo-name">Deluxe Room</div>
-                      <div class="amigo-description">
-                        Thiết kế tinh tế, tiện nghi hiện đại, hồ bơi riêng và
-                        không gian sống chan hòa thiên nhiên – hoàn hảo cho kỳ
-                        nghỉ dưỡng đẳng cấp bên gia đình hoặc bạn bè.
-                      </div>
-                      <div class="amigo-button"><a href="#">Xem thêm</a></div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="amigo-image">
-                      <img src="./assets/images/del/room-3.webp" />
-                    </div>
-                    <div class="amigo-slide-content" hidden>
-                      <div class="amigo-name">Deluxe Azure</div>
-                      <div class="amigo-description">
-                        Thiết kế rộng rãi, 3 phòng ngủ tiện nghi cùng ánh sáng
-                        tự nhiên ngập tràn, mang đến trải nghiệm nghỉ dưỡng vừa
-                        ấm cúng, vừa đậm chất nghỉ dưỡng đẳng cấp.
-                      </div>
-                      <div class="amigo-button"><a href="#">Xem thêm</a></div>
-                    </div>
+                    <div class="amigo-button"><a href="#">Xem thêm</a></div>
                   </div>
                 </div>
-                <div class="swiper-pagination"></div>
+                <div class="swiper-slide">
+                  <div class="amigo-image">
+                    <img src="./assets/images/del/room-2.webp" />
+                  </div>
+                  <div class="amigo-slide-content" hidden>
+                    <div class="amigo-name">Deluxe Room</div>
+                    <div class="amigo-description">
+                      Thiết kế tinh tế, tiện nghi hiện đại, hồ bơi riêng và
+                      không gian sống chan hòa thiên nhiên – hoàn hảo cho kỳ
+                      nghỉ dưỡng đẳng cấp bên gia đình hoặc bạn bè.
+                    </div>
+                    <div class="amigo-button"><a href="#">Xem thêm</a></div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="amigo-image">
+                    <img src="./assets/images/del/room-3.webp" />
+                  </div>
+                  <div class="amigo-slide-content" hidden>
+                    <div class="amigo-name">Deluxe Azure</div>
+                    <div class="amigo-description">
+                      Thiết kế rộng rãi, 3 phòng ngủ tiện nghi cùng ánh sáng
+                      tự nhiên ngập tràn, mang đến trải nghiệm nghỉ dưỡng vừa
+                      ấm cúng, vừa đậm chất nghỉ dưỡng đẳng cấp.
+                    </div>
+                    <div class="amigo-button"><a href="#">Xem thêm</a></div>
+                  </div>
+                </div>
               </div>
-
-              <!-- Content slider sync (slave - optional) -->
+              <div class="swiper-pagination"></div>
             </div>
+
+            <!-- Content slider sync (slave - optional) -->
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+    <div class="spacing-16x"></div>
+    <section class="amigo-content">
+      <div class="amigo-content-top">
+        <div class="content-left">
+          <div class="tag b0-font color-secondary">Tiện ích</div>
+          <h3 class="h0-font color-secondary font-heading">
+            Cơ sở vật chất
+            tiêu chuẩn quốc tế
+          </h3>
+        </div>
+        <div class="content-right">
+          <div class="description b1-font color-black">
+            Amigo Sol Phan Thiết đã tạo ra một hệ thống tiện nghi toàn diện và một loạt các dịch vụ đạt tiêu chuẩn quốc
+            tế, từ giải trí, thư giãn và ăn uống đến chăm sóc sức khỏe, mang đến trải nghiệm tiện lợi và cao cấp trong
+            từng chi tiết.
+          </div>
+          <a href="" class="global-button">Xem tất cả</a>
+        </div>
+      </div>
+      <div class="amigo-content-bottom container-fluid p-0">
+        <!-- class flex-row-reverse -->
+        <div class="slider-amigo-wrapper row g-0 flex-row-reverse">
+          <div class="col-lg-5">
+            <!-- center -->
+            <div class="slider-amigo-content-box d-flex align-items-center h-100">
+              <div class="slider-amigo-content-import"></div>
+            </div>
+            <!-- Nơi inject tag + title có animation -->
+          </div>
+          <div class="col-lg-7">
+            <!-- Image slider (master) -->
+            <div class="slider-amigo-image position-relative">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="amigo-image">
+                    <img src="./assets/images/del/fac-1.webp" />
+                  </div>
+                  <!-- Data source cho content import -->
+                  <div class="amigo-slide-content" hidden>
+                    <div class="amigo-name">Sân Golf Mini</div>
+                    <div class="amigo-description">
+                      Sân golf mini nằm ngay trong quảng trường, mang đến tầm nhìn bao quát ra đại dương bao la. Bạn có
+                      thể luyện tập golf mỗi ngày trong khi thư giãn giữa không khí biển trong lành.
+                    </div>
 
-      <div class="spacing"></div>
-    </main>
-    <!-- layout -->
-    <!-- footer -->
-    <script>
-      fetch("./components/footer.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("footer").innerHTML = data;
-        });
-    </script>
-    <footer id="footer"></footer>
-    <!-- end footer -->
-    <!-- end layout -->
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="amigo-image">
+                    <img src="./assets/images/del/fac-2.webp" />
+                  </div>
+                  <div class="amigo-slide-content" hidden>
+                    <div class="amigo-name">Khu vườn Địa Trung Hải</div>
+                    <div class="amigo-description">
+                      Nằm giữa khung cảnh xanh mát dịu dàng, khu vườn Địa Trung Hải là một chốn nghỉ dưỡng đầy chất thơ,
+                      nơi bạn có thể gạt bỏ mọi lo âu và tận hưởng bữa trà chiều tao nhã cùng những người thân yêu.
+                    </div>
 
-    <script src="./assets/libs/jquery-3.7.1.js"></script>
-    <script src="./assets/libs/lenis.min.js"></script>
-    <script src="./assets/libs/gsap.min.js"></script>
-    <script src="./assets/libs/ScrollTrigger.min.js"></script>
-    <script src="./assets/libs/SplitText.min.js"></script>
-    <script src="./assets/libs/bootstrap.bundle.min.js"></script>
-    <script src="./assets/libs/imagesloaded.pkgd.min.js"></script>
-    <script src="./assets/libs/swiper-bundle.min.js"></script>
-    <script src="./assets/libs/moment.min.js"></script>
-    <script src="./assets/libs/lightpick.min.js"></script>
-    <!-- import custom js -->
-    <script type="module" src="./assets/main/js/script.min.js"></script>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="amigo-image">
+                    <img src="./assets/images/del/fac-3.webp" />
+                  </div>
+                  <div class="amigo-slide-content" hidden>
+                    <div class="amigo-name">Hồ bơi hướng biển tuyệt đẹp</div>
+                    <div class="amigo-description">
+                      Nằm ngay trung tâm khu nghỉ dưỡng, nơi đường chân trời, biển cả và làn nước xanh thẳm hòa quyện
+                      làm một. Bạn có thể đắm mình trong làn nước mát, tận hưởng những giây phút thư giãn và bị mê hoặc
+                      bởi khung cảnh đại dương đẹp như tranh vẽ.
+                    </div>
 
-    <!-- end import custom js -->
-  </body>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Content slider sync (slave - optional) -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="spacing"></div>
+  </main>
+  <!-- layout -->
+  <!-- footer -->
+  <script>
+    fetch("./components/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+  <footer id="footer"></footer>
+  <!-- end footer -->
+  <!-- end layout -->
+
+  <script src="./assets/libs/jquery-3.7.1.js"></script>
+  <script src="./assets/libs/lenis.min.js"></script>
+  <script src="./assets/libs/gsap.min.js"></script>
+  <script src="./assets/libs/ScrollTrigger.min.js"></script>
+  <script src="./assets/libs/SplitText.min.js"></script>
+  <script src="./assets/libs/bootstrap.bundle.min.js"></script>
+  <script src="./assets/libs/imagesloaded.pkgd.min.js"></script>
+  <script src="./assets/libs/swiper-bundle.min.js"></script>
+  <script src="./assets/libs/moment.min.js"></script>
+  <script src="./assets/libs/lightpick.min.js"></script>
+  <!-- import custom js -->
+  <script type="module" src="./assets/main/js/script.min.js"></script>
+
+  <!-- end import custom js -->
+</body>
+
 </html>
 <!-- https://gsap.com/community/forums/topic/30338-circular-carouselslider/ -->

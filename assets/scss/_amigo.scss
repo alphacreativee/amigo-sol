@@ -1,6 +1,5 @@
 .amigo-content {
   padding: 0 40px;
-  margin-bottom: 160px;
   &-top {
     display: flex;
     align-items: flex-start;
@@ -9,6 +8,11 @@
     .content-left,
     .content-right {
       width: calc(calc(4 / 12) * 100%);
+    }
+    .content-left {
+      .tag {
+        margin-bottom: 24px;
+      }
     }
     .content-right {
       .description {
@@ -48,6 +52,14 @@
     }
     .current-name {
       margin-bottom: 24px;
+    }
+  }
+  .slider-amigo-wrapper {
+    &.flex-row-reverse {
+      .slider-amigo-content-import {
+        padding-right: 0;
+        padding-left: calc(calc(1 / 12) * 100% + 64px);
+      }
     }
   }
 }

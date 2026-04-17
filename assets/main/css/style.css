@@ -284,6 +284,10 @@ main::before {
   height: 120px;
 }
 
+.spacing-16x {
+  height: 160px;
+}
+
 #header {
   position: fixed;
   top: 0;
@@ -1226,7 +1230,6 @@ footer .footer-alpha a:hover {
 
 .amigo-content {
   padding: 0 40px;
-  margin-bottom: 160px;
 }
 .amigo-content-top {
   display: flex;
@@ -1237,6 +1240,9 @@ footer .footer-alpha a:hover {
 .amigo-content-top .content-left,
 .amigo-content-top .content-right {
   width: 33.3333333333%;
+}
+.amigo-content-top .content-left .tag {
+  margin-bottom: 24px;
 }
 .amigo-content-top .content-right .description {
   margin-bottom: 32px;
@@ -1274,6 +1280,10 @@ footer .footer-alpha a:hover {
 }
 .amigo-content .slider-amigo-content-import .current-name {
   margin-bottom: 24px;
+}
+.amigo-content .slider-amigo-wrapper.flex-row-reverse .slider-amigo-content-import {
+  padding-right: 0;
+  padding-left: calc(8.3333333333% + 64px);
 }
 
 .section-map {
