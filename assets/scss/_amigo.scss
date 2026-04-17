@@ -17,6 +17,13 @@
         }
       }
     }
+    .amigo-artwork {
+      &.bottom-right {
+        bottom: 0;
+        right: 0;
+        transform: scaleX(-1) translateY(50%);
+      }
+    }
   }
   &-top {
     display: flex;

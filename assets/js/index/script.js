@@ -257,6 +257,33 @@ function imgWithText() {
   });
 }
 
+function swiperOffer() {
+  if (!document.querySelector(".swiper-offer")) return;
+  var swiperOffer = new Swiper(".swiper-offer", {
+    spaceBetween: 24,
+    slidesPerView: 1.25,
+    speed: 1000,
+    navigation: {
+      nextEl: ".section-offer__slider .swiper-button-next",
+      prevEl: ".section-offer__slider .swiper-button-prev"
+    },
+    pagination: {
+      el: ".section-offer__slider .swiper-pagination",
+      type: "progressbar"
+    },
+    slidesOffsetAfter: 24,
+    slidesOffsetBefore: 24,
+    breakpoints: {
+      991: {
+        slidesPerView: 3,
+        spaceBetween: 40,
+        slidesOffsetAfter: 0,
+        slidesOffsetBefore: 0
+      }
+    }
+  });
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -268,6 +295,7 @@ const init = () => {
   sliderService();
   fadeTextFooter();
   imgWithText();
+  swiperOffer();
 };
 preloadImages("img").then(() => {
   init();
