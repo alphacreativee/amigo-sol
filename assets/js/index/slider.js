@@ -192,8 +192,8 @@ export function sliderAmigo() {
     ScrollTrigger.create({
       trigger: wrapper,
       start: "top 50%",
-      once: true, // Chỉ trigger 1 lần
-      markers: true,
+      once: true,
+      //   markers: true,
       onEnter: () => {
         if (contentContainer) {
           animateIn(contentContainer);
