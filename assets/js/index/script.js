@@ -1,5 +1,6 @@
 import { preloadImages } from "../../main/js/utils.min.js";
 import { customDropdown, createFilterTab } from "../../main/js/global.min.js";
+import { sliderAmigo } from "../../main/js/slider.min.js";
 ("use strict");
 $ = jQuery;
 
@@ -150,6 +151,7 @@ function bookingTime() {
     bookingCalendar.style.cursor = "pointer";
   }
 }
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -157,6 +159,7 @@ const init = () => {
   headerMenu();
   bannerSlider();
   bookingTime();
+  sliderAmigo();
 };
 preloadImages("img").then(() => {
   init();
