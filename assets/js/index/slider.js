@@ -86,7 +86,7 @@ export function sliderAmigo() {
             y: 0,
             ease: "power2.out",
             duration: 0.5,
-            delay: delay,
+            delay,
             stagger: 0.08,
           },
         );
@@ -94,13 +94,7 @@ export function sliderAmigo() {
         gsap.fromTo(
           newName,
           { autoAlpha: 0, y: 20 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            ease: "power2.out",
-            duration: 0.4,
-            delay: delay,
-          },
+          { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.4, delay },
         );
       }
 
@@ -142,10 +136,7 @@ export function sliderAmigo() {
         spaceBetween: 0,
         loop: true,
         speed: 1100,
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
+        autoplay: false, // Tắt autoplay ban đầu, bật khi scroll đến
         pagination: {
           el: wrapper.querySelector(".slider-amigo-image .swiper-pagination"),
         },
@@ -181,7 +172,7 @@ export function sliderAmigo() {
       },
     );
 
-    // Init slide đầu tiên
+    // Init slide đầu tiên (set content, chưa animate)
     const initialSlide = imageSwiper.slides[imageSwiper.activeIndex];
     const initialSlideContent = initialSlide?.querySelector(
       ".amigo-slide-content",
@@ -192,7 +183,29 @@ export function sliderAmigo() {
 
     if (initialSlideContent && contentContainer) {
       contentContainer.innerHTML = buildHTML(getSlideData(initialSlideContent));
-      animateIn(contentContainer, 0.5);
+
+      // Set ẩn trước khi scroll đến
+      gsap.set(contentContainer.children, { autoAlpha: 0 });
     }
+
+    // ScrollTrigger: khi wrapper vào viewport mới animate + bật autoplay
+    ScrollTrigger.create({
+      trigger: wrapper,
+      start: "top 50%",
+      once: true, // Chỉ trigger 1 lần
+      markers: true,
+      onEnter: () => {
+        if (contentContainer) {
+          animateIn(contentContainer);
+        }
+
+        // Bật autoplay sau khi vào viewport
+        imageSwiper.params.autoplay = {
+          delay: 3000,
+          disableOnInteraction: false,
+        };
+        imageSwiper.autoplay.start();
+      },
+    });
   });
 }
