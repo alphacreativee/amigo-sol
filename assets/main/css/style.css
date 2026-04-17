@@ -1233,6 +1233,7 @@ footer .footer-alpha a:hover {
 
 .amigo-content {
   padding: 0 40px;
+  position: relative;
 }
 .amigo-content.service-section .amigo-content-top .content-left {
   width: 40%;
@@ -1302,6 +1303,21 @@ footer .footer-alpha a:hover {
 .amigo-content .slider-amigo-wrapper.flex-row-reverse .slider-amigo-content-import {
   padding-right: 0;
   padding-left: calc(8.3333333333% + 64px);
+}
+.amigo-content .amigo-artwork {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.amigo-content .amigo-artwork.top-right {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1) translateY(-50%);
+}
+.amigo-content .amigo-artwork.left-bottom {
+  left: 0;
+  bottom: 0;
+  transform: translateY(50%);
 }
 
 .section-map {

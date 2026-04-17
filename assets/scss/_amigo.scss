@@ -1,5 +1,6 @@
 .amigo-content {
   padding: 0 40px;
+  position: relative;
   &.service-section {
     .amigo-content-top .content-left {
       width: 40%;
@@ -77,6 +78,21 @@
         padding-right: 0;
         padding-left: calc(calc(1 / 12) * 100% + 64px);
       }
+    }
+  }
+  .amigo-artwork {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    &.top-right {
+      top: 0;
+      right: 0;
+      transform: scaleX(-1) translateY(-50%);
+    }
+    &.left-bottom {
+      left: 0;
+      bottom: 0;
+      transform: translateY(50%);
     }
   }
 }
