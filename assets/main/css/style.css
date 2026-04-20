@@ -2171,16 +2171,8 @@ section.image-with-text .swiper-pagination span {
     margin-bottom: 32px;
   }
 }
-@media (min-width: 992px) {
-  .section-offer__item:hover .section-offer__img {
-    clip-path: inset(3%);
-  }
-  .section-offer__item:hover .section-offer__img img {
-    transform: scale(1.05);
-  }
-}
 .section-offer__item:hover .section-offer__content--title {
-  color: var(--color-secondary);
+  color: var(--color-primary);
 }
 .section-offer__img {
   width: 100%;
