@@ -207,10 +207,16 @@ export function sliderAmigo() {
     const contentContainer = wrapper.querySelector(
       ".slider-amigo-content-import",
     );
+    const imageEl = wrapper.querySelector(".slider-amigo-image");
 
     if (initialSlideContent && contentContainer) {
       contentContainer.innerHTML = buildHTML(getSlideData(initialSlideContent));
       gsap.set(contentContainer.children, { autoAlpha: 0 });
+    }
+
+    // ✅ Ẩn image ban đầu
+    if (imageEl) {
+      gsap.set(imageEl, { autoAlpha: 0, y: 20 });
     }
 
     ScrollTrigger.create({
@@ -218,7 +224,18 @@ export function sliderAmigo() {
       start: "top 50%",
       once: true,
       onEnter: () => {
-        if (contentContainer) animateIn(contentContainer);
+        // ✅ Animate image trước
+        if (imageEl) {
+          gsap.to(imageEl, {
+            autoAlpha: 1,
+            y: 0,
+            ease: "power2.out",
+            duration: 0.8,
+          });
+        }
+
+        // ✅ Content delay nhẹ sau image
+        if (contentContainer) animateIn(contentContainer, 0.3);
 
         imageSwiper.params.autoplay = {
           delay: 3000,
