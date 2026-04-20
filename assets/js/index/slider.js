@@ -68,6 +68,7 @@ export function sliderAmigo() {
       const newBtn = container.querySelector(".current-button");
 
       if (newName && typeof SplitText !== "undefined") {
+        gsap.set(newName, { autoAlpha: 1 });
         const split = new SplitText(newName, {
           type: "lines",
           linesClass: "line",
