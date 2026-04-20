@@ -1,8 +1,12 @@
 section.image-with-text {
   position: relative;
   z-index: 2;
-  overflow: hidden;
 
+  .amigo-artwork {
+    position: absolute;
+    right: 0;
+    bottom: -50%;
+  }
   &.parallax {
     padding: 0 40px;
 

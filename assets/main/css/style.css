@@ -1350,6 +1350,7 @@ footer .footer-alpha a:hover {
 }
 .intro-detail-page {
   padding: 200px 40px 0;
+  position: relative;
 }
 .intro-detail-page .intro-page-wrap {
   text-align: center;
@@ -1364,6 +1365,9 @@ footer .footer-alpha a:hover {
 }
 .intro-detail-page .intro-page-wrap h3 {
   margin-bottom: 24px;
+}
+.intro-detail-page .top-right {
+  top: 40%;
 }
 
 .amigo-content {
@@ -1965,7 +1969,11 @@ footer .footer-alpha a:hover {
 section.image-with-text {
   position: relative;
   z-index: 2;
-  overflow: hidden;
+}
+section.image-with-text .amigo-artwork {
+  position: absolute;
+  right: 0;
+  bottom: -50%;
 }
 section.image-with-text.parallax {
   padding: 0 40px;
