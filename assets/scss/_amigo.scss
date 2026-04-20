@@ -120,4 +120,16 @@
       transform: translateY(50%);
     }
   }
+  .swiper-serivce {
+    height: 500px;
+    .service-image {
+      width: 100%;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
 }

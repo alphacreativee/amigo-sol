@@ -173,7 +173,7 @@ function sliderService() {
     speed: 1500,
     autoplay: {
       delay: 3000,
-      disableOnInteraction: false, // ✅ Khai báo đầy đủ từ đầu
+      disableOnInteraction: false,
     },
     pagination: {
       el: ".swiper-serivce .swiper-pagination",
@@ -185,7 +185,7 @@ function sliderService() {
     },
   });
 
-  swiperService.autoplay.stop(); // ✅ Dừng ngay sau khi init
+  swiperService.autoplay.stop();
 
   setActiveTitle(0);
 
@@ -199,6 +199,11 @@ function sliderService() {
       }, 100);
     });
   });
+
+  const swiperEl = document.querySelector(".swiper-serivce");
+  if (swiperEl) {
+    gsap.set(swiperEl, { autoAlpha: 0, y: 20 });
+  }
 
   const allSplitLines = [];
   titleService.forEach((el) => {
@@ -216,14 +221,24 @@ function sliderService() {
     start: "top 70%",
     once: true,
     onEnter: () => {
+      if (swiperEl) {
+        gsap.to(swiperEl, {
+          autoAlpha: 1,
+          y: 0,
+          ease: "power2.out",
+          duration: 0.8,
+        });
+      }
+
       gsap.to(allSplitLines, {
         yPercent: 0,
         ease: "power3.out",
         duration: 0.8,
         stagger: 0.1,
+        delay: 0.2,
       });
 
-      swiperService.autoplay.start(); // ✅ Start khi scroll đến
+      swiperService.autoplay.start();
     },
   });
 }
@@ -392,7 +407,24 @@ function animationText() {
     });
   });
 }
-function eLeaf() {}
+function eLeaf() {
+  const leaves = document.querySelectorAll(".e-leaf");
+
+  leaves.forEach((leaf) => {
+    const direction = leaf.classList.contains("big-leaf") ? 30 : 120;
+
+    gsap.to(leaf, {
+      y: direction,
+      ease: "none",
+      scrollTrigger: {
+        trigger: leaf,
+        scrub: true,
+        start: "top bottom",
+        end: "bottom top",
+      },
+    });
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
