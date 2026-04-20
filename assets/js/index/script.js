@@ -392,7 +392,24 @@ function animationText() {
     });
   });
 }
-function eLeaf() {}
+function eLeaf() {
+  const leaves = document.querySelectorAll(".e-leaf");
+
+  leaves.forEach((leaf) => {
+    const direction = leaf.classList.contains("big-leaf") ? 30 : 120;
+
+    gsap.to(leaf, {
+      y: direction,
+      ease: "none",
+      scrollTrigger: {
+        trigger: leaf,
+        scrub: true,
+        start: "top bottom",
+        end: "bottom top",
+      },
+    });
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
