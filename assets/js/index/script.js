@@ -23,7 +23,7 @@ function headerMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.3,
-    ease: "power2.out"
+    ease: "power2.out",
   });
 
   // console.log($(".header-sub-menu .sub-menu-container .sub-menu > ul > li"));
@@ -35,8 +35,8 @@ function headerMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.3,
-      ease: "power2.out"
-    }
+      ease: "power2.out",
+    },
   );
 
   $btnMenu.on("click", function () {
@@ -80,11 +80,11 @@ function bannerSlider() {
     speed: 1500,
     autoplay: {
       delay: 3000,
-      disableOnInteraction: false
+      disableOnInteraction: false,
     },
     pagination: {
-      el: ".section-banner .swiper-pagination"
-    }
+      el: ".section-banner .swiper-pagination",
+    },
   });
 }
 function bookingTime() {
@@ -137,7 +137,7 @@ function bookingTime() {
 
     onYearChange: function () {
       setTimeout(positionCalendar, 10);
-    }
+    },
   });
 
   const bookingCalendar = document.querySelector(".booking-calendar");
@@ -155,7 +155,7 @@ function sliderService() {
   if (!document.querySelector(".swiper-serivce")) return;
 
   const titleService = document.querySelectorAll(
-    ".amigo-service-titles .item-title"
+    ".amigo-service-titles .item-title",
   );
   let activeElms = titleService[0];
 
@@ -173,16 +173,16 @@ function sliderService() {
     speed: 1500,
     autoplay: {
       delay: 3000,
-      disableOnInteraction: false
+      disableOnInteraction: false,
     },
     pagination: {
-      el: ".swiper-serivce .swiper-pagination"
+      el: ".swiper-serivce .swiper-pagination",
     },
     on: {
       slideChange: function () {
         setActiveTitle(this.realIndex);
-      }
-    }
+      },
+    },
   });
 
   setActiveTitle(0);
@@ -197,7 +197,7 @@ function sliderService() {
 function fadeTextFooter() {
   gsap.set("data-text-footer", {
     opacity: 0,
-    y: 20
+    y: 20,
   });
   let tlf = gsap.timeline({ paused: true });
 
@@ -205,22 +205,22 @@ function fadeTextFooter() {
     "[data-text-footer]",
     {
       opacity: 0,
-      y: 20
+      y: 20,
     },
     {
       opacity: 1,
       y: 0,
       stagger: 0.05,
       duration: 0.6,
-      ease: "power2.out"
-    }
+      ease: "power2.out",
+    },
   );
   ScrollTrigger.create({
     trigger: "footer",
     start: "top 80%",
     // markers: true,
     animation: tlf,
-    toggleActions: "play none none none"
+    toggleActions: "play none none none",
   });
 
   return tlf;
@@ -238,21 +238,21 @@ function imgWithText() {
       scrollTrigger: {
         trigger: section,
         scrub: true,
-        pin: false
+        pin: false,
         // markers: true
-      }
+      },
     });
 
     tl.fromTo(
       img,
       {
         yPercent: -15,
-        ease: "none"
+        ease: "none",
       },
       {
         yPercent: 15,
-        ease: "none"
-      }
+        ease: "none",
+      },
     );
   });
 }
@@ -265,11 +265,11 @@ function swiperOffer() {
     speed: 1000,
     navigation: {
       nextEl: ".section-offer__slider .swiper-button-next",
-      prevEl: ".section-offer__slider .swiper-button-prev"
+      prevEl: ".section-offer__slider .swiper-button-prev",
     },
     pagination: {
       el: ".section-offer__slider .swiper-pagination",
-      type: "progressbar"
+      type: "progressbar",
     },
     slidesOffsetAfter: 24,
     slidesOffsetBefore: 24,
@@ -278,12 +278,86 @@ function swiperOffer() {
         slidesPerView: 3,
         spaceBetween: 40,
         slidesOffsetAfter: 0,
-        slidesOffsetBefore: 0
-      }
-    }
+        slidesOffsetBefore: 0,
+      },
+    },
   });
 }
+function animationText() {
+  gsap.registerPlugin(ScrollTrigger, SplitText);
 
+  document.querySelectorAll(".tl-text").forEach((el) => {
+    const sub = el.querySelector(".text-e-sub");
+    const title = el.querySelector(".text-e-title");
+    const desc = el.querySelector(".text-e-desc");
+    const btn = el.querySelector(".text-e-btn");
+
+    const startVal = el.dataset.start ?? "70";
+    const triggerStart = `top ${startVal}%`;
+    const toHide = [sub, desc, btn].filter(Boolean);
+    gsap.set(toHide, { autoAlpha: 0 });
+
+    let splitLines = null;
+    if (title) {
+      const split = new SplitText(title, {
+        type: "lines",
+        linesClass: "line",
+        mask: "lines",
+      });
+      splitLines = split.lines;
+      gsap.set(splitLines, { yPercent: 100 });
+    }
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: triggerStart,
+      once: true,
+      // markers: true,
+      onEnter: () => {
+        const tl = gsap.timeline();
+
+        if (sub) {
+          tl.fromTo(
+            sub,
+            { autoAlpha: 0, y: 20 },
+            { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
+          );
+        }
+
+        if (splitLines) {
+          tl.to(
+            splitLines,
+            {
+              yPercent: 0,
+              ease: "power3.out",
+              duration: 0.8,
+              stagger: 0.05,
+            },
+            sub ? "-=0.1" : 0,
+          );
+        }
+
+        if (desc) {
+          tl.fromTo(
+            desc,
+            { autoAlpha: 0, y: 20 },
+            { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
+            "-=0.2",
+          );
+        }
+
+        if (btn) {
+          tl.fromTo(
+            btn,
+            { autoAlpha: 0, y: 20 },
+            { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
+            "-=0.2",
+          );
+        }
+      },
+    });
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -296,6 +370,7 @@ const init = () => {
   fadeTextFooter();
   imgWithText();
   swiperOffer();
+  animationText();
 };
 preloadImages("img").then(() => {
   init();
