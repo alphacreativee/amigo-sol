@@ -126,9 +126,9 @@
         <div class="booking-form">
           <div class="booking-form-wrapper">
             <div class="booking-form-head">
-              <h3 class="h1-mobile font-heading color-white">Đặt phòng</h3>
+              <h3 class="h1-mobile font-heading color-white">Đặt Bàn</h3>
             </div>
-            <form action="" class="booking-form-main form-booking-room">
+            <form action="" class="booking-form-main form-booking-table">
               <div class="form-row">
                 <div class="input-item">
                   <input type="text" placeholder=" " />
@@ -143,7 +143,7 @@
               </div>
               <div class="form-row two-col">
                 <div class="input-item">
-                  <input type="text" id="checkInDate" />
+                  <input type="text" id="checkInDateTable" />
                   <!-- <label for="">Ngày đến<span>
                     *</span></label> -->
 
@@ -151,12 +151,33 @@
                     <img src="./assets/images/icons/icon-calendar.svg" alt="" />
                   </div>
                 </div>
-                <div class="input-item">
-                  <input type="text" id="checkOutDate" />
-                  <!-- <label for="">Ngày đi<span>
-                    *</span></label> -->
-                  <div class="icon">
-                    <img src="./assets/images/icons/icon-calendar.svg" alt="" />
+                <div class="input-item p-0">
+                  <div class="dropdown-custom z-3" style="z-index: 3">
+                    <div class="dropdown-custom-btn">
+                      <div
+                        class="value-select dropdown-custom-text color-black"
+                      >
+                        <span>Giờ đến</span>
+                      </div>
+                      <img src="./assets/images/icons/icon-clock.svg" alt="" />
+                    </div>
+                    <div class="dropdown-custom-menu">
+                      <div
+                        class="dropdown-custom-item language-item color-black"
+                      >
+                        <span>10:30</span>
+                      </div>
+                      <div
+                        class="dropdown-custom-item language-item color-black"
+                      >
+                        <span>11:00</span>
+                      </div>
+                      <div
+                        class="dropdown-custom-item language-item color-black"
+                      >
+                        <span>11:30</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -171,12 +192,41 @@
                 </div>
               </div>
               <div class="form-row">
+                <div class="dropdown-custom">
+                  <div class="dropdown-custom-btn">
+                    <div class="value-select dropdown-custom-text color-black">
+                      <span>Set menu</span>
+                    </div>
+                    <img
+                      src="./assets/images/icons/icon-arrow-down.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="dropdown-custom-menu">
+                    <div class="dropdown-custom-item language-item color-black">
+                      <span>Set menu 1</span>
+                    </div>
+                    <div class="dropdown-custom-item language-item color-black">
+                      <span>Set menu 2</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
                 <div class="input-item">
                   <textarea placeholder=" "></textarea>
                   <label for="">Lời nhắn</label>
                 </div>
               </div>
-              <button class="btn-general">Gửi thông tin</button>
+              <div
+                class="form-bottom d-flex align-items-center justify-content-between"
+              >
+                <button class="btn-general" type="submit">Gửi thông tin</button>
+
+                <a href="#" class="b2-font font-body color-secondary"
+                  >Xem menu.pdf</a
+                >
+              </div>
             </form>
           </div>
         </div>
@@ -227,6 +277,34 @@
                     ngày.
                   </div>
 
+                  <ul class="list-item__info">
+                    <li>
+                      <div class="list-item__info-i">
+                        <div class="icon">
+                          <img
+                            src="./assets/images/icons/icon-clock.svg"
+                            alt=""
+                          />
+                        </div>
+                        <div class="content b1-font color-black">
+                          Buổi sáng: 7h - 10h <br />
+                          Buổi trưa và buổi tối: 10h - 22h
+                        </div>
+                      </div>
+                      <div class="list-item__info-i">
+                        <div class="icon">
+                          <img
+                            src="./assets/images/icons/icon-dish.svg"
+                            alt=""
+                          />
+                        </div>
+                        <div class="content b1-font color-black">
+                          <a href="#" class="hover-underline-black">Thực đơn</a>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+
                   <div class="list-item__btn">
                     <a href="" class="btn-general"> Chi tiết </a>
                   </div>
@@ -253,6 +331,32 @@
                     nhâm nhi thức uống yêu thích và tận hưởng không gian yên
                     bình.
                   </div>
+                  <ul class="list-item__info">
+                    <li>
+                      <div class="list-item__info-i">
+                        <div class="icon">
+                          <img
+                            src="./assets/images/icons/icon-location.svg"
+                            alt=""
+                          />
+                        </div>
+                        <div class="content b1-font color-black">
+                          Vị trí: Trung tâm hồ bơi
+                        </div>
+                      </div>
+                      <div class="list-item__info-i">
+                        <div class="icon">
+                          <img
+                            src="./assets/images/icons/icon-clock.svg"
+                            alt=""
+                          />
+                        </div>
+                        <div class="content b1-font color-black">
+                          Giờ hoạt động: 6h - 22h
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

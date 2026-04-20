@@ -107,38 +107,40 @@ function bookingTime() {
     }
   }
 
-  var picker = new Lightpick({
-    field: document.getElementById("checkInDate"),
-    secondField: document.getElementById("checkOutDate"),
-    singleDate: false,
-    minDate: moment().startOf("now"),
-    numberOfMonths: 2,
-    startDate: moment().startOf("day").toDate(),
-    endDate: moment().startOf("day").add(1, "days").toDate(),
+  if ($("#checkInDate").length > 0) {
+    var picker = new Lightpick({
+      field: document.getElementById("checkInDate"),
+      secondField: document.getElementById("checkOutDate"),
+      singleDate: false,
+      minDate: moment().startOf("now"),
+      numberOfMonths: 2,
+      startDate: moment().startOf("day").toDate(),
+      endDate: moment().startOf("day").add(1, "days").toDate(),
 
-    onOpen: function () {
-      positionCalendar();
-      setTimeout(positionCalendar, 50);
+      onOpen: function () {
+        positionCalendar();
+        setTimeout(positionCalendar, 50);
 
-      // Thêm event listener cho scroll khi calendar mở
-      window.addEventListener("scroll", positionCalendar);
-      window.addEventListener("resize", positionCalendar);
-    },
+        // Thêm event listener cho scroll khi calendar mở
+        window.addEventListener("scroll", positionCalendar);
+        window.addEventListener("resize", positionCalendar);
+      },
 
-    onClose: function () {
-      // Xóa event listener khi calendar đóng
-      window.removeEventListener("scroll", positionCalendar);
-      window.removeEventListener("resize", positionCalendar);
-    },
+      onClose: function () {
+        // Xóa event listener khi calendar đóng
+        window.removeEventListener("scroll", positionCalendar);
+        window.removeEventListener("resize", positionCalendar);
+      },
 
-    onMonthChange: function () {
-      setTimeout(positionCalendar, 10);
-    },
+      onMonthChange: function () {
+        setTimeout(positionCalendar, 10);
+      },
 
-    onYearChange: function () {
-      setTimeout(positionCalendar, 10);
-    },
-  });
+      onYearChange: function () {
+        setTimeout(positionCalendar, 10);
+      },
+    });
+  }
 
   const bookingCalendar = document.querySelector(".booking-calendar");
   if (bookingCalendar) {
@@ -149,6 +151,37 @@ function bookingTime() {
     });
 
     bookingCalendar.style.cursor = "pointer";
+  }
+
+  if ($("#checkInDateTable").length > 0) {
+    var pickerDining = new Lightpick({
+      field: document.getElementById("checkInDateTable"),
+      singleDate: true,
+      numberOfMonths: 1,
+      minDate: moment().startOf("day").add(1, "days"),
+      startDate: moment().startOf("day").add(1, "days").toDate(),
+
+      onOpen: function () {
+        positionCalendar();
+        setTimeout(positionCalendar, 50);
+
+        window.addEventListener("scroll", positionCalendar);
+        window.addEventListener("resize", positionCalendar);
+      },
+
+      onClose: function () {
+        window.removeEventListener("scroll", positionCalendar);
+        window.removeEventListener("resize", positionCalendar);
+      },
+
+      onMonthChange: function () {
+        setTimeout(positionCalendar, 10);
+      },
+
+      onYearChange: function () {
+        setTimeout(positionCalendar, 10);
+      },
+    });
   }
 }
 function sliderService() {
