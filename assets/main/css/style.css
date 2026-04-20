@@ -354,6 +354,13 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
+.e-card-list {
+  margin-bottom: 120px;
+}
+.e-card-list.list-even {
+  margin-bottom: 200px;
+}
+
 #header {
   position: fixed;
   top: 0;
@@ -1320,7 +1327,7 @@ footer .footer-alpha a:hover {
   justify-content: center;
 }
 .intro-box {
-  width: 50%;
+  width: 53%;
   text-align: center;
   display: flex;
   flex-direction: column;
