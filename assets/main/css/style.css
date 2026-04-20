@@ -707,9 +707,11 @@ body {
   position: absolute;
   left: 40px;
   z-index: 5;
-  bottom: 40px;
-  width: 33%;
-  height: calc(100svh - 150px);
+  top: 50%;
+  transform: translateY(calc(-50% + 40px));
+  width: 440px;
+  height: auto;
+  max-height: calc(100svh - 150px);
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
 }
@@ -753,9 +755,20 @@ body {
 .section-banner .booking-form-main .input-item label {
   position: absolute;
   left: 16px;
+  pointer-events: none;
+  transition: all 0.3s ease;
 }
 .section-banner .booking-form-main .input-item label span {
   color: red;
+}
+.section-banner .booking-form-main .input-item .icon {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 .section-banner .booking-form-main .form-row.two-col {
   display: grid;
@@ -2239,9 +2252,9 @@ section.image-with-text .swiper-pagination span {
   font-size: 0;
 }
 .section-offer .swiper-btn-offer {
-  width: 80px;
-  height: 80px;
-  top: calc(50% - 95px);
+  width: 50px;
+  height: 50px;
+  top: calc(50% - 80px);
   border: 1px solid var(--color-secondary);
   background-color: var(--color-white);
   border-radius: 50%;
