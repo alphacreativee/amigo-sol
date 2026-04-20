@@ -79,7 +79,7 @@ function bannerSlider() {
     loop: true,
     speed: 1500,
     autoplay: {
-      delay: 3000,
+      delay: 1500,
       disableOnInteraction: false,
     },
     pagination: {
@@ -173,7 +173,7 @@ function sliderService() {
     speed: 1500,
     autoplay: {
       delay: 3000,
-      disableOnInteraction: false,
+      disableOnInteraction: false, // ✅ Khai báo đầy đủ từ đầu
     },
     pagination: {
       el: ".swiper-serivce .swiper-pagination",
@@ -185,15 +185,49 @@ function sliderService() {
     },
   });
 
+  swiperService.autoplay.stop(); // ✅ Dừng ngay sau khi init
+
   setActiveTitle(0);
 
   titleService.forEach((el, index) => {
     el.addEventListener("mouseover", function () {
       swiperService.slideToLoop(index);
       setActiveTitle(index);
+      setTimeout(() => {
+        swiperService.autoplay.stop();
+        swiperService.autoplay.start();
+      }, 100);
     });
   });
+
+  const allSplitLines = [];
+  titleService.forEach((el) => {
+    const split = new SplitText(el, {
+      type: "lines",
+      linesClass: "line",
+      mask: "lines",
+    });
+    allSplitLines.push(...split.lines);
+    gsap.set(split.lines, { yPercent: 100 });
+  });
+
+  ScrollTrigger.create({
+    trigger: ".amigo-service-wrapper",
+    start: "top 70%",
+    once: true,
+    onEnter: () => {
+      gsap.to(allSplitLines, {
+        yPercent: 0,
+        ease: "power3.out",
+        duration: 0.8,
+        stagger: 0.1,
+      });
+
+      swiperService.autoplay.start(); // ✅ Start khi scroll đến
+    },
+  });
 }
+
 function fadeTextFooter() {
   gsap.set("data-text-footer", {
     opacity: 0,
@@ -358,6 +392,7 @@ function animationText() {
     });
   });
 }
+function eLeaf() {}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -371,6 +406,7 @@ const init = () => {
   imgWithText();
   swiperOffer();
   animationText();
+  eLeaf();
 };
 preloadImages("img").then(() => {
   init();
