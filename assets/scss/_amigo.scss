@@ -1,6 +1,11 @@
 .amigo-content {
   padding: 0 40px;
   position: relative;
+
+  .other-room-title {
+    margin-bottom: 72px;
+  }
+
   &.service-section {
     .amigo-content-top .content-left {
       width: 40%;

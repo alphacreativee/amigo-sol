@@ -458,6 +458,180 @@ function eLeaf() {
     });
   });
 }
+
+function detailSlider() {
+  // Kiểm tra container có tồn tại
+  const container = document.querySelector(".image-with-text .detail-slider");
+  if (!container) {
+    console.warn("Detail slider (.image-with-text .detail-slider) not found");
+    return;
+  }
+
+  const parentContainer = document.querySelector(".image-with-text");
+  if (!parentContainer) {
+    console.warn("Parent container (.image-with-text) not found");
+    return;
+  }
+
+  const interleaveOffset = 0.9;
+  const swiperButton = document.querySelector(
+    ".image-with-text .detail-slider__arrows"
+  );
+
+  // Kiểm tra swiperButton tồn tại
+  if (!swiperButton) {
+    console.warn(
+      "Swiper button (.image-with-text .detail-slider__arrows) not found"
+    );
+    return;
+  }
+
+  // Khởi tạo Swiper
+  const detailSlider = new Swiper(container, {
+    loop: false,
+    speed: 1500,
+    watchSlidesProgress: true,
+    mousewheel: false,
+    keyboard: false,
+    allowTouchMove: true,
+    autoplay: false,
+    pagination: {
+      el: ".image-with-text .swiper-pagination"
+    },
+    breakpoints: {
+      991: {
+        allowTouchMove: false
+      }
+    },
+    // Loại bỏ navigation vì không dùng nút mặc định
+    on: {
+      progress(swiper) {
+        swiper.slides.forEach((slide) => {
+          const slideProgress = slide.progress || 0;
+          const innerOffset = swiper.width * interleaveOffset;
+          const innerTranslate = slideProgress * innerOffset;
+
+          if (!isNaN(innerTranslate)) {
+            const slideInner = slide.querySelector(".detail-slider__image");
+            if (slideInner) {
+              slideInner.style.transform = `translate3d(${innerTranslate}px, 0, 0)`;
+            }
+          }
+        });
+      },
+      touchStart(swiper) {
+        swiper.slides.forEach((slide) => {
+          slide.style.transition = "";
+        });
+      },
+      setTransition(swiper, speed) {
+        const easing = "cubic-bezier(0.25, 0.1, 0.25, 1)";
+        swiper.slides.forEach((slide) => {
+          slide.style.transition = `${speed}ms ${easing}`;
+          const slideInner = slide.querySelector(".detail-slider__image");
+          if (slideInner) {
+            slideInner.style.transition = `${speed}ms ${easing}`;
+          }
+        });
+      }
+    }
+  });
+
+  let lastMouseX = null;
+
+  // Xử lý sự kiện mousemove trên .image-with-text
+  parentContainer.addEventListener("mousemove", (e) => {
+    const rect = container.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const halfWidth = rect.width / 2;
+    const buttonWidth = swiperButton.offsetWidth;
+    const buttonHeight = swiperButton.offsetHeight;
+    const offset = 40; // Khoảng cách 40px từ cả bốn cạnh
+
+    lastMouseX = mouseX;
+
+    // Hiển thị nút
+    swiperButton.style.opacity = "1";
+    swiperButton.style.transition = "opacity 0.3s, transform 0.3s";
+
+    // Tính toán vị trí
+    let buttonPosX = mouseX - buttonWidth / 2;
+    let buttonPosY = mouseY - buttonHeight / 2;
+    const transitionZone = 20;
+    let rotateDeg;
+
+    if (mouseX <= halfWidth - transitionZone) {
+      rotateDeg = 180; // Nửa trái: prev
+      buttonPosX = Math.max(
+        offset,
+        Math.min(halfWidth - buttonWidth, buttonPosX)
+      );
+    } else if (mouseX >= halfWidth + transitionZone) {
+      rotateDeg = 0; // Nửa phải: next
+      buttonPosX = Math.max(
+        halfWidth,
+        Math.min(rect.width - buttonWidth - offset, buttonPosX)
+      );
+    } else {
+      const progress =
+        (mouseX - (halfWidth - transitionZone)) / (transitionZone * 2);
+      rotateDeg = 180 - progress * 180; // Vùng chuyển tiếp
+      buttonPosX = Math.max(
+        offset,
+        Math.min(rect.width - buttonWidth - offset, buttonPosX)
+      );
+    }
+
+    // Giới hạn vị trí Y với offset 40px
+    buttonPosY = Math.max(
+      offset,
+      Math.min(rect.height - buttonHeight - offset, buttonPosY)
+    );
+
+    // Áp dụng transform
+    swiperButton.style.left = `${buttonPosX}px`;
+    swiperButton.style.top = `${buttonPosY}px`;
+    swiperButton.style.transform = `scale(1) rotate(${rotateDeg}deg)`;
+    swiperButton.style.transition = " transform 0.3s";
+  });
+
+  // Xử lý sự kiện mouseleave
+  parentContainer.addEventListener("mouseleave", () => {
+    swiperButton.style.opacity = "0";
+    swiperButton.style.transform = "scale(0)";
+    swiperButton.style.transition = "opacity 0.3s, transform 0.3s";
+    lastMouseX = null;
+  });
+
+  // Xử lý sự kiện click
+  swiperButton.addEventListener("click", (e) => {
+    const rect = container.getBoundingClientRect();
+    const halfWidth = rect.width / 2;
+    const currentIndex = detailSlider.activeIndex;
+    const totalSlides = detailSlider.slides.length;
+
+    // Lấy vị trí chuột tại thời điểm click
+    const mouseX = lastMouseX !== null ? lastMouseX : e.clientX - rect.left;
+
+    if (mouseX <= halfWidth) {
+      if (currentIndex > 0) {
+        detailSlider.slidePrev();
+        console.log("slidePrev called");
+      } else {
+        console.log("Cannot slidePrev: at first slide");
+      }
+    } else {
+      if (currentIndex < totalSlides - 1) {
+        detailSlider.slideNext();
+        console.log("slideNext called");
+      } else {
+        console.log("Cannot slideNext: at last slide");
+      }
+    }
+  });
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -472,6 +646,7 @@ const init = () => {
   swiperOffer();
   animationText();
   eLeaf();
+  detailSlider();
 };
 preloadImages("img").then(() => {
   init();

@@ -6,11 +6,10 @@
     left: 40px;
     z-index: 5;
     // bottom: 40px;
-    top: calc(50%);
-    transform: translateY(calc(calc(-50%) + 40px));
+    top: 120px;
     width: 440px;
     height: auto;
-    max-height: calc(100svh - 150px);
+    // max-height: calc(100svh - 150px);
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(10px);
     &-head {

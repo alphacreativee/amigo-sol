@@ -750,11 +750,9 @@ body {
   position: absolute;
   left: 40px;
   z-index: 5;
-  top: 50%;
-  transform: translateY(calc(-50% + 40px));
+  top: 120px;
   width: 440px;
   height: auto;
-  max-height: calc(100svh - 150px);
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
 }
@@ -1352,6 +1350,9 @@ footer .footer-alpha a:hover {
 .amigo-content {
   padding: 0 40px;
   position: relative;
+}
+.amigo-content .other-room-title {
+  margin-bottom: 72px;
 }
 .amigo-content.service-section .amigo-content-top .content-left {
   width: 40%;
@@ -2033,8 +2034,8 @@ section.image-with-text .swiper-button-prev {
   margin: 0;
   width: 80px;
   height: 80px;
-  background-color: var(--color-pattern);
-  border: 1px solid var(--color-primary);
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -2158,15 +2159,18 @@ section.image-with-text.reverse-mask .mask.bottom::after {
 }
 section.image-with-text .swiper-pagination {
   top: unset;
-  bottom: -48px;
-  width: 150px;
-  height: 1px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #b7b4bc;
 }
-section.image-with-text .swiper-pagination span {
-  background-color: var(--color-primary);
+section.image-with-text .swiper-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-white);
+  opacity: 1;
+}
+section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--color-secondary);
 }
 
 @media (max-width: 991px) {
@@ -2776,4 +2780,244 @@ section.image-with-text .swiper-pagination span {
   .page-facilities .list-item__info {
     margin-bottom: 0;
   }
+}
+
+.section-story {
+  padding: 120px 0;
+  position: relative;
+}
+.section-story.event .section-story__ilus {
+  top: -25%;
+}
+@media (max-width: 991px) {
+  .section-story.event .section-story__ilus {
+    top: -10%;
+  }
+}
+.section-story.event .section-story__ilus.right {
+  bottom: -35%;
+  top: unset;
+}
+@media (max-width: 991px) {
+  .section-story.event .section-story__ilus.right {
+    bottom: 0;
+  }
+}
+.section-story__ilus {
+  position: absolute;
+  top: -50%;
+  left: 0;
+  z-index: 2;
+  width: auto;
+  height: auto;
+}
+@media (max-width: 991px) {
+  .section-story__ilus {
+    z-index: -1;
+    top: -40%;
+  }
+}
+.section-story__ilus.right {
+  top: unset;
+  bottom: -30%;
+  right: 0;
+  left: unset;
+  width: 270px !important;
+}
+.section-story__ilus.right img {
+  object-fit: contain;
+  object-position: right center;
+}
+@media (max-width: 991px) {
+  .section-story__ilus.right {
+    bottom: -10%;
+    width: 140px !important;
+  }
+}
+.section-story__ilus img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.section-story__content {
+  text-align: center;
+}
+@media (min-width: 992px) {
+  .section-story__content.home {
+    min-height: 505px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media (max-width: 991px) {
+  .section-story__content {
+    padding: 0 24px;
+  }
+}
+.section-story__content .room-info {
+  margin-top: 16px;
+  gap: 24px;
+}
+@media (max-width: 991px) {
+  .section-story__content .room-info {
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+}
+.section-story__content .room-info li {
+  gap: 8px;
+}
+.section-story__content .culinary-info {
+  margin-top: 40px;
+  gap: 40px;
+}
+@media (max-width: 991px) {
+  .section-story__content .culinary-info {
+    margin-top: 32px;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+}
+.section-story__content .culinary-info li {
+  gap: 16px;
+}
+.section-story__content .culinary-info li a {
+  color: var(--color-primary);
+  position: relative;
+}
+.section-story__content .culinary-info li a:hover::after {
+  transform: scaleX(1) !important;
+  transform-origin: bottom left;
+}
+.section-story__content .culinary-info li a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-primary);
+  bottom: -4px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}
+.section-story__content .culinary-info li a:hover {
+  color: var(--color-primary);
+}
+@media (max-width: 480px) {
+  .section-story__title {
+    width: 292px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.section-story__description {
+  margin-top: 40px;
+  text-align: center;
+}
+.section-story__bg {
+  position: absolute;
+  top: 0;
+  left: -5%;
+  transform: translateX(-50%);
+  width: 683px;
+  aspect-ratio: 683/505;
+  z-index: -1;
+  overflow: hidden;
+}
+@media (max-width: 991px) {
+  .section-story__bg {
+    position: static;
+    transform: translate(0);
+    width: calc(100% - 48px);
+    margin: 48px auto 0;
+    aspect-ratio: 327/210;
+  }
+}
+.section-story__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.section-story__leaf {
+  position: absolute;
+  right: 0%;
+  bottom: 0;
+  width: 270px !important;
+  aspect-ratio: 1;
+  z-index: -1;
+}
+@media (max-width: 991px) {
+  .section-story__leaf {
+    bottom: -15%;
+    width: 200px !important;
+  }
+}
+.section-story .btn-wrapper {
+  margin-top: 40px;
+  gap: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.single-offer .section-story__ilus.right {
+  width: 200px !important;
+  bottom: -100%;
+  opacity: 0.3;
+}
+
+.single-offer .section-story__ilus {
+  width: 300px !important;
+  opacity: 0.3;
+}
+
+.page-template-template-spa .section-story__ilus.right {
+  bottom: -5%;
+  opacity: 0.5;
+  width: 250px !important;
+}
+
+.room-amenities__wrapper h4 {
+  font-weight: 300;
+}
+.room-amenities__wrapper .list-item {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 80px;
+  gap: 62px 40px;
+}
+@media (max-width: 1199px) {
+  .room-amenities__wrapper .list-item {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 40px;
+    margin-top: 48px;
+  }
+}
+@media (max-width: 767px) {
+  .room-amenities__wrapper .list-item {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 40px;
+    margin-top: 48px;
+  }
+}
+.room-amenities__wrapper .list-item li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 130px;
+}
+.room-amenities__wrapper .list-item li .icon {
+  width: 80px;
+  height: 80px;
+}
+.room-amenities__wrapper .list-item li .icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.room-amenities__wrapper .list-item li .text {
+  margin-top: 12px;
 }

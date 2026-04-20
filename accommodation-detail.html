@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phòng nghỉ chi tiết</title>
+    <!-- import favicon -->
+    <link
+      rel="icon"
+      href="./assets/images/icons/favicon.svg"
+      type="image/x-icon"
+    />
+    <!-- meta -->
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <!-- meta -->
+    <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/libs/lenis.css" />
+    <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./assets/libs/lightpick.min.css" />
+    <!-- end meta -->
+    <!-- link custom css page -->
+    <link rel="stylesheet" href="./assets/fonts/VLNewParisHeadline/font.css" />
+    <link rel="stylesheet" href="./assets/fonts/averta/font.css" />
+    <link rel="stylesheet" href="./assets/main/css/style.min.css" />
+    <!-- end link custom css page -->
+    <!-- scrollRestoration -->
+    <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- layout -->
+    <!-- header -->
+    <script>
+      fetch("./components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+          const currentPath = window.location.pathname || "/";
+
+          const navLinks = document.querySelectorAll(".header-menu ul>li>a");
+          navLinks.forEach((link) => {
+            const linkPath = link.getAttribute("href");
+
+            // Normalize paths for comparison
+            let normalizedCurrentPath = currentPath;
+            let normalizedLinkPath = linkPath;
+
+            // Remove leading "./" from link path
+            if (normalizedLinkPath.startsWith("./")) {
+              normalizedLinkPath = normalizedLinkPath.substring(1);
+            }
+
+            // Get the last segment of the path
+            const currentSegment = normalizedCurrentPath.split("/").pop() || "";
+            const linkSegment = normalizedLinkPath.split("/").pop() || "";
+
+            // Check if current path is root or ends with /
+            const isRootPath =
+              currentPath === "/" ||
+              currentPath.endsWith("/") ||
+              currentSegment === "";
+
+            // Check if link is home/index
+            const isHomeLink =
+              linkPath === "/" ||
+              linkPath === "./" ||
+              linkPath === "./index.html" ||
+              linkPath === "index.html" ||
+              linkSegment === "index.html";
+
+            // Match logic
+            const isMatch =
+              normalizedLinkPath === normalizedCurrentPath || // Exact match
+              currentSegment === linkSegment || // Segment match
+              (isRootPath && isHomeLink) || // Root path matches home link
+              (currentPath.endsWith(normalizedLinkPath) &&
+                normalizedLinkPath !== "/");
+
+            if (isMatch) {
+              link.classList.add("active");
+            }
+          });
+        });
+    </script>
+    <header id="header" class="header"></header>
+    <!-- end header -->
+    <main>
+      <section class="section-banner">
+        <div class="container-fluid p-0">
+          <div class="section-banner__container">
+            <div class="section-banner__wrapper">
+              <!-- <div class="video">
+              <iframe title="vimeo-player"
+                src="https://player.vimeo.com/video/1082441138?h=9ec1257b5f&controls=0&autoplay=1&loop=1&muted=1&playsinline=1"
+                width="640" height="360" frameborder="0" allowfullscreen></iframe>
+            </div> -->
+              <picture>
+                <img src="./assets/images/del/banner.webp" alt="" />
+              </picture>
+              <!-- <div class="swiper banner-slider">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="banner-slider-img">
+                    <img src="./assets/images/del/banner.webp" alt="">
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="banner-slider-img">
+                    <img src="./assets/images/del/banner-2.webp" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div> -->
+            </div>
+          </div>
+        </div>
+        <div class="booking-form">
+          <div class="booking-form-wrapper">
+            <div class="booking-form-head">
+              <h3 class="h1-mobile font-heading color-white">Đặt phòng</h3>
+            </div>
+            <form action="" class="booking-form-main form-booking-room">
+              <div class="form-row">
+                <div class="input-item">
+                  <input type="text" placeholder=" " />
+                  <label for="">Họ và tên <span> *</span></label>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="input-item">
+                  <input type="tel" placeholder=" " />
+                  <label for="">Số điện thoại<span> *</span></label>
+                </div>
+              </div>
+              <div class="form-row two-col">
+                <div class="input-item">
+                  <input type="text" id="checkInDate" />
+                  <!-- <label for="">Ngày đến<span>
+                    *</span></label> -->
+
+                  <div class="icon">
+                    <img src="./assets/images/icons/icon-calendar.svg" alt="" />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <input type="text" id="checkOutDate" />
+                  <!-- <label for="">Ngày đi<span>
+                    *</span></label> -->
+                  <div class="icon">
+                    <img src="./assets/images/icons/icon-calendar.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-row two-col">
+                <div class="input-item">
+                  <input type="text" placeholder=" " />
+                  <label for="">Người lớn<span> *</span></label>
+                </div>
+                <div class="input-item">
+                  <input type="text" placeholder=" " />
+                  <label for="">Trẻ em<span> *</span></label>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="dropdown-custom">
+                  <div class="dropdown-custom-btn">
+                    <div class="value-select dropdown-custom-text color-black">
+                      <span>Loại phòng</span>
+                    </div>
+                    <img
+                      src="./assets/images/icons/icon-arrow-down.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="dropdown-custom-menu">
+                    <div class="dropdown-custom-item language-item color-black">
+                      <span>Superior room</span>
+                    </div>
+                    <div class="dropdown-custom-item language-item color-black">
+                      <span>Deluxe Room</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="input-item">
+                  <textarea placeholder=" "></textarea>
+                  <label for="">Lời nhắn</label>
+                </div>
+              </div>
+
+              <div class="form-bottom">
+                <button class="btn-general" type="submit">Gửi thông tin</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- trừ banner ra -->
+      <div class="background-pattern">
+        <section class="section-story">
+          <div class="container-fluid p-0">
+            <div class="row g-0">
+              <div class="col-lg-6 offset-lg-3">
+                <div class="section-story__content">
+                  <h2
+                    class="section-story__title font-heading color-secondary h0-font text-center"
+                  >
+                    Superior room
+                  </h2>
+                  <ul
+                    class="room-info d-flex justify-content-center align-items-center"
+                  >
+                    <li class="b1-font color-black d-flex align-items-center">
+                      <img
+                        src="./assets/images/icons/icon-acreage.svg"
+                        alt=""
+                      />
+                      3 phòng ngủ
+                    </li>
+                    <li class="b1-font color-black d-flex align-items-center">
+                      <img src="./assets/images/icons/icon-width.svg" alt="" />
+                      238 m2
+                    </li>
+                    <li class="b1-font color-black d-flex align-items-center">
+                      <img src="./assets/images/icons/icon-eye.svg" alt="" />
+                      hướng biển
+                    </li>
+                  </ul>
+                  <div
+                    class="section-story__description h5-font color-black text-center"
+                  >
+                    Superior room sở hữu tầm nhìn hướng biển tuyệt đẹp. Superior
+                    room gồm 3 phòng ngủ với thiết kế hiện đại và tiện nghi đẳng
+                    cấp, mang đến không gian nghỉ dưỡng lý tưởng cho nhóm bạn
+                    hoặc gia đình đa thế hệ.
+                  </div>
+                  <div class="btn-wrapper">
+                    <a href="#" class="btn-general">Đặt phòng</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="section-story__ilus animation-art-reverse"
+            style="--w-ilus: 310px; --h-ilus: 400px"
+          >
+            <img src="./assets/images/icons/ilus-right.png" alt="" />
+          </div>
+        </section>
+        <div class="room-amenities">
+          <div class="container-fluid p-0">
+            <div class="row g-0">
+              <div class="col-lg-8 offset-lg-2">
+                <div class="room-amenities__wrapper">
+                  <h4 class="h2-font color-secondary text-center font-heading">
+                    Tiện ích phòng
+                  </h4>
+                  <ul class="list-item">
+                    <li>
+                      <div class="icon">
+                        <img
+                          src="./assets/images/del/amenitie-icon-bed.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text color-black b1-font">Master bed</div>
+                    </li>
+                    <li>
+                      <div class="icon">
+                        <img
+                          src="./assets/images/del/amenitie-icon-bed.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text color-black b1-font">Master bed</div>
+                    </li>
+                    <li>
+                      <div class="icon">
+                        <img
+                          src="./assets/images/del/amenitie-icon-bed.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text color-black b1-font">Master bed</div>
+                    </li>
+                    <li>
+                      <div class="icon">
+                        <img
+                          src="./assets/images/del/amenitie-icon-bed.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text color-black b1-font">Master bed</div>
+                    </li>
+                    <li>
+                      <div class="icon">
+                        <img
+                          src="./assets/images/del/amenitie-icon-bed.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text color-black b1-font">Master bed</div>
+                    </li>
+                    <li>
+                      <div class="icon">
+                        <img
+                          src="./assets/images/del/amenitie-icon-bed.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text color-black b1-font">Master bed</div>
+                    </li>
+                    <li>
+                      <div class="icon">
+                        <img
+                          src="./assets/images/del/amenitie-icon-bed.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text color-black b1-font">Master bed</div>
+                    </li>
+                    <li>
+                      <div class="icon">
+                        <img
+                          src="./assets/images/del/amenitie-icon-bed.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text color-black b1-font">Master bed</div>
+                    </li>
+                    <li>
+                      <div class="icon">
+                        <img
+                          src="./assets/images/del/amenitie-icon-bed.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text color-black b1-font">Master bed</div>
+                    </li>
+                    <li>
+                      <div class="icon">
+                        <img
+                          src="./assets/images/del/amenitie-icon-bed.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text color-black b1-font">Master bed</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spacing-120"></div>
+        <section class="image-with-text">
+          <div class="container-fluild">
+            <div class="section-wrapper">
+              <div
+                class="swiper detail-slider"
+                data-loop="false"
+                data-speed="2000"
+                data-autoplay="false"
+              >
+                <div class="swiper-wrapper">
+                  <!-- Slide 1 -->
+                  <div class="swiper-slide overflow-hidden">
+                    <div
+                      class="position-relative w-100 h-100 detail-slider__image"
+                    >
+                      <picture>
+                        <source
+                          media="(max-width: 767px)"
+                          srcset="./assets/images/del/room-1.webp"
+                        />
+                        <img
+                          class="w-100 h-100 object-fit-cover"
+                          src="./assets/images/del/room-1.webp"
+                          alt="img"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+
+                  <!-- Slide 2 -->
+                  <div class="swiper-slide overflow-hidden">
+                    <div
+                      class="position-relative w-100 h-100 detail-slider__image"
+                    >
+                      <picture>
+                        <source
+                          media="(max-width: 767px)"
+                          srcset="./assets/images/del/room-2.webp"
+                        />
+                        <img
+                          class="w-100 h-100 object-fit-cover"
+                          src="./assets/images/del/room-2.webp"
+                          alt="img"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                  <!-- Slide 3 -->
+                  <div class="swiper-slide overflow-hidden">
+                    <div
+                      class="position-relative w-100 h-100 detail-slider__image"
+                    >
+                      <picture>
+                        <source
+                          media="(max-width: 767px)"
+                          srcset="./assets/images/del/room-3.webp"
+                        />
+                        <img
+                          class="w-100 h-100 object-fit-cover"
+                          src="./assets/images/del/room-3.webp"
+                          alt="img"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-arrows">
+                <div
+                  class="swiper-button-prev detail-slider__arrows color-white"
+                >
+                  <svg
+                    width="7"
+                    height="12"
+                    viewBox="0 0 7 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 11L6.41861 6.07399C6.46225 6.03432 6.46225 5.96568 6.41861 5.92601L1 1"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="swiper-button-next detail-slider__arrows color-white"
+                >
+                  <svg
+                    width="7"
+                    height="12"
+                    viewBox="0 0 7 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 11L6.41861 6.07399C6.46225 6.03432 6.46225 5.96568 6.41861 5.92601L1 1"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </section>
+        <div class="spacing-120"></div>
+        <section class="amigo-content">
+          <h2
+            class="other-room-title h0-font text-center color-secondary font-heading"
+          >
+            Các phòng khác
+          </h2>
+          <div class="amigo-content-bottom container-fluid p-0">
+            <div class="slider-amigo-wrapper row g-0">
+              <div class="col-lg-5">
+                <div
+                  class="slider-amigo-content-box d-flex align-items-end h-100"
+                >
+                  <div class="slider-amigo-content-import"></div>
+                </div>
+                <!-- Nơi inject tag + title có animation -->
+              </div>
+              <div class="col-lg-7">
+                <!-- Image slider (master) -->
+                <div class="slider-amigo-image position-relative">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <div class="amigo-image">
+                        <img src="./assets/images/del/room-1.webp" />
+                      </div>
+                      <!-- Data source cho content import -->
+                      <div class="amigo-slide-content" hidden>
+                        <div class="amigo-name">Superior room</div>
+                        <ul class="amigo-usb">
+                          <li>
+                            <div class="amigo-usb-item">
+                              <div class="icon">
+                                <img
+                                  src="./assets/images/icons/icon-acreage.svg"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="usb-name">21m2</div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="amigo-usb-item">
+                              <div class="icon">
+                                <img
+                                  src="./assets/images/icons/icon-people.svg"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="usb-name">2 người lớn</div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="amigo-usb-item">
+                              <div class="icon">
+                                <img
+                                  src="./assets/images/icons/icon-bed.svg"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="usb-name">
+                                8 phòng ngủ, 1 giường King
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="amigo-description">
+                          Superior room sở hữu tầm nhìn hướng biển tuyệt đẹp.
+                          Superior room gồm 3 phòng ngủ với thiết kế hiện đại và
+                          tiện nghi đẳng cấp, mang đến không gian nghỉ dưỡng lý
+                          tưởng cho nhóm bạn hoặc gia đình đa thế hệ.
+                        </div>
+                        <div class="amigo-button"><a href="#">Xem thêm</a></div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="amigo-image">
+                        <img src="./assets/images/del/room-2.webp" />
+                      </div>
+                      <div class="amigo-slide-content" hidden>
+                        <div class="amigo-name">Deluxe Room</div>
+                        <ul class="amigo-usb">
+                          <li>
+                            <div class="amigo-usb-item">
+                              <div class="icon">
+                                <img
+                                  src="./assets/images/icons/icon-acreage.svg"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="usb-name">21m2</div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="amigo-usb-item">
+                              <div class="icon">
+                                <img
+                                  src="./assets/images/icons/icon-people.svg"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="usb-name">2 người lớn</div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="amigo-usb-item">
+                              <div class="icon">
+                                <img
+                                  src="./assets/images/icons/icon-bed.svg"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="usb-name">8 phòng ngủ</div>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="amigo-description">
+                          Thiết kế tinh tế, tiện nghi hiện đại, hồ bơi riêng và
+                          không gian sống chan hòa thiên nhiên – hoàn hảo cho kỳ
+                          nghỉ dưỡng đẳng cấp bên gia đình hoặc bạn bè.
+                        </div>
+                        <div class="amigo-button"><a href="#">Xem thêm</a></div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="amigo-image">
+                        <img src="./assets/images/del/room-3.webp" />
+                      </div>
+                      <div class="amigo-slide-content" hidden>
+                        <div class="amigo-name">Deluxe Azure</div>
+                        <ul class="amigo-usb">
+                          <li>
+                            <div class="amigo-usb-item">
+                              <div class="icon">
+                                <img
+                                  src="./assets/images/icons/icon-acreage.svg"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="usb-name">21m2</div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="amigo-usb-item">
+                              <div class="icon">
+                                <img
+                                  src="./assets/images/icons/icon-people.svg"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="usb-name">2 người lớn</div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="amigo-usb-item">
+                              <div class="icon">
+                                <img
+                                  src="./assets/images/icons/icon-bed.svg"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="usb-name">
+                                8 phòng ngủ, 1 giường King
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="amigo-description">
+                          Thiết kế rộng rãi, 3 phòng ngủ tiện nghi cùng ánh sáng
+                          tự nhiên ngập tràn, mang đến trải nghiệm nghỉ dưỡng
+                          vừa ấm cúng, vừa đậm chất nghỉ dưỡng đẳng cấp.
+                        </div>
+                        <div class="amigo-button"><a href="#">Xem thêm</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                </div>
+
+                <!-- Content slider sync (slave - optional) -->
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="spacing-120"></div>
+      </div>
+    </main>
+    <!-- layout -->
+    <!-- footer -->
+    <script>
+      fetch("./components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+    <footer id="footer"></footer>
+    <!-- end footer -->
+    <!-- end layout -->
+
+    <script src="./assets/libs/jquery-3.7.1.js"></script>
+    <script src="./assets/libs/lenis.min.js"></script>
+    <script src="./assets/libs/gsap.min.js"></script>
+    <script src="./assets/libs/ScrollTrigger.min.js"></script>
+    <script src="./assets/libs/SplitText.min.js"></script>
+    <script src="./assets/libs/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/imagesloaded.pkgd.min.js"></script>
+    <script src="./assets/libs/swiper-bundle.min.js"></script>
+    <script src="./assets/libs/moment.min.js"></script>
+    <script src="./assets/libs/lightpick.min.js"></script>
+    <!-- import custom js -->
+    <script type="module" src="./assets/main/js/page.min.js"></script>
+    <script type="module" src="./assets/main/js/script.min.js"></script>
+
+    <!-- end import custom js -->
+  </body>
+</html>
+<!-- https://gsap.com/community/forums/topic/30338-circular-carouselslider/ -->

@@ -82,8 +82,8 @@ section.image-with-text {
     width: 80px;
     height: 80px;
     // background: url("../../images/img-frame-circle.svg");
-    background-color: var(--color-pattern);
-    border: 1px solid var(--color-primary);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -216,14 +216,18 @@ section.image-with-text {
   }
   .swiper-pagination {
     top: unset;
-    bottom: -48px;
-    width: 150px;
-    height: 1px;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #b7b4bc;
-    span {
-      background-color: var(--color-primary);
+
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      background-color: var(--color-white);
+      opacity: 1;
+      &-active {
+        background-color: var(--color-secondary);
+      }
     }
   }
 }
