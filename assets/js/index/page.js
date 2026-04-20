@@ -118,10 +118,98 @@ function eFadeTextPageDetail() {
     );
   }
 }
+function cRowList() {
+  if (!document.querySelector(".c-row-list")) return;
+
+  document.querySelectorAll(".c-row-item").forEach((item) => {
+    const image = item.querySelector(".list-item__image");
+    const title = item.querySelector(".list-item__content--title");
+    const desc = item.querySelector(".list-item__content--desc");
+    const usb = item.querySelector(".list-item__info");
+    const usbItems = usb ? usb.querySelectorAll("li") : [];
+    const btn = item.querySelector(".text-e-btn");
+    // ✅ SplitText title
+    let splitLines = null;
+    if (title) {
+      const split = new SplitText(title, {
+        type: "lines",
+        linesClass: "line",
+        mask: "lines",
+      });
+      splitLines = split.lines;
+      gsap.set(splitLines, { yPercent: 100 });
+    }
+
+    if (image) gsap.set(image, { autoAlpha: 0, y: 30 });
+    if (desc) gsap.set(desc, { autoAlpha: 0, y: 20 });
+    if (usbItems.length) gsap.set(usbItems, { autoAlpha: 0, y: 20 });
+    if (btn) gsap.set(btn, { autoAlpha: 0, y: 20 });
+    ScrollTrigger.create({
+      trigger: item,
+      start: "top 75%",
+      once: true,
+      onEnter: () => {
+        const tl = gsap.timeline();
+
+        if (image) {
+          tl.to(image, {
+            autoAlpha: 1,
+            y: 0,
+            ease: "power2.out",
+            duration: 0.6,
+          });
+        }
+
+        if (splitLines) {
+          tl.to(
+            splitLines,
+            {
+              yPercent: 0,
+              ease: "power3.out",
+              duration: 0.8,
+              stagger: 0.05,
+            },
+            "-=0.3",
+          );
+        }
+
+        if (desc) {
+          tl.to(
+            desc,
+            { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.5 },
+            "-=0.2",
+          );
+        }
+
+        if (usbItems.length) {
+          tl.to(
+            usbItems,
+            {
+              autoAlpha: 1,
+              y: 0,
+              ease: "power2.out",
+              duration: 0.4,
+              stagger: 0.1,
+            },
+            "-=0.2",
+          );
+        }
+        if (btn) {
+          tl.to(
+            btn,
+            { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.5 },
+            "-=0.2",
+          );
+        }
+      },
+    });
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   eCardList();
   eFadeTextPageDetail();
+  cRowList();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();

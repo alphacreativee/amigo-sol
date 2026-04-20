@@ -2783,3 +2783,9 @@ section.image-with-text .swiper-pagination span {
     margin-bottom: 0;
   }
 }
+
+.c-row-list .list-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
