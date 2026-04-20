@@ -49,9 +49,79 @@ function eCardList() {
     });
   });
 }
+function eFadeTextPageDetail() {
+  if (!document.querySelector(".tl-text-auto")) return;
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  const title = document.querySelector(".text-e-title-auto");
+  const description = document.querySelector(".text-e-desc-auto");
+  const descItems = description ? description.querySelectorAll("li") : [];
+  const btn = document.querySelector(".text-e-btn-auto");
+  const box = document.querySelector(".text-e-auto-box");
+  let splitLines = null;
+  if (title) {
+    const split = new SplitText(title, {
+      type: "lines",
+      linesClass: "line",
+      mask: "lines",
+    });
+    splitLines = split.lines;
+    gsap.set(splitLines, { yPercent: 100 });
+  }
+
+  if (descItems.length) {
+    gsap.set(descItems, { autoAlpha: 0, y: 20 });
+  } else if (description) {
+    gsap.set(description, { autoAlpha: 0, y: 20 });
+  }
+  if (box.length) {
+    gsap.set(descItems, { autoAlpha: 0, y: 20 });
+  }
+
+  const tl = gsap.timeline();
+
+  if (splitLines) {
+    tl.to(splitLines, {
+      yPercent: 0,
+      ease: "power3.out",
+      duration: 0.8,
+      stagger: 0.05,
+    });
+  }
+
+  if (descItems.length) {
+    tl.to(
+      descItems,
+      {
+        autoAlpha: 1,
+        y: 0,
+        ease: "power2.out",
+        duration: 0.5,
+        stagger: 0.12,
+      },
+      "-=0.3",
+    );
+  } else if (description) {
+    tl.fromTo(
+      description,
+      { autoAlpha: 0, y: 20 },
+      { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.5 },
+      "-=0.3",
+    );
+  }
+  if (box) {
+    tl.fromTo(
+      box,
+      { autoAlpha: 0, y: 20 },
+      { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.5 },
+      "-=0.3",
+    );
+  }
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   eCardList();
+  eFadeTextPageDetail();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
