@@ -318,6 +318,13 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.e-card-list {
+  margin-bottom: 120px;
+}
+.e-card-list.list-even {
+  margin-bottom: 200px;
+}
+
 #header {
   position: fixed;
   top: 0;

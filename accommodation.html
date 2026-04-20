@@ -1,111 +1,108 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phòng nghỉ</title>
-    <!-- import favicon -->
-    <link
-      rel="icon"
-      href="./assets/images/icons/favicon.svg"
-      type="image/x-icon"
-    />
-    <!-- meta -->
-    <meta property="og:url" content="" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-    <!-- meta -->
-    <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/libs/lenis.css" />
-    <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="./assets/libs/lightpick.min.css" />
-    <!-- end meta -->
-    <!-- link custom css page -->
-    <link rel="stylesheet" href="./assets/fonts/VLNewParisHeadline/font.css" />
-    <link rel="stylesheet" href="./assets/fonts/averta/font.css" />
-    <link rel="stylesheet" href="./assets/main/css/style.min.css" />
-    <!-- end link custom css page -->
-    <!-- scrollRestoration -->
-    <script>
-      if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
-      }
-    </script>
-  </head>
 
-  <body>
-    <!-- layout -->
-    <!-- header -->
-    <script>
-      fetch("./components/header.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("header").innerHTML = data;
-          const currentPath = window.location.pathname || "/";
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phòng nghỉ</title>
+  <!-- import favicon -->
+  <link rel="icon" href="./assets/images/icons/favicon.svg" type="image/x-icon" />
+  <!-- meta -->
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <!-- meta -->
+  <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lenis.css" />
+  <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lightpick.min.css" />
+  <!-- end meta -->
+  <!-- link custom css page -->
+  <link rel="stylesheet" href="./assets/fonts/VLNewParisHeadline/font.css" />
+  <link rel="stylesheet" href="./assets/fonts/averta/font.css" />
+  <link rel="stylesheet" href="./assets/main/css/style.min.css" />
+  <!-- end link custom css page -->
+  <!-- scrollRestoration -->
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+  </script>
+</head>
 
-          const navLinks = document.querySelectorAll(".header-menu ul>li>a");
-          navLinks.forEach((link) => {
-            const linkPath = link.getAttribute("href");
+<body>
+  <!-- layout -->
+  <!-- header -->
+  <script>
+    fetch("./components/header.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("header").innerHTML = data;
+        const currentPath = window.location.pathname || "/";
 
-            // Normalize paths for comparison
-            let normalizedCurrentPath = currentPath;
-            let normalizedLinkPath = linkPath;
+        const navLinks = document.querySelectorAll(".header-menu ul>li>a");
+        navLinks.forEach((link) => {
+          const linkPath = link.getAttribute("href");
 
-            // Remove leading "./" from link path
-            if (normalizedLinkPath.startsWith("./")) {
-              normalizedLinkPath = normalizedLinkPath.substring(1);
-            }
+          // Normalize paths for comparison
+          let normalizedCurrentPath = currentPath;
+          let normalizedLinkPath = linkPath;
 
-            // Get the last segment of the path
-            const currentSegment = normalizedCurrentPath.split("/").pop() || "";
-            const linkSegment = normalizedLinkPath.split("/").pop() || "";
+          // Remove leading "./" from link path
+          if (normalizedLinkPath.startsWith("./")) {
+            normalizedLinkPath = normalizedLinkPath.substring(1);
+          }
 
-            // Check if current path is root or ends with /
-            const isRootPath =
-              currentPath === "/" ||
-              currentPath.endsWith("/") ||
-              currentSegment === "";
+          // Get the last segment of the path
+          const currentSegment = normalizedCurrentPath.split("/").pop() || "";
+          const linkSegment = normalizedLinkPath.split("/").pop() || "";
 
-            // Check if link is home/index
-            const isHomeLink =
-              linkPath === "/" ||
-              linkPath === "./" ||
-              linkPath === "./index.html" ||
-              linkPath === "index.html" ||
-              linkSegment === "index.html";
+          // Check if current path is root or ends with /
+          const isRootPath =
+            currentPath === "/" ||
+            currentPath.endsWith("/") ||
+            currentSegment === "";
 
-            // Match logic
-            const isMatch =
-              normalizedLinkPath === normalizedCurrentPath || // Exact match
-              currentSegment === linkSegment || // Segment match
-              (isRootPath && isHomeLink) || // Root path matches home link
-              (currentPath.endsWith(normalizedLinkPath) &&
-                normalizedLinkPath !== "/");
+          // Check if link is home/index
+          const isHomeLink =
+            linkPath === "/" ||
+            linkPath === "./" ||
+            linkPath === "./index.html" ||
+            linkPath === "index.html" ||
+            linkSegment === "index.html";
 
-            if (isMatch) {
-              link.classList.add("active");
-            }
-          });
+          // Match logic
+          const isMatch =
+            normalizedLinkPath === normalizedCurrentPath || // Exact match
+            currentSegment === linkSegment || // Segment match
+            (isRootPath && isHomeLink) || // Root path matches home link
+            (currentPath.endsWith(normalizedLinkPath) &&
+              normalizedLinkPath !== "/");
+
+          if (isMatch) {
+            link.classList.add("active");
+          }
         });
-    </script>
-    <header id="header" class="header"></header>
-    <!-- end header -->
-    <main>
-      <section class="section-banner">
-        <div class="container-fluid p-0">
-          <div class="section-banner__container">
-            <div class="section-banner__wrapper">
-              <!-- <div class="video">
+      });
+  </script>
+  <header id="header" class="header"></header>
+  <!-- end header -->
+  <main>
+    <section class="section-banner">
+      <div class="container-fluid p-0">
+        <div class="section-banner__container">
+          <div class="section-banner__wrapper">
+            <!-- <div class="video">
               <iframe title="vimeo-player"
                 src="https://player.vimeo.com/video/1082441138?h=9ec1257b5f&controls=0&autoplay=1&loop=1&muted=1&playsinline=1"
                 width="640" height="360" frameborder="0" allowfullscreen></iframe>
             </div> -->
-              <picture>
-                <img src="./assets/images/del/banner.webp" alt="" />
-              </picture>
-              <!-- <div class="swiper banner-slider">
+            <picture>
+              <img src="./assets/images/del/banner.webp" alt="" />
+            </picture>
+            <!-- <div class="swiper banner-slider">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="banner-slider-img">
@@ -120,407 +117,318 @@
               </div>
             </div>
             <div class="swiper-pagination"></div> -->
-            </div>
           </div>
         </div>
-        <div class="booking-form">
-          <div class="booking-form-wrapper">
-            <div class="booking-form-head">
-              <h3 class="h1-mobile font-heading color-white">Đặt phòng</h3>
+      </div>
+      <div class="booking-form">
+        <div class="booking-form-wrapper">
+          <div class="booking-form-head">
+            <h3 class="h1-mobile font-heading color-white">Đặt phòng</h3>
+          </div>
+          <form action="" class="booking-form-main form-booking-room">
+            <div class="form-row">
+              <div class="input-item">
+                <input type="text" placeholder=" " />
+                <label for="">Họ và tên <span> *</span></label>
+              </div>
             </div>
-            <form action="" class="booking-form-main form-booking-room">
-              <div class="form-row">
-                <div class="input-item">
-                  <input type="text" placeholder=" " />
-                  <label for="">Họ và tên <span> *</span></label>
-                </div>
+            <div class="form-row">
+              <div class="input-item">
+                <input type="tel" placeholder=" " />
+                <label for="">Số điện thoại<span> *</span></label>
               </div>
-              <div class="form-row">
-                <div class="input-item">
-                  <input type="tel" placeholder=" " />
-                  <label for="">Số điện thoại<span> *</span></label>
-                </div>
-              </div>
-              <div class="form-row two-col">
-                <div class="input-item">
-                  <input type="text" id="checkInDate" />
-                  <!-- <label for="">Ngày đến<span>
+            </div>
+            <div class="form-row two-col">
+              <div class="input-item">
+                <input type="text" id="checkInDate" />
+                <!-- <label for="">Ngày đến<span>
                     *</span></label> -->
 
-                  <div class="icon">
-                    <img src="./assets/images/icons/icon-calendar.svg" alt="" />
-                  </div>
+                <div class="icon">
+                  <img src="./assets/images/icons/icon-calendar.svg" alt="" />
                 </div>
-                <div class="input-item">
-                  <input type="text" id="checkOutDate" />
-                  <!-- <label for="">Ngày đi<span>
+              </div>
+              <div class="input-item">
+                <input type="text" id="checkOutDate" />
+                <!-- <label for="">Ngày đi<span>
                     *</span></label> -->
-                  <div class="icon">
-                    <img src="./assets/images/icons/icon-calendar.svg" alt="" />
-                  </div>
+                <div class="icon">
+                  <img src="./assets/images/icons/icon-calendar.svg" alt="" />
                 </div>
               </div>
-              <div class="form-row two-col">
-                <div class="input-item">
-                  <input type="text" placeholder=" " />
-                  <label for="">Người lớn<span> *</span></label>
-                </div>
-                <div class="input-item">
-                  <input type="text" placeholder=" " />
-                  <label for="">Trẻ em<span> *</span></label>
-                </div>
+            </div>
+            <div class="form-row two-col">
+              <div class="input-item">
+                <input type="text" placeholder=" " />
+                <label for="">Người lớn<span> *</span></label>
               </div>
-              <div class="form-row">
-                <div class="input-item">
-                  <textarea placeholder=" "></textarea>
-                  <label for="">Lời nhắn</label>
-                </div>
+              <div class="input-item">
+                <input type="text" placeholder=" " />
+                <label for="">Trẻ em<span> *</span></label>
               </div>
-              <button class="btn-general">Gửi thông tin</button>
-            </form>
+            </div>
+            <div class="form-row">
+              <div class="input-item">
+                <textarea placeholder=" "></textarea>
+                <label for="">Lời nhắn</label>
+              </div>
+            </div>
+            <button class="btn-general">Gửi thông tin</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- trừ banner ra -->
+    <div class="background-pattern">
+      <section class="intro not-home">
+        <div class="intro-wrapper">
+          <div class="intro-box tl-text">
+            <h2 class="h0-font font-heading color-secondary text-e-title">
+              Hãy tận hưởng từng khoảnh khắc một cách trọn vẹn nhất
+            </h2>
+            <p class="b1-font color-black text-e-desc">
+              Khách sạn Amigo Sol Phan Thiết cung cấp 76 phòng nghỉ đa dạng
+              với không gian rộng rãi và tiện nghi hiện đại. Với gam màu thiết
+              kế sống động, khu nghỉ dưỡng tạo nên không gian vừa thanh lịch
+              vừa tràn đầy năng lượng, đáp ứng nhu cầu của mọi du khách tìm
+              kiếm một kỳ nghỉ hoàn hảo.
+            </p>
           </div>
         </div>
+        <div class="intro-artwork top-right">
+          <img src="./assets/images/icons/leaf-right.png" alt="" />
+        </div>
+        <div class="intro-artwork left-bottom">
+          <img src="./assets/images/icons/leaf-left.png" alt="" />
+        </div>
       </section>
-      <!-- trừ banner ra -->
-      <div class="background-pattern">
-        <section class="intro not-home">
-          <div class="intro-wrapper">
-            <div class="intro-box">
-              <h2 class="h0-font font-heading color-secondary">
-                Hãy tận hưởng từng khoảnh khắc một cách trọn vẹn nhất
-              </h2>
-              <p class="b1-font color-black">
-                Khách sạn Amigo Sol Phan Thiết cung cấp 76 phòng nghỉ đa dạng
-                với không gian rộng rãi và tiện nghi hiện đại. Với gam màu thiết
-                kế sống động, khu nghỉ dưỡng tạo nên không gian vừa thanh lịch
-                vừa tràn đầy năng lượng, đáp ứng nhu cầu của mọi du khách tìm
-                kiếm một kỳ nghỉ hoàn hảo.
-              </p>
-            </div>
-          </div>
-          <div class="intro-artwork top-right">
-            <img src="./assets/images/icons/leaf-right.png" alt="" />
-          </div>
-          <div class="intro-artwork left-bottom">
-            <img src="./assets/images/icons/leaf-left.png" alt="" />
-          </div>
-        </section>
-        <section class="accomodation-list">
-          <div class="container-fluid p-0">
-            <div class="row g-0">
-              <div class="col-lg-12">
-                <div class="accomodation-wrapper">
-                  <ul
-                    class="nav nav-tabs justify-content-center d-none"
-                    role="tablist"
-                  >
-                    <li class="nav-item" role="presentation">
-                      <button
-                        class="nav-link active animation-text-v3 color-white"
-                        id="slider-tab-1"
-                        data-bs-toggle="tab"
-                        data-bs-target="#slider-content-1"
-                        type="button"
-                        role="tab"
-                        aria-controls="slider-content-1"
-                        aria-selected="true"
-                      >
-                        <div class="b2-font color-white">Tất cả</div>
-                      </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button
-                        class="nav-link animation-text-v3 color-white"
-                        id="slider-tab-2"
-                        data-bs-toggle="tab"
-                        data-bs-target="#slider-content-2"
-                        type="button"
-                        role="tab"
-                        aria-controls="slider-content-2"
-                        aria-selected="false"
-                      >
-                        <div class="b2-font color-white">Khu Villas</div>
-                      </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button
-                        class="nav-link animation-text-v3 color-white"
-                        id="slider-tab-3"
-                        data-bs-toggle="tab"
-                        data-bs-target="#slider-content-3"
-                        type="button"
-                        role="tab"
-                        aria-controls="slider-content-3"
-                        aria-selected="false"
-                      >
-                        <div class="b2-font color-white">Khu Costa</div>
-                      </button>
-                    </li>
-                  </ul>
-                  <div class="col-lg-10 offset-lg-1">
-                    <div class="tab-content">
-                      <div
-                        class="tab-pane fade show active"
-                        id="slider-content-1"
-                        role="tabpanel"
-                        aria-labelledby="slider-tab-1"
-                      >
-                        <div class="accomodation-list__wrapper">
-                          <div class="accomodation-card">
-                            <a
-                              href="#"
-                              class="accomodation-link"
-                              data-cursor-text="Chi tiết"
-                            ></a>
-                            <a
-                              href="./icons-detail.html"
-                              class="card-top"
-                              data-cursor-text="Chi tiết"
-                            >
-                              <img
-                                src="./assets/images/del/room-1.webp"
-                                alt=""
-                              />
+      <section class="accomodation-list">
+        <div class="container-fluid p-0">
+          <div class="row g-0">
+            <div class="col-lg-12">
+              <div class="accomodation-wrapper">
+                <ul class="nav nav-tabs justify-content-center d-none" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active animation-text-v3 color-white" id="slider-tab-1" data-bs-toggle="tab"
+                      data-bs-target="#slider-content-1" type="button" role="tab" aria-controls="slider-content-1"
+                      aria-selected="true">
+                      <div class="b2-font color-white">Tất cả</div>
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link animation-text-v3 color-white" id="slider-tab-2" data-bs-toggle="tab"
+                      data-bs-target="#slider-content-2" type="button" role="tab" aria-controls="slider-content-2"
+                      aria-selected="false">
+                      <div class="b2-font color-white">Khu Villas</div>
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link animation-text-v3 color-white" id="slider-tab-3" data-bs-toggle="tab"
+                      data-bs-target="#slider-content-3" type="button" role="tab" aria-controls="slider-content-3"
+                      aria-selected="false">
+                      <div class="b2-font color-white">Khu Costa</div>
+                    </button>
+                  </li>
+                </ul>
+                <div class="col-lg-10 offset-lg-1">
+                  <div class="tab-content">
+                    <div class="tab-pane fade show active" id="slider-content-1" role="tabpanel"
+                      aria-labelledby="slider-tab-1">
+                      <!-- check chẵn lẻ -->
+                      <div class="accomodation-list__wrapper e-card-list list-even">
+                        <div class="accomodation-card e-card-item">
+                          <a href="#" class="accomodation-link" data-cursor-text="Chi tiết"></a>
+                          <a href="./icons-detail.html" class="card-top" data-cursor-text="Chi tiết">
+                            <img src="./assets/images/del/room-1.webp" alt="" />
+                          </a>
+                          <div class="card-bottom">
+                            <!-- Đổi class tirtle chổ này -->
+                            <a href="./icons-detail.html" class="card-title h2-font color-secondary font-heading"
+                              data-cursor-text="Chi tiết">
+                              Superior room
                             </a>
-                            <div class="card-bottom">
-                              <!-- Đổi class tirtle chổ này -->
-                              <a
-                                href="./icons-detail.html"
-                                class="card-title h2-font color-secondary font-heading"
-                                data-cursor-text="Chi tiết"
-                              >
-                                Superior room
-                              </a>
-                              <ul
-                                class="card-info d-flex justify-content-center align-items-center"
-                              >
-                                <li class="b2-font-md color-black">
-                                  <img
-                                    src="./assets/images/icons/icon-room.svg"
-                                    alt=""
-                                  />
-                                  8 phòng ngủ, 1 giường King
-                                </li>
-                                <li class="b2-font-md color-black">
-                                  <img
-                                    src="./assets/images/icons/icon-width.svg"
-                                    alt=""
-                                  />
-                                  21 m2
-                                </li>
-                                <li class="b2-font-md color-b">
-                                  <img
-                                    src="./assets/images/icons/icon-eye.svg"
-                                    alt=""
-                                  />
-                                  hướng vườn
-                                </li>
-                              </ul>
-                              <div
-                                class="card-desc text-center b1-font color-black"
-                              >
-                                Superior room sở hữu tầm nhìn hướng biển tuyệt
-                                đẹp. Superior room gồm 3 phòng ngủ với thiết kế
-                                hiện đại và tiện nghi đẳng cấp, mang đến không
-                                gian nghỉ dưỡng lý tưởng cho nhóm bạn hoặc gia
-                                đình đa thế hệ.
-                              </div>
-                              <div class="card-cta">
-                                <a
-                                  href="./icons-detail.html"
-                                  class="btn-general"
-                                  >Đặt phòng</a
-                                >
-                              </div>
+                            <ul class="card-info d-flex justify-content-center align-items-center">
+                              <li class="b2-font-md color-black">
+                                <img src="./assets/images/icons/icon-room.svg" alt="" />
+                                8 phòng ngủ, 1 giường King
+                              </li>
+                              <li class="b2-font-md color-black">
+                                <img src="./assets/images/icons/icon-width.svg" alt="" />
+                                21 m2
+                              </li>
+                              <li class="b2-font-md color-b">
+                                <img src="./assets/images/icons/icon-eye.svg" alt="" />
+                                hướng vườn
+                              </li>
+                            </ul>
+                            <div class="card-desc text-center b1-font color-black">
+                              Superior room sở hữu tầm nhìn hướng biển tuyệt
+                              đẹp. Superior room gồm 3 phòng ngủ với thiết kế
+                              hiện đại và tiện nghi đẳng cấp, mang đến không
+                              gian nghỉ dưỡng lý tưởng cho nhóm bạn hoặc gia
+                              đình đa thế hệ.
+                            </div>
+                            <div class="card-cta">
+                              <a href="./icons-detail.html" class="btn-general">Đặt phòng</a>
                             </div>
                           </div>
-                          <div class="accomodation-card">
-                            <a
-                              href="#"
-                              class="accomodation-link"
-                              data-cursor-text="Chi tiết"
-                            ></a>
-                            <a
-                              href="./icons-detail.html"
-                              class="card-top"
-                              data-cursor-text="Chi tiết"
-                            >
-                              <img
-                                src="./assets/images/del/room-1.webp"
-                                alt=""
-                              />
+                        </div>
+                        <div class="accomodation-card e-card-item">
+                          <a href="#" class="accomodation-link" data-cursor-text="Chi tiết"></a>
+                          <a href="./icons-detail.html" class="card-top" data-cursor-text="Chi tiết">
+                            <img src="./assets/images/del/room-1.webp" alt="" />
+                          </a>
+                          <div class="card-bottom">
+                            <!-- Đổi class tirtle chổ này -->
+                            <a href="./icons-detail.html" class="card-title h2-font color-secondary font-heading"
+                              data-cursor-text="Chi tiết">
+                              Superior room
                             </a>
-                            <div class="card-bottom">
-                              <!-- Đổi class tirtle chổ này -->
-                              <a
-                                href="./icons-detail.html"
-                                class="card-title h2-font color-secondary font-heading"
-                                data-cursor-text="Chi tiết"
-                              >
-                                Superior room
-                              </a>
-                              <ul
-                                class="card-info d-flex justify-content-center align-items-center"
-                              >
-                                <li class="b2-font-md color-black">
-                                  <img
-                                    src="./assets/images/icons/icon-room.svg"
-                                    alt=""
-                                  />
-                                  8 phòng ngủ, 1 giường King
-                                </li>
-                                <li class="b2-font-md color-black">
-                                  <img
-                                    src="./assets/images/icons/icon-width.svg"
-                                    alt=""
-                                  />
-                                  21 m2
-                                </li>
-                                <li class="b2-font-md color-b">
-                                  <img
-                                    src="./assets/images/icons/icon-eye.svg"
-                                    alt=""
-                                  />
-                                  hướng vườn
-                                </li>
-                              </ul>
-                              <div
-                                class="card-desc text-center b1-font color-black"
-                              >
-                                Superior room sở hữu tầm nhìn hướng biển tuyệt
-                                đẹp. Superior room gồm 3 phòng ngủ với thiết kế
-                                hiện đại và tiện nghi đẳng cấp, mang đến không
-                                gian nghỉ dưỡng lý tưởng cho nhóm bạn hoặc gia
-                                đình đa thế hệ.
-                              </div>
-                              <div class="card-cta">
-                                <a
-                                  href="./icons-detail.html"
-                                  class="btn-general"
-                                  >Đặt phòng</a
-                                >
-                              </div>
+                            <ul class="card-info d-flex justify-content-center align-items-center">
+                              <li class="b2-font-md color-black">
+                                <img src="./assets/images/icons/icon-room.svg" alt="" />
+                                8 phòng ngủ, 1 giường King
+                              </li>
+                              <li class="b2-font-md color-black">
+                                <img src="./assets/images/icons/icon-width.svg" alt="" />
+                                21 m2
+                              </li>
+                              <li class="b2-font-md color-b">
+                                <img src="./assets/images/icons/icon-eye.svg" alt="" />
+                                hướng vườn
+                              </li>
+                            </ul>
+                            <div class="card-desc text-center b1-font color-black">
+                              Superior room sở hữu tầm nhìn hướng biển tuyệt
+                              đẹp. Superior room gồm 3 phòng ngủ với thiết kế
+                              hiện đại và tiện nghi đẳng cấp, mang đến không
+                              gian nghỉ dưỡng lý tưởng cho nhóm bạn hoặc gia
+                              đình đa thế hệ.
+                            </div>
+                            <div class="card-cta">
+                              <a href="./icons-detail.html" class="btn-general">Đặt phòng</a>
                             </div>
                           </div>
-                          <div class="accomodation-card">
-                            <a
-                              href="#"
-                              class="accomodation-link"
-                              data-cursor-text="Chi tiết"
-                            ></a>
-                            <a
-                              href="./icons-detail.html"
-                              class="card-top"
-                              data-cursor-text="Chi tiết"
-                            >
-                              <img
-                                src="./assets/images/del/room-1.webp"
-                                alt=""
-                              />
+                        </div>
+                        <div class="accomodation-card e-card-item">
+                          <a href="#" class="accomodation-link" data-cursor-text="Chi tiết"></a>
+                          <a href="./icons-detail.html" class="card-top" data-cursor-text="Chi tiết">
+                            <img src="./assets/images/del/room-1.webp" alt="" />
+                          </a>
+                          <div class="card-bottom">
+                            <!-- Đổi class tirtle chổ này -->
+                            <a href="./icons-detail.html" class="card-title h2-font color-secondary font-heading"
+                              data-cursor-text="Chi tiết">
+                              Superior room
                             </a>
-                            <div class="card-bottom">
-                              <!-- Đổi class tirtle chổ này -->
-                              <a
-                                href="./icons-detail.html"
-                                class="card-title h2-font color-secondary font-heading"
-                                data-cursor-text="Chi tiết"
-                              >
-                                Superior room
-                              </a>
-                              <ul
-                                class="card-info d-flex justify-content-center align-items-center"
-                              >
-                                <li class="b2-font-md color-black">
-                                  <img
-                                    src="./assets/images/icons/icon-room.svg"
-                                    alt=""
-                                  />
-                                  8 phòng ngủ, 1 giường King
-                                </li>
-                                <li class="b2-font-md color-black">
-                                  <img
-                                    src="./assets/images/icons/icon-width.svg"
-                                    alt=""
-                                  />
-                                  21 m2
-                                </li>
-                                <li class="b2-font-md color-b">
-                                  <img
-                                    src="./assets/images/icons/icon-eye.svg"
-                                    alt=""
-                                  />
-                                  hướng vườn
-                                </li>
-                              </ul>
-                              <div
-                                class="card-desc text-center b1-font color-black"
-                              >
-                                Superior room sở hữu tầm nhìn hướng biển tuyệt
-                                đẹp. Superior room gồm 3 phòng ngủ với thiết kế
-                                hiện đại và tiện nghi đẳng cấp, mang đến không
-                                gian nghỉ dưỡng lý tưởng cho nhóm bạn hoặc gia
-                                đình đa thế hệ.
-                              </div>
-                              <div class="card-cta">
-                                <a
-                                  href="./icons-detail.html"
-                                  class="btn-general"
-                                  >Đặt phòng</a
-                                >
-                              </div>
+                            <ul class="card-info d-flex justify-content-center align-items-center">
+                              <li class="b2-font-md color-black">
+                                <img src="./assets/images/icons/icon-room.svg" alt="" />
+                                8 phòng ngủ, 1 giường King
+                              </li>
+                              <li class="b2-font-md color-black">
+                                <img src="./assets/images/icons/icon-width.svg" alt="" />
+                                21 m2
+                              </li>
+                              <li class="b2-font-md color-b">
+                                <img src="./assets/images/icons/icon-eye.svg" alt="" />
+                                hướng vườn
+                              </li>
+                            </ul>
+                            <div class="card-desc text-center b1-font color-black">
+                              Superior room sở hữu tầm nhìn hướng biển tuyệt
+                              đẹp. Superior room gồm 3 phòng ngủ với thiết kế
+                              hiện đại và tiện nghi đẳng cấp, mang đến không
+                              gian nghỉ dưỡng lý tưởng cho nhóm bạn hoặc gia
+                              đình đa thế hệ.
+                            </div>
+                            <div class="card-cta">
+                              <a href="./icons-detail.html" class="btn-general">Đặt phòng</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="accomodation-card e-card-item">
+                          <a href="#" class="accomodation-link" data-cursor-text="Chi tiết"></a>
+                          <a href="./icons-detail.html" class="card-top" data-cursor-text="Chi tiết">
+                            <img src="./assets/images/del/room-1.webp" alt="" />
+                          </a>
+                          <div class="card-bottom">
+                            <!-- Đổi class tirtle chổ này -->
+                            <a href="./icons-detail.html" class="card-title h2-font color-secondary font-heading"
+                              data-cursor-text="Chi tiết">
+                              Superior room
+                            </a>
+                            <ul class="card-info d-flex justify-content-center align-items-center">
+                              <li class="b2-font-md color-black">
+                                <img src="./assets/images/icons/icon-room.svg" alt="" />
+                                8 phòng ngủ, 1 giường King
+                              </li>
+                              <li class="b2-font-md color-black">
+                                <img src="./assets/images/icons/icon-width.svg" alt="" />
+                                21 m2
+                              </li>
+                              <li class="b2-font-md color-b">
+                                <img src="./assets/images/icons/icon-eye.svg" alt="" />
+                                hướng vườn
+                              </li>
+                            </ul>
+                            <div class="card-desc text-center b1-font color-black">
+                              Superior room sở hữu tầm nhìn hướng biển tuyệt
+                              đẹp. Superior room gồm 3 phòng ngủ với thiết kế
+                              hiện đại và tiện nghi đẳng cấp, mang đến không
+                              gian nghỉ dưỡng lý tưởng cho nhóm bạn hoặc gia
+                              đình đa thế hệ.
+                            </div>
+                            <div class="card-cta">
+                              <a href="./icons-detail.html" class="btn-general">Đặt phòng</a>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div
-                        class="tab-pane fade"
-                        id="slider-content-2"
-                        role="tabpanel"
-                        aria-labelledby="slider-tab-2"
-                      ></div>
-                      <div
-                        class="tab-pane fade"
-                        id="slider-content-3"
-                        role="tabpanel"
-                        aria-labelledby="slider-tab-3"
-                      ></div>
+                    </div>
+                    <div class="tab-pane fade" id="slider-content-2" role="tabpanel" aria-labelledby="slider-tab-2">
+                    </div>
+                    <div class="tab-pane fade" id="slider-content-3" role="tabpanel" aria-labelledby="slider-tab-3">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-        <div class="spacing-120"></div>
-      </div>
-    </main>
-    <!-- layout -->
-    <!-- footer -->
-    <script>
-      fetch("./components/footer.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("footer").innerHTML = data;
-        });
-    </script>
-    <footer id="footer"></footer>
-    <!-- end footer -->
-    <!-- end layout -->
+        </div>
+      </section>
 
-    <script src="./assets/libs/jquery-3.7.1.js"></script>
-    <script src="./assets/libs/lenis.min.js"></script>
-    <script src="./assets/libs/gsap.min.js"></script>
-    <script src="./assets/libs/ScrollTrigger.min.js"></script>
-    <script src="./assets/libs/SplitText.min.js"></script>
-    <script src="./assets/libs/bootstrap.bundle.min.js"></script>
-    <script src="./assets/libs/imagesloaded.pkgd.min.js"></script>
-    <script src="./assets/libs/swiper-bundle.min.js"></script>
-    <script src="./assets/libs/moment.min.js"></script>
-    <script src="./assets/libs/lightpick.min.js"></script>
-    <!-- import custom js -->
-    <script type="module" src="./assets/main/js/script.min.js"></script>
+    </div>
+  </main>
+  <!-- layout -->
+  <!-- footer -->
+  <script>
+    fetch("./components/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+  <footer id="footer"></footer>
+  <!-- end footer -->
+  <!-- end layout -->
 
-    <!-- end import custom js -->
-  </body>
+  <script src="./assets/libs/jquery-3.7.1.js"></script>
+  <script src="./assets/libs/lenis.min.js"></script>
+  <script src="./assets/libs/gsap.min.js"></script>
+  <script src="./assets/libs/ScrollTrigger.min.js"></script>
+  <script src="./assets/libs/SplitText.min.js"></script>
+  <script src="./assets/libs/bootstrap.bundle.min.js"></script>
+  <script src="./assets/libs/imagesloaded.pkgd.min.js"></script>
+  <script src="./assets/libs/swiper-bundle.min.js"></script>
+  <script src="./assets/libs/moment.min.js"></script>
+  <script src="./assets/libs/lightpick.min.js"></script>
+  <!-- import custom js -->
+  <script type="module" src="./assets/main/js/page.min.js"></script>
+  <script type="module" src="./assets/main/js/script.min.js"></script>
+
+  <!-- end import custom js -->
+</body>
+
 </html>
 <!-- https://gsap.com/community/forums/topic/30338-circular-carouselslider/ -->
