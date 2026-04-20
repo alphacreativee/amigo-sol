@@ -43,6 +43,10 @@
             opacity: 0;
             pointer-events: none;
           }
+
+          &::placeholder {
+            color: var(--color-black);
+          }
         }
         textarea {
           resize: none;
@@ -52,6 +56,7 @@
           left: 16px;
           pointer-events: none;
           transition: all 0.3s ease;
+          color: var(--color-black);
           span {
             color: red;
           }
@@ -76,8 +81,43 @@
           gap: 12px;
         }
       }
-      button {
+      .form-bottom {
         margin-top: 28px;
+
+        a {
+          transition: all 0.4s ease;
+
+          &:hover {
+            color: var(--color-primary);
+          }
+        }
+      }
+
+      .dropdown-custom {
+        z-index: 2;
+        background-color: var(--color-white);
+
+        &-btn {
+          height: 48px;
+          padding: 0 16px;
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        &-item {
+          padding: 6px 16px;
+          cursor: pointer;
+        }
+
+        &-menu {
+          width: 100%;
+        }
+
+        .value-select,
+        &-item {
+          font-size: 14px;
+          line-height: 20px;
+        }
       }
     }
   }

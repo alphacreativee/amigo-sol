@@ -318,6 +318,42 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.dropdown-custom {
+  position: relative;
+}
+.dropdown-custom__item {
+  color: var(--color-primary) !important;
+  font-weight: 600;
+  cursor: pointer;
+}
+.dropdown-custom__item:not(:first-child) {
+  margin-top: 8px;
+}
+.dropdown-custom__text {
+  font-weight: 600;
+}
+
+.dropdown-custom-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-custom-menu {
+  position: absolute;
+  background-color: var(--color-white);
+  padding: 6px 0;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+  transition: all 0.3s ease;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  will-change: clip-path;
+}
+.dropdown-custom-menu.dropdown--active {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
 #header {
   position: fixed;
   top: 0;
@@ -749,6 +785,10 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+.section-banner .booking-form-main .input-item textarea::placeholder,
+.section-banner .booking-form-main .input-item input::placeholder {
+  color: var(--color-black);
+}
 .section-banner .booking-form-main .input-item textarea {
   resize: none;
 }
@@ -757,6 +797,7 @@ body {
   left: 16px;
   pointer-events: none;
   transition: all 0.3s ease;
+  color: var(--color-black);
 }
 .section-banner .booking-form-main .input-item label span {
   color: red;
@@ -775,8 +816,35 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
-.section-banner .booking-form-main button {
+.section-banner .booking-form-main .form-bottom {
   margin-top: 28px;
+}
+.section-banner .booking-form-main .form-bottom a {
+  transition: all 0.4s ease;
+}
+.section-banner .booking-form-main .form-bottom a:hover {
+  color: var(--color-primary);
+}
+.section-banner .booking-form-main .dropdown-custom {
+  z-index: 2;
+  background-color: var(--color-white);
+}
+.section-banner .booking-form-main .dropdown-custom-btn {
+  height: 48px;
+  padding: 0 16px;
+  width: 100%;
+  justify-content: space-between;
+}
+.section-banner .booking-form-main .dropdown-custom-item {
+  padding: 6px 16px;
+  cursor: pointer;
+}
+.section-banner .booking-form-main .dropdown-custom-menu {
+  width: 100%;
+}
+.section-banner .booking-form-main .dropdown-custom .value-select, .section-banner .booking-form-main .dropdown-custom-item {
+  font-size: 14px;
+  line-height: 20px;
 }
 @media (max-width: 991px) {
   .section-banner {
@@ -2688,8 +2756,13 @@ section.image-with-text .swiper-pagination span {
   align-items: center;
   gap: 16px;
 }
-.list-item__info-i a:hover {
-  color: var(--color-primary);
+.list-item__info-i .icon {
+  width: 20px;
+}
+.list-item__info-i .icon img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 @media (max-width: 991px) {
