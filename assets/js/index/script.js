@@ -23,7 +23,7 @@ function headerMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.3,
-    ease: "power2.out"
+    ease: "power2.out",
   });
 
   // console.log($(".header-sub-menu .sub-menu-container .sub-menu > ul > li"));
@@ -35,8 +35,8 @@ function headerMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.3,
-      ease: "power2.out"
-    }
+      ease: "power2.out",
+    },
   );
 
   $btnMenu.on("click", function () {
@@ -80,11 +80,11 @@ function bannerSlider() {
     speed: 1500,
     autoplay: {
       delay: 1500,
-      disableOnInteraction: false
+      disableOnInteraction: false,
     },
     pagination: {
-      el: ".section-banner .swiper-pagination"
-    }
+      el: ".section-banner .swiper-pagination",
+    },
   });
 }
 function bookingTime() {
@@ -138,7 +138,7 @@ function bookingTime() {
 
       onYearChange: function () {
         setTimeout(positionCalendar, 10);
-      }
+      },
     });
   }
 
@@ -180,7 +180,7 @@ function bookingTime() {
 
       onYearChange: function () {
         setTimeout(positionCalendar, 10);
-      }
+      },
     });
   }
 }
@@ -188,7 +188,7 @@ function sliderService() {
   if (!document.querySelector(".swiper-serivce")) return;
 
   const titleService = document.querySelectorAll(
-    ".amigo-service-titles .item-title"
+    ".amigo-service-titles .item-title",
   );
   let activeElms = titleService[0];
 
@@ -206,16 +206,16 @@ function sliderService() {
     speed: 1500,
     autoplay: {
       delay: 3000,
-      disableOnInteraction: false
+      disableOnInteraction: false,
     },
     pagination: {
-      el: ".swiper-serivce .swiper-pagination"
+      el: ".swiper-serivce .swiper-pagination",
     },
     on: {
       slideChange: function () {
         setActiveTitle(this.realIndex);
-      }
-    }
+      },
+    },
   });
 
   swiperService.autoplay.stop();
@@ -243,7 +243,7 @@ function sliderService() {
     const split = new SplitText(el, {
       type: "lines",
       linesClass: "line",
-      mask: "lines"
+      mask: "lines",
     });
     allSplitLines.push(...split.lines);
     gsap.set(split.lines, { yPercent: 100 });
@@ -259,7 +259,7 @@ function sliderService() {
           autoAlpha: 1,
           y: 0,
           ease: "power2.out",
-          duration: 0.8
+          duration: 0.8,
         });
       }
 
@@ -268,18 +268,18 @@ function sliderService() {
         ease: "power3.out",
         duration: 0.8,
         stagger: 0.1,
-        delay: 0.2
+        delay: 0.2,
       });
 
       swiperService.autoplay.start();
-    }
+    },
   });
 }
 
 function fadeTextFooter() {
   gsap.set("data-text-footer", {
     opacity: 0,
-    y: 20
+    y: 20,
   });
   let tlf = gsap.timeline({ paused: true });
 
@@ -287,22 +287,22 @@ function fadeTextFooter() {
     "[data-text-footer]",
     {
       opacity: 0,
-      y: 20
+      y: 20,
     },
     {
       opacity: 1,
       y: 0,
       stagger: 0.05,
       duration: 0.6,
-      ease: "power2.out"
-    }
+      ease: "power2.out",
+    },
   );
   ScrollTrigger.create({
     trigger: "footer",
     start: "top 80%",
     // markers: true,
     animation: tlf,
-    toggleActions: "play none none none"
+    toggleActions: "play none none none",
   });
 
   return tlf;
@@ -320,21 +320,21 @@ function imgWithText() {
       scrollTrigger: {
         trigger: section,
         scrub: true,
-        pin: false
+        pin: false,
         // markers: true
-      }
+      },
     });
 
     tl.fromTo(
       img,
       {
         yPercent: -15,
-        ease: "none"
+        ease: "none",
       },
       {
         yPercent: 15,
-        ease: "none"
-      }
+        ease: "none",
+      },
     );
   });
 }
@@ -347,11 +347,11 @@ function swiperOffer() {
     speed: 1000,
     navigation: {
       nextEl: ".section-offer__slider .swiper-button-next",
-      prevEl: ".section-offer__slider .swiper-button-prev"
+      prevEl: ".section-offer__slider .swiper-button-prev",
     },
     pagination: {
       el: ".section-offer__slider .swiper-pagination",
-      type: "progressbar"
+      type: "progressbar",
     },
     slidesOffsetAfter: 24,
     slidesOffsetBefore: 24,
@@ -360,9 +360,9 @@ function swiperOffer() {
         slidesPerView: 3,
         spaceBetween: 40,
         slidesOffsetAfter: 0,
-        slidesOffsetBefore: 0
-      }
-    }
+        slidesOffsetBefore: 0,
+      },
+    },
   });
 }
 function animationText() {
@@ -384,7 +384,7 @@ function animationText() {
       const split = new SplitText(title, {
         type: "lines",
         linesClass: "line",
-        mask: "lines"
+        mask: "lines",
       });
       splitLines = split.lines;
       gsap.set(splitLines, { yPercent: 100 });
@@ -402,7 +402,7 @@ function animationText() {
           tl.fromTo(
             sub,
             { autoAlpha: 0, y: 20 },
-            { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 }
+            { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
           );
         }
 
@@ -413,9 +413,9 @@ function animationText() {
               yPercent: 0,
               ease: "power3.out",
               duration: 0.8,
-              stagger: 0.05
+              stagger: 0.05,
             },
-            sub ? "-=0.1" : 0
+            sub ? "-=0.1" : 0,
           );
         }
 
@@ -424,7 +424,7 @@ function animationText() {
             desc,
             { autoAlpha: 0, y: 20 },
             { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
-            "-=0.2"
+            "-=0.2",
           );
         }
 
@@ -433,10 +433,10 @@ function animationText() {
             btn,
             { autoAlpha: 0, y: 20 },
             { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
-            "-=0.2"
+            "-=0.2",
           );
         }
-      }
+      },
     });
   });
 }
@@ -453,8 +453,8 @@ function eLeaf() {
         trigger: leaf,
         scrub: true,
         start: "top bottom",
-        end: "bottom top"
-      }
+        end: "bottom top",
+      },
     });
   });
 }

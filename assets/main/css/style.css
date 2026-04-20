@@ -1346,6 +1346,27 @@ footer .footer-alpha a:hover {
   left: 0;
   transform: translateY(50%);
 }
+.intro-detail-page {
+  padding: 200px 40px 0;
+  position: relative;
+}
+.intro-detail-page .intro-page-wrap {
+  text-align: center;
+  margin-bottom: 120px;
+}
+.intro-detail-page .intro-page-wrap.contact-content ul {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.intro-detail-page .intro-page-wrap h3 {
+  margin-bottom: 24px;
+}
+.intro-detail-page .top-right {
+  top: 40%;
+}
 
 .amigo-content {
   padding: 0 40px;
@@ -1796,13 +1817,6 @@ footer .footer-alpha a:hover {
 .form-contact {
   position: relative;
 }
-.form-contact__bg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: auto;
-  height: auto;
-}
 .form-contact__container {
   padding: 40px 24px 40px;
   position: relative;
@@ -1845,12 +1859,12 @@ footer .footer-alpha a:hover {
   border: none;
   padding-bottom: 12px;
   width: 100%;
-  color: var(--color-primary);
+  color: var(--color-black);
   font-size: 16px;
   line-height: 28px;
 }
 .form-contact__container .group-form input::placeholder {
-  color: rgba(14, 98, 97, 0.4);
+  color: var(--color-black);
   font-size: 16px;
   line-height: 28px;
 }
@@ -1858,13 +1872,13 @@ footer .footer-alpha a:hover {
   border: none;
   padding-bottom: 12px;
   width: 100%;
-  color: var(--color-primary);
+  color: var(--color-black);
   font-size: 16px;
   line-height: 28px;
   resize: none;
 }
 .form-contact__container .group-form textarea::placeholder {
-  color: rgba(14, 98, 97, 0.4);
+  color: var(--color-black);
   font-size: 16px;
   line-height: 28px;
 }
@@ -1917,7 +1931,7 @@ footer .footer-alpha a:hover {
 .form-contact__container .group-check .check-box label {
   font-size: 13px;
   line-height: 20px;
-  color: var(--color-primary);
+  color: var(--color-black);
 }
 .form-contact__container .group-check .check-box input {
   appearance: none;
@@ -1927,7 +1941,7 @@ footer .footer-alpha a:hover {
   transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--color-secondary);
 }
 .form-contact__container .group-check .check-box input:checked::before {
   opacity: 1;
@@ -1941,7 +1955,7 @@ footer .footer-alpha a:hover {
   transform: translate(-50%, -50%);
   width: 12px;
   height: 12px;
-  background-image: url("../../images/ic-tick.svg");
+  background-image: url("../../images/icons/icon-tick.svg");
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s ease;
@@ -1949,10 +1963,6 @@ footer .footer-alpha a:hover {
   background-position: center;
 }
 
-.form-contact {
-  background-repeat: repeat;
-  background-size: contain;
-}
 .form-contact button[type=submit]:disabled {
   background-color: rgba(14, 98, 97, 0.4);
 }
@@ -1960,7 +1970,11 @@ footer .footer-alpha a:hover {
 section.image-with-text {
   position: relative;
   z-index: 2;
-  overflow: hidden;
+}
+section.image-with-text .amigo-artwork {
+  position: absolute;
+  right: 0;
+  bottom: -50%;
 }
 section.image-with-text.parallax {
   padding: 0 40px;
@@ -2780,6 +2794,12 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
   .page-facilities .list-item__info {
     margin-bottom: 0;
   }
+}
+
+.c-row-list .list-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .section-story {
