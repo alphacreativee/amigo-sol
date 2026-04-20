@@ -10,16 +10,26 @@ function eCardList() {
   const items = document.querySelectorAll(".e-card-item");
   if (!items.length) return;
 
+  const isMobile = window.innerWidth < 991;
+
   items.forEach((item) => {
     const siblings = Array.from(
       item.parentNode.querySelectorAll(".e-card-item"),
     );
     const index = siblings.indexOf(item);
-    const delay = (index % siblings.length) * 0.15;
 
-    const isOdd = index % 2 !== 0;
-    const yFrom = isOdd ? 100 : 20;
-    const yTo = isOdd ? 80 : 0;
+    let yFrom, yTo, delay;
+
+    if (isMobile) {
+      yFrom = 40;
+      yTo = 0;
+      delay = 0;
+    } else {
+      delay = (index % siblings.length) * 0.15;
+      const isOdd = index % 2 !== 0;
+      yFrom = isOdd ? 100 : 20;
+      yTo = isOdd ? 80 : 0;
+    }
 
     gsap.set(item, { autoAlpha: 0, y: yFrom });
 
@@ -32,7 +42,7 @@ function eCardList() {
           autoAlpha: 1,
           y: yTo,
           ease: "power2.out",
-          duration: 0.6,
+          duration: 0.8,
           delay,
         });
       },
