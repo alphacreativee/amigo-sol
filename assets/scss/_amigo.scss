@@ -73,7 +73,7 @@
   .slider-amigo-content-import {
     padding-right: calc(calc(1 / 12) * 100% + 40px);
     .current-button {
-      margin-top: 120px;
+      margin-top: 100px;
     }
     .current-name {
       margin-bottom: 24px;
@@ -84,6 +84,24 @@
       .slider-amigo-content-import {
         padding-right: 0;
         padding-left: calc(calc(1 / 12) * 100% + 64px);
+      }
+    }
+  }
+  .amigo-usb {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .usb-name {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        color: var(--color-black);
       }
     }
   }

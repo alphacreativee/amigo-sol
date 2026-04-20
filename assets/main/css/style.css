@@ -1330,7 +1330,7 @@ footer .footer-alpha a:hover {
   padding-right: calc(8.3333333333% + 40px);
 }
 .amigo-content .slider-amigo-content-import .current-button {
-  margin-top: 120px;
+  margin-top: 100px;
 }
 .amigo-content .slider-amigo-content-import .current-name {
   margin-bottom: 24px;
@@ -1338,6 +1338,24 @@ footer .footer-alpha a:hover {
 .amigo-content .slider-amigo-wrapper.flex-row-reverse .slider-amigo-content-import {
   padding-right: 0;
   padding-left: calc(8.3333333333% + 64px);
+}
+.amigo-content .amigo-usb {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.amigo-content .amigo-usb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.amigo-content .amigo-usb-item .usb-name {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--color-black);
 }
 .amigo-content .amigo-artwork {
   position: absolute;

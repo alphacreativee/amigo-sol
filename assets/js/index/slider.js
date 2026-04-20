@@ -7,16 +7,18 @@ export function sliderAmigo() {
     function getSlideData(slideContent) {
       return {
         name: slideContent.querySelector(".amigo-name")?.innerHTML || "",
+        usb: slideContent.querySelector(".amigo-usb")?.outerHTML || "",
         description:
           slideContent.querySelector(".amigo-description")?.innerHTML || "",
         button: slideContent.querySelector(".amigo-button")?.innerHTML || "",
       };
     }
 
-    function buildHTML({ name, description, button }) {
+    function buildHTML({ name, usb, description, button }) {
       let html = "";
       if (name)
         html += `<div class="current-name h1-mobile color-secondary font-heading">${name}</div>`;
+      if (usb) html += `<div class="current-usb">${usb}</div>`;
       if (description)
         html += `<div class="current-description b1-font color-black">${description}</div>`;
       if (button) {
@@ -31,6 +33,7 @@ export function sliderAmigo() {
 
     function animateOut(container) {
       const currentName = container.querySelector(".current-name");
+      const currentUsb = container.querySelector(".current-usb");
       const currentDesc = container.querySelector(".current-description");
       const currentBtn = container.querySelector(".current-button");
 
@@ -42,13 +45,22 @@ export function sliderAmigo() {
           duration: 0.3,
         });
       }
+      if (currentUsb) {
+        gsap.to(currentUsb, {
+          autoAlpha: 0,
+          y: -5,
+          ease: "power2.out",
+          duration: 0.3,
+          delay: 0.05,
+        });
+      }
       if (currentDesc) {
         gsap.to(currentDesc, {
           autoAlpha: 0,
           y: -5,
           ease: "power2.out",
           duration: 0.3,
-          delay: 0.05,
+          delay: 0.1,
         });
       }
       if (currentBtn) {
@@ -57,13 +69,14 @@ export function sliderAmigo() {
           y: -5,
           ease: "power2.out",
           duration: 0.3,
-          delay: 0.1,
+          delay: 0.15,
         });
       }
     }
 
     function animateIn(container, delay = 0) {
       const newName = container.querySelector(".current-name");
+      const newUsb = container.querySelector(".current-usb");
       const newDesc = container.querySelector(".current-description");
       const newBtn = container.querySelector(".current-button");
 
@@ -99,6 +112,20 @@ export function sliderAmigo() {
         );
       }
 
+      if (newUsb) {
+        gsap.fromTo(
+          newUsb,
+          { autoAlpha: 0, y: 20 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            ease: "power2.out",
+            duration: 0.4,
+            delay: delay + 0.15,
+          },
+        );
+      }
+
       if (newDesc) {
         gsap.fromTo(
           newDesc,
@@ -108,7 +135,7 @@ export function sliderAmigo() {
             y: 0,
             ease: "power2.out",
             duration: 0.4,
-            delay: delay + 0.1,
+            delay: delay + 0.25,
           },
         );
       }
@@ -122,7 +149,7 @@ export function sliderAmigo() {
             y: 0,
             ease: "power2.out",
             duration: 0.4,
-            delay: delay + 0.2,
+            delay: delay + 0.35,
           },
         );
       }
@@ -137,7 +164,7 @@ export function sliderAmigo() {
         spaceBetween: 0,
         loop: true,
         speed: 1100,
-        autoplay: false, // Tắt autoplay ban đầu, bật khi scroll đến
+        autoplay: false,
         pagination: {
           el: wrapper.querySelector(".slider-amigo-image .swiper-pagination"),
         },
@@ -173,7 +200,6 @@ export function sliderAmigo() {
       },
     );
 
-    // Init slide đầu tiên (set content, chưa animate)
     const initialSlide = imageSwiper.slides[imageSwiper.activeIndex];
     const initialSlideContent = initialSlide?.querySelector(
       ".amigo-slide-content",
@@ -184,23 +210,16 @@ export function sliderAmigo() {
 
     if (initialSlideContent && contentContainer) {
       contentContainer.innerHTML = buildHTML(getSlideData(initialSlideContent));
-
-      // Set ẩn trước khi scroll đến
       gsap.set(contentContainer.children, { autoAlpha: 0 });
     }
 
-    // ScrollTrigger: khi wrapper vào viewport mới animate + bật autoplay
     ScrollTrigger.create({
       trigger: wrapper,
       start: "top 50%",
       once: true,
-      //   markers: true,
       onEnter: () => {
-        if (contentContainer) {
-          animateIn(contentContainer);
-        }
+        if (contentContainer) animateIn(contentContainer);
 
-        // Bật autoplay sau khi vào viewport
         imageSwiper.params.autoplay = {
           delay: 3000,
           disableOnInteraction: false,
