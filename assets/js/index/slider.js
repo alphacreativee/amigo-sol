@@ -214,7 +214,6 @@ export function sliderAmigo() {
       gsap.set(contentContainer.children, { autoAlpha: 0 });
     }
 
-    // ✅ Ẩn image ban đầu
     if (imageEl) {
       gsap.set(imageEl, { autoAlpha: 0, y: 20 });
     }
@@ -224,7 +223,6 @@ export function sliderAmigo() {
       start: "top 50%",
       once: true,
       onEnter: () => {
-        // ✅ Animate image trước
         if (imageEl) {
           gsap.to(imageEl, {
             autoAlpha: 1,
@@ -234,7 +232,6 @@ export function sliderAmigo() {
           });
         }
 
-        // ✅ Content delay nhẹ sau image
         if (contentContainer) animateIn(contentContainer, 0.3);
 
         imageSwiper.params.autoplay = {
@@ -244,5 +241,44 @@ export function sliderAmigo() {
         imageSwiper.autoplay.start();
       },
     });
+
+    // mobile
+    const isMobile = window.matchMedia("(max-width: 991px)").matches;
+
+    if (isMobile) {
+      const contentEl = wrapper.querySelector(".slider-amigo-content-import");
+
+      if (contentEl) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        contentEl.addEventListener(
+          "touchstart",
+          (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+          },
+          { passive: true },
+        );
+
+        contentEl.addEventListener(
+          "touchend",
+          (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+
+            const diff = touchStartX - touchEndX;
+
+            // Vuốt trái → next, vuốt phải → prev
+            if (Math.abs(diff) > 50) {
+              if (diff > 0) {
+                imageSwiper.slideNext();
+              } else {
+                imageSwiper.slidePrev();
+              }
+            }
+          },
+          { passive: true },
+        );
+      }
+    }
   });
 }

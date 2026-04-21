@@ -9,7 +9,9 @@ section.image-with-text {
   }
   &.parallax {
     padding: 0 40px;
-
+    @media (max-width: 991px) {
+      padding: 0 24px;
+    }
     .content {
       @media (max-width: 991px) {
         top: 90px;
@@ -197,7 +199,7 @@ section.image-with-text {
       }
 
       @media (max-width: 480px) {
-        max-width: 200px;
+        max-width: 280px;
       }
     }
     .desc {

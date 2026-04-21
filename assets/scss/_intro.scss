@@ -17,6 +17,10 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    @media (max-width: 991px) {
+      width: 100%;
+      padding: 0 24px;
+    }
   }
   &-artwork {
     position: absolute;
