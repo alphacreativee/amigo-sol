@@ -109,3 +109,8 @@ body {
     z-index: -1;
   }
 }
+
+::selection {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}

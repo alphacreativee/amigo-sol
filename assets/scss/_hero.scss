@@ -1,131 +1,7 @@
 .section-banner {
   position: relative;
   height: 100vh;
-  .booking-form {
-    position: absolute;
-    left: 40px;
-    z-index: 5;
-    // top: 120px;
-    top: 50%;
-    transform: translateY(calc(calc(-50%) + 40px));
-    width: 440px;
-    height: auto;
-    // max-height: calc(100svh - 150px);
-    background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
-    &-head {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 16px;
-      background-color: var(--color-secondary);
 
-      h3 {
-        font-size: 24px;
-        line-height: 28px;
-      }
-    }
-    &-main {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 24px;
-      & > * {
-        font-size: 14px;
-        line-height: 20px;
-      }
-      .input-item {
-        position: relative;
-        background-color: var(--color-white);
-        padding: 14px 16px;
-        textarea,
-        input {
-          width: 100%;
-          border: none;
-          outline: none;
-          &:focus + label,
-          &:not(:placeholder-shown) + label {
-            opacity: 0;
-            pointer-events: none;
-          }
-
-          &::placeholder {
-            color: var(--color-black);
-          }
-        }
-        textarea {
-          resize: none;
-        }
-        label {
-          position: absolute;
-          left: 16px;
-          pointer-events: none;
-          transition: all 0.3s ease;
-          color: var(--color-black);
-          span {
-            color: red;
-          }
-        }
-
-        .icon {
-          width: 16px;
-          height: 16px;
-
-          position: absolute;
-          top: 50%;
-          right: 16px;
-          transform: translateY(-50%);
-
-          pointer-events: none;
-        }
-      }
-      .form-row {
-        &.two-col {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 12px;
-        }
-      }
-      .form-bottom {
-        margin-top: 12px;
-
-        a {
-          transition: all 0.4s ease;
-
-          &:hover {
-            color: var(--color-secondary);
-          }
-        }
-      }
-
-      .dropdown-custom {
-        z-index: 2;
-        background-color: var(--color-white);
-
-        &-btn {
-          height: 48px;
-          padding: 0 16px;
-          width: 100%;
-          justify-content: space-between;
-        }
-
-        &-item {
-          padding: 6px 16px;
-          cursor: pointer;
-        }
-
-        &-menu {
-          width: 100%;
-        }
-
-        .value-select,
-        &-item {
-          font-size: 14px;
-          line-height: 20px;
-        }
-      }
-    }
-  }
   @media (max-width: 991px) {
     max-height: 640px;
   }
@@ -248,6 +124,132 @@
     opacity: 1;
     &-active {
       background-color: var(--color-secondary);
+    }
+  }
+}
+
+.booking-form {
+  position: absolute;
+  left: 40px;
+  z-index: 5;
+  // top: 120px;
+  top: 50%;
+  transform: translateY(calc(calc(-50%) + 40px));
+  width: 440px;
+  height: auto;
+  // max-height: calc(100svh - 150px);
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  &-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    background-color: var(--color-secondary);
+
+    h3 {
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
+  &-main {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    & > * {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .input-item {
+      position: relative;
+      background-color: var(--color-white);
+      padding: 14px 16px;
+      textarea,
+      input {
+        width: 100%;
+        border: none;
+        outline: none;
+        &:focus + label,
+        &:not(:placeholder-shown) + label {
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        &::placeholder {
+          color: var(--color-black);
+        }
+      }
+      textarea {
+        resize: none;
+      }
+      label {
+        position: absolute;
+        left: 16px;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        color: var(--color-black);
+        span {
+          color: red;
+        }
+      }
+
+      .icon {
+        width: 16px;
+        height: 16px;
+
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%);
+
+        pointer-events: none;
+      }
+    }
+    .form-row {
+      &.two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+    }
+    .form-bottom {
+      margin-top: 12px;
+
+      a {
+        transition: all 0.4s ease;
+
+        &:hover {
+          color: var(--color-secondary);
+        }
+      }
+    }
+
+    .dropdown-custom {
+      z-index: 2;
+      background-color: var(--color-white);
+
+      &-btn {
+        height: 48px;
+        padding: 0 16px;
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      &-item {
+        padding: 6px 16px;
+        cursor: pointer;
+      }
+
+      &-menu {
+        width: 100%;
+      }
+
+      .value-select,
+      &-item {
+        font-size: 14px;
+        line-height: 20px;
+      }
     }
   }
 }
