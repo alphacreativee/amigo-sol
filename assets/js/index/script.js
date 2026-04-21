@@ -184,6 +184,181 @@ function bookingTime() {
     });
   }
 }
+// function sliderService() {
+//   if (!document.querySelector(".swiper-serivce")) return;
+
+//   const titleService = document.querySelectorAll(
+//     ".amigo-service-titles .item-title",
+//   );
+//   let activeElms = titleService[0];
+
+//   function setActiveTitle(index) {
+//     if (activeElms) activeElms.classList.remove("active");
+//     activeElms = titleService[index];
+//     if (activeElms) activeElms.classList.add("active");
+//   }
+
+//   const swiperService = new Swiper(".swiper-serivce", {
+//     effect: "fade",
+//     slidesPerView: 1,
+//     spaceBetween: 0,
+//     loop: true,
+//     speed: 1500,
+//     autoplay: {
+//       delay: 3000,
+//       disableOnInteraction: false,
+//     },
+//     pagination: {
+//       el: ".swiper-serivce .swiper-pagination",
+//     },
+//     on: {
+//       slideChange: function () {
+//         setActiveTitle(this.realIndex);
+//       },
+//     },
+//   });
+
+//   // swiperService.autoplay.stop();
+
+//   setActiveTitle(0);
+
+//   titleService.forEach((el, index) => {
+//     el.addEventListener("mouseover", function () {
+//       swiperService.slideToLoop(index);
+//       setActiveTitle(index);
+//       // setTimeout(() => {
+//       //   swiperService.autoplay.stop();
+//       //   swiperService.autoplay.start();
+//       // }, 100);
+//     });
+//   });
+
+//   const swiperEl = document.querySelector(".swiper-serivce");
+//   if (swiperEl) {
+//     gsap.set(swiperEl, { autoAlpha: 0, y: 20 });
+//   }
+
+//   const allSplitLines = [];
+//   titleService.forEach((el) => {
+//     const split = new SplitText(el, {
+//       type: "lines",
+//       linesClass: "line",
+//       mask: "lines",
+//     });
+//     allSplitLines.push(...split.lines);
+//     gsap.set(split.lines, { yPercent: 100 });
+//   });
+
+//   ScrollTrigger.create({
+//     trigger: ".amigo-service-wrapper",
+//     start: "top 70%",
+//     once: true,
+//     onEnter: () => {
+//       if (swiperEl) {
+//         gsap.to(swiperEl, {
+//           autoAlpha: 1,
+//           y: 0,
+//           ease: "power2.out",
+//           duration: 0.8,
+//         });
+//       }
+
+//       gsap.to(allSplitLines, {
+//         yPercent: 0,
+//         ease: "power3.out",
+//         duration: 0.8,
+//         stagger: 0.1,
+//         delay: 0.2,
+//       });
+
+//       // swiperService.autoplay.start();
+//     },
+//   });
+
+//   // const isMobile = window.matchMedia("(max-width: 991px)").matches;
+
+//   // if (!isMobile && swiperEl) {
+//   //   const cursor = document.createElement("div");
+//   //   cursor.classList.add("service-cursor");
+//   //   cursor.innerHTML = `
+//   //     <span class="service-cursor-arrow service-cursor-prev">
+//   //       <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+//   //         <path d="M5.95117 10.5L0.532566 5.57399C0.488922 5.53432 0.488922 5.46568 0.532566 5.42601L5.95117 0.5" stroke="#ffffff" stroke-linecap="round"/>
+//   //       </svg>
+//   //     </span>
+//   //     <span class="service-cursor-arrow service-cursor-next">
+//   //       <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+//   //         <path d="M0.5 10.5L5.91861 5.57399C5.96225 5.53432 5.96225 5.46568 5.91861 5.42601L0.5 0.5" stroke="#ffffff" stroke-linecap="round"/>
+//   //       </svg>
+//   //     </span>
+//   //   `;
+//   //   document.body.appendChild(cursor);
+
+//   //   Object.assign(cursor.style, {
+//   //     position: "fixed",
+//   //     top: "0",
+//   //     left: "0",
+//   //     pointerEvents: "none",
+//   //     zIndex: "9999",
+//   //     width: "50px",
+//   //     height: "50px",
+//   //     borderRadius: "50%",
+//   //     background: "#ca6627",
+//   //     display: "flex",
+//   //     alignItems: "center",
+//   //     justifyContent: "center",
+//   //     color: "#fff",
+//   //     transform: "translate(-50%, -50%)",
+//   //   });
+
+//   //   gsap.set(cursor, { scale: 0, opacity: 0 });
+
+//   //   let isLeft = true;
+
+//   //   swiperEl.addEventListener("mousemove", (e) => {
+//   //     const rect = swiperEl.getBoundingClientRect();
+//   //     const x = e.clientX - rect.left;
+//   //     isLeft = x < rect.width / 2;
+
+//   //     gsap.set(cursor, { x: e.clientX, y: e.clientY });
+
+//   //     cursor.querySelector(".service-cursor-prev").style.display = isLeft
+//   //       ? "flex"
+//   //       : "none";
+//   //     cursor.querySelector(".service-cursor-next").style.display = isLeft
+//   //       ? "none"
+//   //       : "flex";
+//   //   });
+
+//   //   swiperEl.addEventListener("mouseenter", () => {
+//   //     swiperEl.style.cursor = "none";
+//   //     gsap.to(cursor, {
+//   //       opacity: 1,
+//   //       scale: 1,
+//   //       duration: 0.3,
+//   //       ease: "back.out(1.7)",
+//   //     });
+//   //   });
+
+//   //   // swiperEl.addEventListener("mouseleave", () => {
+//   //   //   swiperEl.style.cursor = "";
+//   //   //   gsap.to(cursor, {
+//   //   //     opacity: 0,
+//   //   //     scale: 0,
+//   //   //     duration: 0.2,
+//   //   //     ease: "power2.in",
+//   //   //   });
+//   //   // });
+
+//   //   // swiperEl.addEventListener("click", () => {
+//   //   //   if (isLeft) {
+//   //   //     swiperService.slidePrev();
+//   //   //   } else {
+//   //   //     swiperService.slideNext();
+//   //   //   }
+//   //   // });
+//   // }
+// }
 function sliderService() {
   if (!document.querySelector(".swiper-serivce")) return;
 
@@ -204,10 +379,6 @@ function sliderService() {
     spaceBetween: 0,
     loop: true,
     speed: 1500,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
     pagination: {
       el: ".swiper-serivce .swiper-pagination",
     },
@@ -218,18 +389,12 @@ function sliderService() {
     },
   });
 
-  swiperService.autoplay.stop();
-
   setActiveTitle(0);
 
   titleService.forEach((el, index) => {
     el.addEventListener("mouseover", function () {
       swiperService.slideToLoop(index);
       setActiveTitle(index);
-      setTimeout(() => {
-        swiperService.autoplay.stop();
-        swiperService.autoplay.start();
-      }, 100);
     });
   });
 
@@ -270,12 +435,9 @@ function sliderService() {
         stagger: 0.1,
         delay: 0.2,
       });
-
-      swiperService.autoplay.start();
     },
   });
 }
-
 function fadeTextFooter() {
   gsap.set("data-text-footer", {
     opacity: 0,

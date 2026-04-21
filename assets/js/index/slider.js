@@ -242,7 +242,7 @@ export function sliderAmigo() {
       },
     });
 
-    // mobile
+    // ✅ Mobile: vuốt trên content
     const isMobile = window.matchMedia("(max-width: 991px)").matches;
 
     if (isMobile) {
@@ -264,10 +264,7 @@ export function sliderAmigo() {
           "touchend",
           (e) => {
             touchEndX = e.changedTouches[0].screenX;
-
             const diff = touchStartX - touchEndX;
-
-            // Vuốt trái → next, vuốt phải → prev
             if (Math.abs(diff) > 50) {
               if (diff > 0) {
                 imageSwiper.slideNext();
@@ -279,6 +276,94 @@ export function sliderAmigo() {
           { passive: true },
         );
       }
+    }
+
+    // ✅ Desktop: custom cursor mũi tên trên slider-amigo-image
+    if (!isMobile && imageEl) {
+      const cursor = document.createElement("div");
+      cursor.classList.add("amigo-cursor");
+      cursor.innerHTML = `
+        <span class="amigo-cursor-arrow amigo-cursor-prev">
+          <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.95117 10.5L0.532566 5.57399C0.488922 5.53432 0.488922 5.46568 0.532566 5.42601L5.95117 0.5" stroke="#ffffff" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="amigo-cursor-arrow amigo-cursor-next">
+          <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.5 10.5L5.91861 5.57399C5.96225 5.53432 5.96225 5.46568 5.91861 5.42601L0.5 0.5" stroke="#ffffff" stroke-linecap="round"/>
+          </svg>
+        </span>
+      `;
+      document.body.appendChild(cursor);
+
+      Object.assign(cursor.style, {
+        position: "fixed",
+        top: "0",
+        left: "0",
+        pointerEvents: "none",
+        zIndex: "9999",
+        width: "50px",
+        height: "50px",
+        borderRadius: "50%",
+        background: "#ca6627",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#fff",
+        transform: "translate(-50%, -50%)",
+      });
+
+      // ✅ Set trạng thái ban đầu bằng GSAP
+      gsap.set(cursor, { scale: 0, opacity: 0 });
+
+      let isLeft = true;
+
+      // Theo dõi vị trí chuột
+      imageEl.addEventListener("mousemove", (e) => {
+        const rect = imageEl.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        isLeft = x < rect.width / 2;
+
+        gsap.set(cursor, { x: e.clientX, y: e.clientY });
+
+        cursor.querySelector(".amigo-cursor-prev").style.display = isLeft
+          ? "flex"
+          : "none";
+        cursor.querySelector(".amigo-cursor-next").style.display = isLeft
+          ? "none"
+          : "flex";
+      });
+
+      // ✅ Hiện cursor với hiệu ứng scale nảy
+      imageEl.addEventListener("mouseenter", () => {
+        imageEl.style.cursor = "none";
+        gsap.to(cursor, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.3,
+          ease: "back.out(1.7)",
+        });
+      });
+
+      // ✅ Ẩn cursor với hiệu ứng scale thu lại
+      imageEl.addEventListener("mouseleave", () => {
+        imageEl.style.cursor = "";
+        gsap.to(cursor, {
+          opacity: 0,
+          scale: 0,
+          duration: 0.2,
+          ease: "power2.in",
+        });
+      });
+
+      // Click để chuyển slide
+      imageEl.addEventListener("click", () => {
+        if (isLeft) {
+          imageSwiper.slidePrev();
+        } else {
+          imageSwiper.slideNext();
+        }
+      });
     }
   });
 }
