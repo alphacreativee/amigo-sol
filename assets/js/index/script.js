@@ -475,13 +475,13 @@ function detailSlider() {
 
   const interleaveOffset = 0.9;
   const swiperButton = document.querySelector(
-    ".image-with-text .detail-slider__arrows"
+    ".image-with-text .detail-slider__arrows",
   );
 
   // Kiểm tra swiperButton tồn tại
   if (!swiperButton) {
     console.warn(
-      "Swiper button (.image-with-text .detail-slider__arrows) not found"
+      "Swiper button (.image-with-text .detail-slider__arrows) not found",
     );
     return;
   }
@@ -496,12 +496,12 @@ function detailSlider() {
     allowTouchMove: true,
     autoplay: false,
     pagination: {
-      el: ".image-with-text .swiper-pagination"
+      el: ".image-with-text .swiper-pagination",
     },
     breakpoints: {
       991: {
-        allowTouchMove: false
-      }
+        allowTouchMove: false,
+      },
     },
     // Loại bỏ navigation vì không dùng nút mặc định
     on: {
@@ -533,8 +533,8 @@ function detailSlider() {
             slideInner.style.transition = `${speed}ms ${easing}`;
           }
         });
-      }
-    }
+      },
+    },
   });
 
   let lastMouseX = null;
@@ -565,13 +565,13 @@ function detailSlider() {
       rotateDeg = 180; // Nửa trái: prev
       buttonPosX = Math.max(
         offset,
-        Math.min(halfWidth - buttonWidth, buttonPosX)
+        Math.min(halfWidth - buttonWidth, buttonPosX),
       );
     } else if (mouseX >= halfWidth + transitionZone) {
       rotateDeg = 0; // Nửa phải: next
       buttonPosX = Math.max(
         halfWidth,
-        Math.min(rect.width - buttonWidth - offset, buttonPosX)
+        Math.min(rect.width - buttonWidth - offset, buttonPosX),
       );
     } else {
       const progress =
@@ -579,14 +579,14 @@ function detailSlider() {
       rotateDeg = 180 - progress * 180; // Vùng chuyển tiếp
       buttonPosX = Math.max(
         offset,
-        Math.min(rect.width - buttonWidth - offset, buttonPosX)
+        Math.min(rect.width - buttonWidth - offset, buttonPosX),
       );
     }
 
     // Giới hạn vị trí Y với offset 40px
     buttonPosY = Math.max(
       offset,
-      Math.min(rect.height - buttonHeight - offset, buttonPosY)
+      Math.min(rect.height - buttonHeight - offset, buttonPosY),
     );
 
     // Áp dụng transform
@@ -631,7 +631,99 @@ function detailSlider() {
     }
   });
 }
+function gallery() {
+  console.log("aaa");
 
+  document.querySelectorAll(".animated-thumb").forEach(initGallery);
+
+  document.addEventListener("shown.bs.tab", function (e) {
+    const tab = document.querySelector(e.target.dataset.bsTarget);
+    if (!tab) return;
+
+    tab.querySelectorAll(".animated-thumb").forEach(initGallery);
+  });
+}
+
+/* ================================
+   INIT GALLERY PER TAB
+================================ */
+function initGallery(galleryEl) {
+  if (!galleryEl || galleryEl.dataset.inited) return;
+
+  lightGallery(galleryEl, {
+    selector: ".thumb-img",
+    thumbnail: true,
+    download: false,
+    showCloseIcon: true,
+    subHtmlSelectorRelative: true,
+    mobileSettings: {
+      controls: true,
+      showCloseIcon: true,
+      download: false,
+    },
+  });
+
+  galleryEl.dataset.inited = "true";
+
+  galleryEl.addEventListener("lgAfterOpen", () => {
+    // bindCustomCursor();
+  });
+}
+
+/* ================================
+   CUSTOM CURSOR + ARROWS
+================================ */
+// function bindCustomCursor() {
+//   const container =
+//     document.querySelector(".lg-container.lg-show") ||
+//     document.querySelector(".lg-container.lg-visible");
+
+//   if (!container) return;
+
+//   const prev = container.querySelector(".lg-prev");
+//   const next = container.querySelector(".lg-next");
+//   const close = container.querySelector(".lg-close");
+
+//   if (!prev || !next || !close) return;
+
+//   let overClose = false;
+
+//   container.addEventListener("mousemove", (e) => {
+//     if (overClose) return;
+
+//     const rect = container.getBoundingClientRect();
+//     const centerX = rect.left + rect.width / 2;
+
+//     [prev, next].forEach((el) => {
+//       el.style.left = e.clientX + "px";
+//       el.style.top = e.clientY + "px";
+//     });
+
+//     if (e.clientX < centerX) {
+//       prev.style.display = "block";
+//       next.style.display = "none";
+//     } else {
+//       prev.style.display = "none";
+//       next.style.display = "block";
+//       next.style.transform = "translate(-200%, -150%)";
+//     }
+//   });
+
+//   container.addEventListener("mouseleave", () => {
+//     prev.style.display = "none";
+//     next.style.display = "none";
+//   });
+
+//   close.addEventListener("mouseenter", () => {
+//     overClose = true;
+//     next.style.transform = "scale(0)";
+//   });
+
+//   close.addEventListener("mouseleave", () => {
+//     overClose = false;
+//     next.style.transform = "scale(1)";
+//   });
+// }
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -647,6 +739,7 @@ const init = () => {
   animationText();
   eLeaf();
   detailSlider();
+  gallery();
 };
 preloadImages("img").then(() => {
   init();
