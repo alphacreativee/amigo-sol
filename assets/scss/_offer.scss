@@ -1,5 +1,12 @@
 .section-offer {
   position: relative;
+  &.chef-sec {
+    .amigo-artwork {
+      left: auto;
+      right: 0;
+      transform: translateY(-50%) scaleX(-1);
+    }
+  }
   .amigo-artwork {
     position: absolute;
     top: 0;

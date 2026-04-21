@@ -1,7 +1,15 @@
 .section-story {
   padding: 120px 0;
   position: relative;
-
+  .amigo-artwork {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    &.top-right {
+      top: -25%;
+      right: 0;
+    }
+  }
   &.event {
     .section-story__ilus {
       top: -25%;

@@ -3,6 +3,16 @@
   position: relative;
   &.content-chef {
     padding-left: calc(calc(1 / 12) * 100% + 40px);
+    .amigo-artwork {
+      &.left-bottom {
+        top: -120%;
+
+        bottom: auto;
+      }
+      &.top-right {
+        display: none;
+      }
+    }
   }
   @media (max-width: 991px) {
     padding: 0 24px;

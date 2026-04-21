@@ -1429,6 +1429,13 @@ footer .footer-alpha a:hover {
 .amigo-content.content-chef {
   padding-left: calc(8.3333333333% + 40px);
 }
+.amigo-content.content-chef .amigo-artwork.left-bottom {
+  top: -120%;
+  bottom: auto;
+}
+.amigo-content.content-chef .amigo-artwork.top-right {
+  display: none;
+}
 @media (max-width: 991px) {
   .amigo-content {
     padding: 0 24px;
@@ -2356,6 +2363,11 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
 .section-offer {
   position: relative;
 }
+.section-offer.chef-sec .amigo-artwork {
+  left: auto;
+  right: 0;
+  transform: translateY(-50%) scaleX(-1);
+}
 .section-offer .amigo-artwork {
   position: absolute;
   top: 0;
@@ -2956,6 +2968,15 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
 .section-story {
   padding: 120px 0;
   position: relative;
+}
+.section-story .amigo-artwork {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+.section-story .amigo-artwork.top-right {
+  top: -25%;
+  right: 0;
 }
 .section-story.event .section-story__ilus {
   top: -25%;
