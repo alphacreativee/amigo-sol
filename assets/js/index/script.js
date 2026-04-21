@@ -724,6 +724,51 @@ function initGallery(galleryEl) {
 //     next.style.transform = "scale(1)";
 //   });
 // }
+function accomodationnFilter() {
+  if ($(".accomodation-list").length < 1) return;
+
+  const tabs = $(".accomodation-list .nav-tabs .nav-link");
+  tabs.on("click", function (e) {
+    e.preventDefault();
+
+    // ScrollTrigger.refresh();
+    const footerTimeline = fadeTextFooter();
+    footerTimeline.play();
+  });
+
+  gsap.set(".accomodation-list .nav-tabs", {
+    opacity: 0,
+    y: 50,
+  });
+
+  ScrollTrigger.create({
+    trigger: ".accomodation-list",
+    start: "top 60%",
+    end: "bottom bottom",
+    onEnter: showTabs,
+    onEnterBack: showTabs,
+    onLeave: hideTabs,
+    onLeaveBack: hideTabs,
+  });
+
+  function showTabs() {
+    gsap.to(".accomodation-list .nav-tabs", {
+      opacity: 1,
+      y: 0,
+      duration: 0.3,
+      ease: "none",
+    });
+  }
+
+  function hideTabs() {
+    gsap.to(".accomodation-list .nav-tabs", {
+      opacity: 0,
+      y: 50,
+      duration: 0.3,
+      ease: "none",
+    });
+  }
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -740,6 +785,7 @@ const init = () => {
   eLeaf();
   detailSlider();
   gallery();
+  accomodationnFilter();
 };
 preloadImages("img").then(() => {
   init();

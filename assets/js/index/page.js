@@ -205,11 +205,35 @@ function cRowList() {
     });
   });
 }
+function stickyNav() {
+  ScrollTrigger.refresh();
+
+  ScrollTrigger.create({
+    start: "top top",
+    end: 99999,
+    paused: true,
+    onUpdate: (self) => {
+      const navSticky = document.querySelector(".nav-tabs");
+      const scrollY = window.scrollY;
+
+      if (self.direction === 1) {
+        if (navSticky) {
+          navSticky.classList.add("scrolled");
+        }
+      } else {
+        if (navSticky) {
+          navSticky.classList.remove("scrolled");
+        }
+      }
+    },
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   eCardList();
   eFadeTextPageDetail();
   cRowList();
+  stickyNav();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
