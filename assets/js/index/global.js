@@ -1,6 +1,6 @@
 export function customDropdown() {
   const dropdowns = document.querySelectorAll(
-    ".dropdown-custom, .dropdown-custom-select",
+    ".dropdown-custom, .dropdown-custom-select"
   );
 
   dropdowns.forEach((dropdown) => {
@@ -97,7 +97,7 @@ export function headerScroll() {
       }
 
       lastScroll = currentScroll;
-    },
+    }
   });
 
   return trigger;
