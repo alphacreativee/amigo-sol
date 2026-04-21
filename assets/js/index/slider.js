@@ -6,6 +6,7 @@ export function sliderAmigo() {
 
     function getSlideData(slideContent) {
       return {
+        sub: slideContent.querySelector(".amigo-sub")?.innerHTML || "",
         name: slideContent.querySelector(".amigo-name")?.innerHTML || "",
         usb: slideContent.querySelector(".amigo-usb")?.outerHTML || "",
         description:
@@ -14,8 +15,10 @@ export function sliderAmigo() {
       };
     }
 
-    function buildHTML({ name, usb, description, button }) {
+    function buildHTML({ name, usb, description, button, sub }) {
       let html = "";
+      if (sub)
+        html += `<div class="current-sub b0-font color-secondary">${sub}</div>`;
       if (name)
         html += `<div class="current-name h1-mobile color-secondary font-heading">${name}</div>`;
       if (usb) html += `<div class="current-usb">${usb}</div>`;
@@ -32,17 +35,27 @@ export function sliderAmigo() {
     }
 
     function animateOut(container) {
+      const currentSub = container.querySelector(".current-sub");
       const currentName = container.querySelector(".current-name");
       const currentUsb = container.querySelector(".current-usb");
       const currentDesc = container.querySelector(".current-description");
       const currentBtn = container.querySelector(".current-button");
 
+      if (currentSub) {
+        gsap.to(currentSub, {
+          autoAlpha: 0,
+          y: -5,
+          ease: "power2.out",
+          duration: 0.3,
+        });
+      }
       if (currentName) {
         gsap.to(currentName, {
           autoAlpha: 0,
           y: -5,
           ease: "power2.out",
           duration: 0.3,
+          delay: 0.05,
         });
       }
       if (currentUsb) {
@@ -51,7 +64,7 @@ export function sliderAmigo() {
           y: -5,
           ease: "power2.out",
           duration: 0.3,
-          delay: 0.05,
+          delay: 0.1,
         });
       }
       if (currentDesc) {
@@ -60,7 +73,7 @@ export function sliderAmigo() {
           y: -5,
           ease: "power2.out",
           duration: 0.3,
-          delay: 0.1,
+          delay: 0.15,
         });
       }
       if (currentBtn) {
@@ -69,16 +82,25 @@ export function sliderAmigo() {
           y: -5,
           ease: "power2.out",
           duration: 0.3,
-          delay: 0.15,
+          delay: 0.2,
         });
       }
     }
 
     function animateIn(container, delay = 0) {
+      const newSub = container.querySelector(".current-sub");
       const newName = container.querySelector(".current-name");
       const newUsb = container.querySelector(".current-usb");
       const newDesc = container.querySelector(".current-description");
       const newBtn = container.querySelector(".current-button");
+
+      if (newSub) {
+        gsap.fromTo(
+          newSub,
+          { autoAlpha: 0, y: 20 },
+          { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.4, delay },
+        );
+      }
 
       if (newName && typeof SplitText !== "undefined") {
         gsap.set(newName, { autoAlpha: 1 });
@@ -100,7 +122,7 @@ export function sliderAmigo() {
             y: 0,
             ease: "power2.out",
             duration: 0.5,
-            delay,
+            delay: delay + 0.1,
             stagger: 0.08,
           },
         );
@@ -108,7 +130,13 @@ export function sliderAmigo() {
         gsap.fromTo(
           newName,
           { autoAlpha: 0, y: 20 },
-          { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.4, delay },
+          {
+            autoAlpha: 1,
+            y: 0,
+            ease: "power2.out",
+            duration: 0.4,
+            delay: delay + 0.1,
+          },
         );
       }
 
@@ -121,7 +149,7 @@ export function sliderAmigo() {
             y: 0,
             ease: "power2.out",
             duration: 0.4,
-            delay: delay + 0.15,
+            delay: delay + 0.25,
           },
         );
       }
@@ -135,7 +163,7 @@ export function sliderAmigo() {
             y: 0,
             ease: "power2.out",
             duration: 0.4,
-            delay: delay + 0.25,
+            delay: delay + 0.35,
           },
         );
       }
@@ -149,7 +177,7 @@ export function sliderAmigo() {
             y: 0,
             ease: "power2.out",
             duration: 0.4,
-            delay: delay + 0.35,
+            delay: delay + 0.45,
           },
         );
       }
@@ -278,8 +306,10 @@ export function sliderAmigo() {
       }
     }
 
-    // ✅ Desktop: custom cursor mũi tên trên slider-amigo-image
-    if (!isMobile && imageEl) {
+    const realSlideCount = imageSwiper.slides.filter(
+      (s) => !s.classList.contains("swiper-slide-duplicate"),
+    ).length;
+    if (!isMobile && imageEl && realSlideCount > 1) {
       const cursor = document.createElement("div");
       cursor.classList.add("amigo-cursor");
       cursor.innerHTML = `
@@ -313,12 +343,10 @@ export function sliderAmigo() {
         transform: "translate(-50%, -50%)",
       });
 
-      // ✅ Set trạng thái ban đầu bằng GSAP
       gsap.set(cursor, { scale: 0, opacity: 0 });
 
       let isLeft = true;
 
-      // Theo dõi vị trí chuột
       imageEl.addEventListener("mousemove", (e) => {
         const rect = imageEl.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -334,7 +362,6 @@ export function sliderAmigo() {
           : "flex";
       });
 
-      // ✅ Hiện cursor với hiệu ứng scale nảy
       imageEl.addEventListener("mouseenter", () => {
         imageEl.style.cursor = "none";
         gsap.to(cursor, {
@@ -345,7 +372,6 @@ export function sliderAmigo() {
         });
       });
 
-      // ✅ Ẩn cursor với hiệu ứng scale thu lại
       imageEl.addEventListener("mouseleave", () => {
         imageEl.style.cursor = "";
         gsap.to(cursor, {
@@ -356,7 +382,6 @@ export function sliderAmigo() {
         });
       });
 
-      // Click để chuyển slide
       imageEl.addEventListener("click", () => {
         if (isLeft) {
           imageSwiper.slidePrev();

@@ -1426,6 +1426,9 @@ footer .footer-alpha a:hover {
   padding: 0 40px;
   position: relative;
 }
+.amigo-content.content-chef {
+  padding-left: calc(8.3333333333% + 40px);
+}
 @media (max-width: 991px) {
   .amigo-content {
     padding: 0 24px;
@@ -1496,6 +1499,10 @@ footer .footer-alpha a:hover {
 .amigo-content .swiper-pagination-bullet-active {
   background-color: var(--color-secondary);
 }
+.amigo-content .slider-amigo-image.chef-sec {
+  width: 75%;
+  aspect-ratio: 1;
+}
 .amigo-content .slider-amigo-image {
   height: 500px;
 }
@@ -1530,6 +1537,9 @@ footer .footer-alpha a:hover {
   .amigo-content .slider-amigo-content-import {
     padding-right: 0;
   }
+}
+.amigo-content .slider-amigo-content-import .current-sub {
+  margin-bottom: 24px;
 }
 .amigo-content .slider-amigo-content-import .current-button {
   margin-top: 100px;

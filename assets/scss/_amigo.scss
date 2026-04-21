@@ -1,6 +1,9 @@
 .amigo-content {
   padding: 0 40px;
   position: relative;
+  &.content-chef {
+    padding-left: calc(calc(1 / 12) * 100% + 40px);
+  }
   @media (max-width: 991px) {
     padding: 0 24px;
   }
@@ -72,6 +75,10 @@
     }
   }
   .slider-amigo-image {
+    &.chef-sec {
+      width: 75%;
+      aspect-ratio: 1;
+    }
     height: 500px;
     @media (max-width: 991px) {
       height: 350px;
@@ -98,6 +105,9 @@
     padding-top: 40px;
     @media (max-width: 991px) {
       padding-right: 0;
+    }
+    .current-sub {
+      margin-bottom: 24px;
     }
     .current-button {
       margin-top: 100px;
