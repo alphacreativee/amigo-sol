@@ -270,7 +270,6 @@ export function sliderAmigo() {
       },
     });
 
-    // ✅ Mobile: vuốt trên content
     const isMobile = window.matchMedia("(max-width: 991px)").matches;
 
     if (isMobile) {
@@ -331,7 +330,7 @@ export function sliderAmigo() {
         top: "0",
         left: "0",
         pointerEvents: "none",
-        zIndex: "9999",
+        zIndex: "567",
         width: "50px",
         height: "50px",
         borderRadius: "50%",
