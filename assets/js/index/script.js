@@ -949,9 +949,7 @@ const init = () => {
   gallery();
   accomodationnFilter();
 };
-preloadImages("img").then(() => {
-  init();
-});
+document.addEventListener("DOMContentLoaded", init);
 
 // event click element a
 let isLinkClicked = false;
