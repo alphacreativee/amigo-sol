@@ -290,7 +290,7 @@
                               <img src="./assets/images/icons/icon-bed.svg" alt="" />
                             </div>
                             <div class="usb-name">
-                              8 phòng ngủ, 1 giường King
+                              8 phòng ngủ
                             </div>
                           </div>
                         </li>
@@ -373,7 +373,7 @@
                               <img src="./assets/images/icons/icon-bed.svg" alt="" />
                             </div>
                             <div class="usb-name">
-                              8 phòng ngủ, 1 giường King
+                              8 phòng ngủ
                             </div>
                           </div>
                         </li>
@@ -397,7 +397,7 @@
       </section>
       <div class="spacing-16x"></div>
 
-      <div class="spacing-16x"></div>
+
       <section class="amigo-content">
         <div class="amigo-content-top tl-text">
           <div class="content-left">
@@ -513,7 +513,8 @@
             <a href="" class="btn-general text-e-btn">Khám phá</a>
           </div>
         </div>
-        <div class="amigo-content-bottom container-fluid p-0">
+        <!-- swiper desktop -->
+        <div class="amigo-content-bottom container-fluid p-0 d-none d-lg-block">
           <div class="row g-0">
             <div class="col-lg-7">
               <div class="swiper swiper-serivce">
@@ -554,6 +555,58 @@
             </div>
           </div>
         </div>
+        <!-- end swiper desktop -->
+        <!-- swiper-mobile -->
+        <div class="amigo-content-bottom container-fluid p-0 d-block d-lg-none">
+          <div class="slider-amigo-wrapper row g-0">
+            <div class="col-lg-5">
+              <div class="slider-amigo-content-box d-flex align-items-end h-100">
+                <div class="slider-amigo-content-import"></div>
+              </div>
+              <!-- Nơi inject tag + title có animation -->
+            </div>
+            <div class="col-lg-7">
+              <!-- Image slider (master) -->
+              <div class="slider-amigo-image position-relative">
+                <div class="swiper-wrapper">
+
+                  <div class="swiper-slide">
+                    <div class="amigo-image">
+                      <img src="./assets/images/del/service-3.jpg" />
+                    </div>
+                    <div class="amigo-slide-content" hidden>
+                      <div class="amigo-name">Lazurity Spa</div>
+
+                      <div class="amigo-description">
+                        Mỗi khoảnh khắc tại Lazurity Spa không chỉ đánh thức mọi giác quan của bạn mà còn nhẹ nhàng dẫn
+                        bạn trở lại trạng thái cân bằng về thể chất, tinh thần và tâm hồn.
+                      </div>
+                      <div class="amigo-button"><a href="#">Xem thêm</a></div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="amigo-image">
+                      <img src="./assets/images/del/service-4.jpg" />
+                    </div>
+                    <div class="amigo-slide-content" hidden>
+                      <div class="amigo-name">Nhà hàng Amigo</div>
+
+                      <div class="amigo-description">
+                        Nằm trong không gian thoáng đãng, với sức chứa lên đến 150 Khách, nhà hàng Amigo cung cấp tiệc
+                        buffet đạt tiêu chuẩn quốc tế kết hợp với thực đơn gọi món đa dạng phục vụ cả ngày.
+                      </div>
+                      <div class="amigo-button"><a href="#">Xem thêm</a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+
+              <!-- Content slider sync (slave - optional) -->
+            </div>
+          </div>
+        </div>
+        <!-- end swiper-mobile -->
         <div class="amigo-artwork bottom-right e-leaf">
           <img src="./assets/images/icons/leaf-left.png" alt="" />
         </div>
@@ -566,7 +619,7 @@
             <div class="content">
               <div class="content-box tl-text">
                 <h1 class="h0-font color-secondary font-heading text-e-title">
-                  Khám phá Phan Thiết & <br />Kê Gà Bình Thuận
+                  Khám phá Phan Thiết & Kê Gà Bình Thuận
                 </h1>
 
                 <div class="d-flex justify-content-center text-e-btn">

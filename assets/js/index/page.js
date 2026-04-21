@@ -74,8 +74,11 @@ function eFadeTextPageDetail() {
   } else if (description) {
     gsap.set(description, { autoAlpha: 0, y: 20 });
   }
-  if (box.length) {
+  if (box) {
     gsap.set(descItems, { autoAlpha: 0, y: 20 });
+  }
+  if (btn) {
+    gsap.set(btn, { autoAlpha: 0, y: 20 });
   }
 
   const tl = gsap.timeline();
@@ -112,6 +115,14 @@ function eFadeTextPageDetail() {
   if (box) {
     tl.fromTo(
       box,
+      { autoAlpha: 0, y: 20 },
+      { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.5 },
+      "-=0.3",
+    );
+  }
+  if (btn) {
+    tl.fromTo(
+      btn,
       { autoAlpha: 0, y: 20 },
       { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.5 },
       "-=0.3",

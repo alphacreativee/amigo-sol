@@ -1,489 +1,378 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nhà hàng Amigo</title>
-    <!-- import favicon -->
-    <link
-      rel="icon"
-      href="./assets/images/icons/favicon.svg"
-      type="image/x-icon"
-    />
-    <!-- meta -->
-    <meta property="og:url" content="" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-    <!-- meta -->
-    <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/libs/lenis.css" />
-    <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="./assets/libs/lightpick.min.css" />
-    <!-- end meta -->
-    <!-- link custom css page -->
-    <link rel="stylesheet" href="./assets/fonts/VLNewParisHeadline/font.css" />
-    <link rel="stylesheet" href="./assets/fonts/averta/font.css" />
-    <link rel="stylesheet" href="./assets/main/css/style.min.css" />
-    <!-- end link custom css page -->
-    <!-- scrollRestoration -->
-    <script>
-      if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
-      }
-    </script>
-  </head>
 
-  <body>
-    <!-- layout -->
-    <!-- header -->
-    <script>
-      fetch("./components/header.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("header").innerHTML = data;
-          const currentPath = window.location.pathname || "/";
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nhà hàng Amigo</title>
+  <!-- import favicon -->
+  <link rel="icon" href="./assets/images/icons/favicon.svg" type="image/x-icon" />
+  <!-- meta -->
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <!-- meta -->
+  <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lenis.css" />
+  <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lightpick.min.css" />
+  <!-- end meta -->
+  <!-- link custom css page -->
+  <link rel="stylesheet" href="./assets/fonts/VLNewParisHeadline/font.css" />
+  <link rel="stylesheet" href="./assets/fonts/averta/font.css" />
+  <link rel="stylesheet" href="./assets/main/css/style.min.css" />
+  <!-- end link custom css page -->
+  <!-- scrollRestoration -->
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+  </script>
+</head>
 
-          const navLinks = document.querySelectorAll(".header-menu ul>li>a");
-          navLinks.forEach((link) => {
-            const linkPath = link.getAttribute("href");
+<body>
+  <!-- layout -->
+  <!-- header -->
+  <script>
+    fetch("./components/header.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("header").innerHTML = data;
+        const currentPath = window.location.pathname || "/";
 
-            // Normalize paths for comparison
-            let normalizedCurrentPath = currentPath;
-            let normalizedLinkPath = linkPath;
+        const navLinks = document.querySelectorAll(".header-menu ul>li>a");
+        navLinks.forEach((link) => {
+          const linkPath = link.getAttribute("href");
 
-            // Remove leading "./" from link path
-            if (normalizedLinkPath.startsWith("./")) {
-              normalizedLinkPath = normalizedLinkPath.substring(1);
-            }
+          // Normalize paths for comparison
+          let normalizedCurrentPath = currentPath;
+          let normalizedLinkPath = linkPath;
 
-            // Get the last segment of the path
-            const currentSegment = normalizedCurrentPath.split("/").pop() || "";
-            const linkSegment = normalizedLinkPath.split("/").pop() || "";
+          // Remove leading "./" from link path
+          if (normalizedLinkPath.startsWith("./")) {
+            normalizedLinkPath = normalizedLinkPath.substring(1);
+          }
 
-            // Check if current path is root or ends with /
-            const isRootPath =
-              currentPath === "/" ||
-              currentPath.endsWith("/") ||
-              currentSegment === "";
+          // Get the last segment of the path
+          const currentSegment = normalizedCurrentPath.split("/").pop() || "";
+          const linkSegment = normalizedLinkPath.split("/").pop() || "";
 
-            // Check if link is home/index
-            const isHomeLink =
-              linkPath === "/" ||
-              linkPath === "./" ||
-              linkPath === "./index.html" ||
-              linkPath === "index.html" ||
-              linkSegment === "index.html";
+          // Check if current path is root or ends with /
+          const isRootPath =
+            currentPath === "/" ||
+            currentPath.endsWith("/") ||
+            currentSegment === "";
 
-            // Match logic
-            const isMatch =
-              normalizedLinkPath === normalizedCurrentPath || // Exact match
-              currentSegment === linkSegment || // Segment match
-              (isRootPath && isHomeLink) || // Root path matches home link
-              (currentPath.endsWith(normalizedLinkPath) &&
-                normalizedLinkPath !== "/");
+          // Check if link is home/index
+          const isHomeLink =
+            linkPath === "/" ||
+            linkPath === "./" ||
+            linkPath === "./index.html" ||
+            linkPath === "index.html" ||
+            linkSegment === "index.html";
 
-            if (isMatch) {
-              link.classList.add("active");
-            }
-          });
+          // Match logic
+          const isMatch =
+            normalizedLinkPath === normalizedCurrentPath || // Exact match
+            currentSegment === linkSegment || // Segment match
+            (isRootPath && isHomeLink) || // Root path matches home link
+            (currentPath.endsWith(normalizedLinkPath) &&
+              normalizedLinkPath !== "/");
+
+          if (isMatch) {
+            link.classList.add("active");
+          }
         });
-    </script>
-    <header id="header" class="header"></header>
-    <!-- end header -->
-    <main>
-      <div class="background-pattern">
-        <div class="spacing-120"></div>
-        <section class="section-story">
-          <div class="container-fluid p-0">
-            <div class="row g-0">
-              <div class="col-lg-6 offset-lg-3">
-                <div class="section-story__content">
-                  <h2
-                    class="section-story__title font-heading color-secondary h0-font text-center"
-                  >
-                    Nhà hàng Amigo
-                  </h2>
-                  <div
-                    class="section-story__description b1-font color-black font-body"
-                  >
-                    Nằm trong không gian thoáng đãng, với sức chứa lên đến 150
-                    Khách, nhà hàng Amigo cung cấp tiệc buffet đạt tiêu chuẩn
-                    quốc tế kết hợp với thực đơn gọi món đa dạng phục vụ cả
-                    ngày. Với đội ngũ đầu bếp tài năng, mỗi món ăn tại đây là sự
-                    kết hợp tinh tế giữa hương vị và nghệ thuật ẩm thực.
-                  </div>
-                  <ul
-                    class="culinary-info d-flex justify-content-center align-items-center"
-                  >
-                    <li class="b1-font color-black d-flex align-items-center">
-                      <img src="./assets/images/icons/icon-clock.svg" alt="" />
-                      Buổi sáng: 7h - 22h <br />
-                      Buổi trưa và buổi tối: 10h - 22h
-                    </li>
-                    <li class="b1-font color-black d-flex align-items-center">
-                      <img src="./assets/images/icons/icon-dish.svg" alt="" />
-                      <a href="#" class="b1-font color-black">Thực đơn</a>
-                    </li>
-                  </ul>
-                  <div
-                    class="btn-wrapper d-flex align-items-center justify-content-center"
-                  >
-                    <a href="#" class="btn-general secondary"
-                      >(84) 928.49.68.68</a
-                    >
-                    <a
-                      href="javascript:void(0)"
-                      type="button"
-                      data-bs-toggle="modal"
-                      data-bs-target="#modalBooking"
-                      class="btn-general"
-                      >Đặt bàn</a
-                    >
-                  </div>
+      });
+  </script>
+  <header id="header" class="header"></header>
+  <!-- end header -->
+  <main>
+    <div class="background-pattern">
+      <div class="spacing-120"></div>
+      <section class="section-story">
+        <div class="container-fluid p-0">
+          <div class="row g-0">
+            <div class="col-lg-6 offset-lg-3">
+              <div class="section-story__content tl-text-auto">
+                <h2 class="section-story__title font-heading color-secondary h0-font text-center text-e-title-auto">
+                  Nhà hàng Amigo
+                </h2>
+                <div class="section-story__description b1-font color-black font-body text-e-desc-auto">
+                  Nằm trong không gian thoáng đãng, với sức chứa lên đến 150
+                  Khách, nhà hàng Amigo cung cấp tiệc buffet đạt tiêu chuẩn
+                  quốc tế kết hợp với thực đơn gọi món đa dạng phục vụ cả
+                  ngày. Với đội ngũ đầu bếp tài năng, mỗi món ăn tại đây là sự
+                  kết hợp tinh tế giữa hương vị và nghệ thuật ẩm thực.
+                </div>
+                <ul class="culinary-info d-flex justify-content-center align-items-center text-e-auto-box">
+                  <li class="b1-font color-black d-flex align-items-center">
+                    <img src="./assets/images/icons/icon-clock.svg" alt="" />
+                    Buổi sáng: 7h - 22h <br />
+                    Buổi trưa và buổi tối: 10h - 22h
+                  </li>
+                  <li class="b1-font color-black d-flex align-items-center">
+                    <img src="./assets/images/icons/icon-dish.svg" alt="" />
+                    <a href="#" class="b1-font color-black">Thực đơn</a>
+                  </li>
+                </ul>
+                <div class="btn-wrapper d-flex align-items-center justify-content-center  text-e-btn-auto">
+                  <a href="#" class="btn-general secondary">(84) 928.49.68.68</a>
+                  <a href="javascript:void(0)" type="button" data-bs-toggle="modal" data-bs-target="#modalBooking"
+                    class="btn-general">Đặt bàn</a>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            class="section-story__ilus animation-art-reverse"
-            style="--w-ilus: 310px; --h-ilus: 400px"
-          >
-            <img src="./assets/images/icons/ilus-right.png" alt="" />
+        </div>
+        <div class="section-story__ilus animation-art-reverse" style="--w-ilus: 310px; --h-ilus: 400px">
+          <img src="./assets/images/icons/ilus-right.png" alt="" />
+        </div>
+      </section>
+      <section class="image-with-text">
+        <div class="container-fluild">
+          <div class="section-wrapper">
+            <div class="swiper detail-slider" data-loop="false" data-speed="2000" data-autoplay="false">
+              <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide overflow-hidden">
+                  <div class="position-relative w-100 h-100 detail-slider__image">
+                    <picture>
+                      <source media="(max-width: 767px)" srcset="./assets/images/del/service-4.jpg" />
+                      <img class="w-100 h-100 object-fit-cover" src="./assets/images/del/service-4.jpg" alt="img" />
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-arrows">
+              <div class="swiper-button-prev detail-slider__arrows color-white">
+                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 11L6.41861 6.07399C6.46225 6.03432 6.46225 5.96568 6.41861 5.92601L1 1"
+                    stroke="currentColor" stroke-linecap="round" />
+                </svg>
+              </div>
+              <div class="swiper-button-next detail-slider__arrows color-white">
+                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 11L6.41861 6.07399C6.46225 6.03432 6.46225 5.96568 6.41861 5.92601L1 1"
+                    stroke="currentColor" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
           </div>
-        </section>
-        <section class="image-with-text">
-          <div class="container-fluild">
-            <div class="section-wrapper">
-              <div
-                class="swiper detail-slider"
-                data-loop="false"
-                data-speed="2000"
-                data-autoplay="false"
-              >
+        </div>
+        <div class="swiper-pagination"></div>
+      </section>
+      <div class="spacing-120"></div>
+      <section class="amigo-content content-chef">
+        <div class="amigo-content-top tl-text">
+          <div class="content-left">
+            <h3 class="h0-font color-secondary font-heading text-e-title">
+              Đội ngũ đầu bếp
+            </h3>
+          </div>
+          <div class="content-right">
+            <div class="description b1-font color-black text-e-desc">
+              Từ những làn gió biển trong lành đến từng dịch vụ đẳng cấp, tất
+              cả đều tạo nên một kỳ nghỉ trọn vẹn, đầy ắp những khoảnh khắc
+              đáng nhớ.
+            </div>
+          </div>
+        </div>
+        <div class="amigo-content-bottom container-fluid p-0">
+          <!-- class flex-row-reverse -->
+          <div class="slider-amigo-wrapper row g-0 flex-row-reverse">
+            <div class="col-lg-5">
+              <!-- center -->
+              <div class="slider-amigo-content-box d-flex align-items-center h-100">
+                <div class="slider-amigo-content-import"></div>
+              </div>
+              <!-- Nơi inject tag + title có animation -->
+            </div>
+            <div class="col-lg-7">
+              <!-- Image slider (master) -->
+              <!-- thêm class chef-sec -->
+              <div class="slider-amigo-image position-relative chef-sec">
                 <div class="swiper-wrapper">
-                  <!-- Slide 1 -->
-                  <div class="swiper-slide overflow-hidden">
-                    <div
-                      class="position-relative w-100 h-100 detail-slider__image"
-                    >
-                      <picture>
-                        <source
-                          media="(max-width: 767px)"
-                          srcset="./assets/images/del/service-4.jpg"
-                        />
-                        <img
-                          class="w-100 h-100 object-fit-cover"
-                          src="./assets/images/del/service-4.jpg"
-                          alt="img"
-                        />
-                      </picture>
+                  <div class="swiper-slide">
+                    <div class="amigo-image">
+                      <img src="./assets/images/del/chef.jpg" />
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-arrows">
-                <div
-                  class="swiper-button-prev detail-slider__arrows color-white"
-                >
-                  <svg
-                    width="7"
-                    height="12"
-                    viewBox="0 0 7 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1 11L6.41861 6.07399C6.46225 6.03432 6.46225 5.96568 6.41861 5.92601L1 1"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </div>
-                <div
-                  class="swiper-button-next detail-slider__arrows color-white"
-                >
-                  <svg
-                    width="7"
-                    height="12"
-                    viewBox="0 0 7 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1 11L6.41861 6.07399C6.46225 6.03432 6.46225 5.96568 6.41861 5.92601L1 1"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </section>
-        <div class="spacing-120"></div>
-        <section class="amigo-content">
-          <div class="amigo-content-top tl-text">
-            <div class="content-left">
-              <h3 class="h0-font color-secondary font-heading text-e-title">
-                Đội ngũ đầu bếp
-              </h3>
-            </div>
-            <div class="content-right">
-              <div class="description b1-font color-black text-e-desc">
-                Từ những làn gió biển trong lành đến từng dịch vụ đẳng cấp, tất
-                cả đều tạo nên một kỳ nghỉ trọn vẹn, đầy ắp những khoảnh khắc
-                đáng nhớ.
-              </div>
-            </div>
-          </div>
-          <div class="amigo-content-bottom container-fluid p-0">
-            <!-- class flex-row-reverse -->
-            <div class="slider-amigo-wrapper row g-0 flex-row-reverse">
-              <div class="col-lg-5">
-                <!-- center -->
-                <div
-                  class="slider-amigo-content-box d-flex align-items-center h-100"
-                >
-                  <div class="slider-amigo-content-import"></div>
-                </div>
-                <!-- Nơi inject tag + title có animation -->
-              </div>
-              <div class="col-lg-7">
-                <!-- Image slider (master) -->
-                <div class="slider-amigo-image position-relative">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <div class="amigo-image">
-                        <img src="./assets/images/del/chef.jpg" />
+                    <!-- Data source cho content import -->
+                    <div class="amigo-slide-content" hidden>
+                      <div class="amigo-sub b0-font color-secondary">
+                        Bếp Trưởng
                       </div>
-                      <!-- Data source cho content import -->
-                      <div class="amigo-slide-content" hidden>
-                        <div class="amigo-subtitle b0-font color-secondary">
-                          Bếp Trưởng
-                        </div>
-                        <div class="amigo-name">Lương Văn Hoàng</div>
-                        <div class="amigo-description">
-                          Với hơn 20 năm kinh nghiệm trong ngành ẩm thực, Bếp
-                          Trưởng Lương Văn Hoàng từng đảm nhận nhiều vị trí chủ
-                          chốt tại các khách sạn và resort cao cấp trước khi gắn
-                          bó với Costamigo. Ông am hiểu sâu sắc các kỹ thuật chế
-                          biến từ Á đến Âu, đồng thời luôn cập nhật xu hướng ẩm
-                          thực mới để sáng tạo thực đơn phù hợp với khẩu vị đa
-                          dạng của thực khách.
-                        </div>
+                      <div class="amigo-name">Lương Văn Hoàng</div>
+                      <div class="amigo-description">
+                        Với hơn 20 năm kinh nghiệm trong ngành ẩm thực, Bếp
+                        Trưởng Lương Văn Hoàng từng đảm nhận nhiều vị trí chủ
+                        chốt tại các khách sạn và resort cao cấp trước khi gắn
+                        bó với Costamigo. Ông am hiểu sâu sắc các kỹ thuật chế
+                        biến từ Á đến Âu, đồng thời luôn cập nhật xu hướng ẩm
+                        thực mới để sáng tạo thực đơn phù hợp với khẩu vị đa
+                        dạng của thực khách.
                       </div>
                     </div>
                   </div>
-                  <div class="swiper-pagination"></div>
-                </div>
 
-                <!-- Content slider sync (slave - optional) -->
-              </div>
-            </div>
-          </div>
-          <div class="amigo-artwork top-right e-leaf">
-            <img src="./assets/images/icons/leaf-left.png" alt="" />
-          </div>
-          <div class="amigo-artwork left-bottom e-leaf">
-            <img src="./assets/images/icons/leaf-left.png" alt="" />
-          </div>
-        </section>
-        <div class="spacing-120"></div>
-        <section class="section-offer">
-          <div class="container-fluid p-0">
-            <div class="row g-0">
-              <div class="col-lg-6 offset-lg-3">
-                <div class="section-offer__top tl-text">
-                  <h2
-                    class="section-offer__top--title font-heading color-secondary h0-font text-e-title"
-                  >
-                    Các gói ưu đãi
-                  </h2>
-                </div>
-              </div>
-            </div>
-            <div class="row g-0">
-              <div class="section-offer__slider">
-                <div class="swiper swiper-offer">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide" data-cursor-text="Chi tiết">
-                      <div class="section-offer__item">
-                        <a
-                          href="./offer-detail.html"
-                          class="section-offer__img d-block animation-image"
-                        >
-                          <img src="./assets/images/del/offer-1.jpg" alt="" />
-                        </a>
-                        <div class="section-offer__content">
-                          <a
-                            href="./offer-detail.html"
-                            class="section-offer__content--title font-heading h2-font color-secondary"
-                            data-fade-desc
-                          >
-                            Family Summer
-                          </a>
-                          <div
-                            class="section-offer__content--desc b1-font color-black"
-                            data-fade-desc
-                          >
-                            Hè trọn vẹn bên gia đình, gắn kết yêu thương qua
-                            từng khoảnh khắc ý nghĩa.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="swiper-slide" data-cursor-text="Chi tiết">
-                      <div class="section-offer__item">
-                        <a
-                          href="./offer-detail.html"
-                          class="section-offer__img d-block animation-image"
-                        >
-                          <img src="./assets/images/del/offer-1.jpg" alt="" />
-                        </a>
-                        <div class="section-offer__content">
-                          <a
-                            href="./offer-detail.html"
-                            class="section-offer__content--title font-heading h2-font color-secondary"
-                            data-fade-desc
-                          >
-                            Trở lại thanh xuân
-                          </a>
-                          <div
-                            class="section-offer__content--desc b1-font color-black"
-                            data-fade-desc
-                          >
-                            Hè trọn vẹn bên gia đình, gắn kết yêu thương qua
-                            từng khoảnh khắc ý nghĩa.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="swiper-slide" data-cursor-text="Chi tiết">
-                      <div class="section-offer__item">
-                        <a
-                          href="./offer-detail.html"
-                          class="section-offer__img d-block animation-image"
-                        >
-                          <img src="./assets/images/del/offer-1.jpg" alt="" />
-                        </a>
-                        <div class="section-offer__content">
-                          <a
-                            href="./offer-detail.html"
-                            class="section-offer__content--title font-heading h2-font color-secondary"
-                            data-fade-desc
-                          >
-                            Valentine
-                          </a>
-                          <div
-                            class="section-offer__content--desc b1-font color-black"
-                            data-fade-desc
-                          >
-                            Hè trọn vẹn bên gia đình, gắn kết yêu thương qua
-                            từng khoảnh khắc ý nghĩa.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="swiper-slide" data-cursor-text="Chi tiết">
-                      <div class="section-offer__item">
-                        <a
-                          href="./offer-detail.html"
-                          class="section-offer__img d-block"
-                        >
-                          <img src="./assets/images/del/offer-1.jpg" alt="" />
-                        </a>
-                        <div class="section-offer__content">
-                          <a
-                            href="./offer-detail.html"
-                            class="section-offer__content--title font-heading h2-font color-secondary"
-                          >
-                            Trải nghiệm villa
-                          </a>
-                          <div
-                            class="section-offer__content--desc b1-font color-black"
-                          >
-                            Hè trọn vẹn bên gia đình, gắn kết yêu thương qua
-                            từng khoảnh khắc ý nghĩa.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-navigation-wrapper">
-                  <div class="swiper-button-next swiper-btn-offer">
-                    <svg
-                      width="7"
-                      height="12"
-                      viewBox="0 0 7 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M1 11L6.41861 6.07399C6.46225 6.03432 6.46225 5.96568 6.41861 5.92601L1 1"
-                        stroke="#232C6A"
-                        stroke-linecap="round"
-                      />
-                    </svg>
-                  </div>
-                  <div class="swiper-button-prev swiper-btn-offer">
-                    <svg
-                      width="7"
-                      height="12"
-                      viewBox="0 0 7 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M1 11L6.41861 6.07399C6.46225 6.03432 6.46225 5.96568 6.41861 5.92601L1 1"
-                        stroke="#232C6A"
-                        stroke-linecap="round"
-                      />
-                    </svg>
-                  </div>
                 </div>
                 <div class="swiper-pagination"></div>
               </div>
+
+              <!-- Content slider sync (slave - optional) -->
             </div>
           </div>
-          <div class="amigo-artwork top-left">
-            <img src="./assets/images/icons/leaf-left-long.png" alt="" />
+        </div>
+        <div class="amigo-artwork top-right e-leaf">
+          <img src="./assets/images/icons/leaf-left.png" alt="" />
+        </div>
+        <div class="amigo-artwork left-bottom e-leaf">
+          <img src="./assets/images/icons/leaf-left.png" alt="" />
+        </div>
+      </section>
+      <div class="spacing-120"></div>
+      <section class="section-offer">
+        <div class="container-fluid p-0">
+          <div class="row g-0">
+            <div class="col-lg-6 offset-lg-3">
+              <div class="section-offer__top tl-text">
+                <h2 class="section-offer__top--title font-heading color-secondary h0-font text-e-title">
+                  Các gói ưu đãi
+                </h2>
+              </div>
+            </div>
           </div>
-        </section>
-        <div class="spacing-120"></div>
-      </div>
-    </main>
-    <!-- layout -->
-    <!-- footer -->
-    <script>
-      fetch("./components/footer.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("footer").innerHTML = data;
-        });
-    </script>
-    <footer id="footer"></footer>
-    <!-- end footer -->
-    <!-- end layout -->
+          <div class="row g-0">
+            <div class="section-offer__slider">
+              <div class="swiper swiper-offer">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide" data-cursor-text="Chi tiết">
+                    <div class="section-offer__item">
+                      <a href="./offer-detail.html" class="section-offer__img d-block animation-image">
+                        <img src="./assets/images/del/offer-1.jpg" alt="" />
+                      </a>
+                      <div class="section-offer__content">
+                        <a href="./offer-detail.html"
+                          class="section-offer__content--title font-heading h2-font color-secondary" data-fade-desc>
+                          Family Summer
+                        </a>
+                        <div class="section-offer__content--desc b1-font color-black" data-fade-desc>
+                          Hè trọn vẹn bên gia đình, gắn kết yêu thương qua
+                          từng khoảnh khắc ý nghĩa.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide" data-cursor-text="Chi tiết">
+                    <div class="section-offer__item">
+                      <a href="./offer-detail.html" class="section-offer__img d-block animation-image">
+                        <img src="./assets/images/del/offer-1.jpg" alt="" />
+                      </a>
+                      <div class="section-offer__content">
+                        <a href="./offer-detail.html"
+                          class="section-offer__content--title font-heading h2-font color-secondary" data-fade-desc>
+                          Trở lại thanh xuân
+                        </a>
+                        <div class="section-offer__content--desc b1-font color-black" data-fade-desc>
+                          Hè trọn vẹn bên gia đình, gắn kết yêu thương qua
+                          từng khoảnh khắc ý nghĩa.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide" data-cursor-text="Chi tiết">
+                    <div class="section-offer__item">
+                      <a href="./offer-detail.html" class="section-offer__img d-block animation-image">
+                        <img src="./assets/images/del/offer-1.jpg" alt="" />
+                      </a>
+                      <div class="section-offer__content">
+                        <a href="./offer-detail.html"
+                          class="section-offer__content--title font-heading h2-font color-secondary" data-fade-desc>
+                          Valentine
+                        </a>
+                        <div class="section-offer__content--desc b1-font color-black" data-fade-desc>
+                          Hè trọn vẹn bên gia đình, gắn kết yêu thương qua
+                          từng khoảnh khắc ý nghĩa.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide" data-cursor-text="Chi tiết">
+                    <div class="section-offer__item">
+                      <a href="./offer-detail.html" class="section-offer__img d-block">
+                        <img src="./assets/images/del/offer-1.jpg" alt="" />
+                      </a>
+                      <div class="section-offer__content">
+                        <a href="./offer-detail.html"
+                          class="section-offer__content--title font-heading h2-font color-secondary">
+                          Trải nghiệm villa
+                        </a>
+                        <div class="section-offer__content--desc b1-font color-black">
+                          Hè trọn vẹn bên gia đình, gắn kết yêu thương qua
+                          từng khoảnh khắc ý nghĩa.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-navigation-wrapper">
+                <div class="swiper-button-next swiper-btn-offer">
+                  <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 11L6.41861 6.07399C6.46225 6.03432 6.46225 5.96568 6.41861 5.92601L1 1" stroke="#232C6A"
+                      stroke-linecap="round" />
+                  </svg>
+                </div>
+                <div class="swiper-button-prev swiper-btn-offer">
+                  <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 11L6.41861 6.07399C6.46225 6.03432 6.46225 5.96568 6.41861 5.92601L1 1" stroke="#232C6A"
+                      stroke-linecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </div>
+        <div class="amigo-artwork top-left">
+          <img src="./assets/images/icons/leaf-left-long.png" alt="" />
+        </div>
+      </section>
+      <div class="spacing-120"></div>
+    </div>
+  </main>
+  <!-- layout -->
+  <!-- footer -->
+  <script>
+    fetch("./components/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+  <footer id="footer"></footer>
+  <!-- end footer -->
+  <!-- end layout -->
 
-    <script src="./assets/libs/jquery-3.7.1.js"></script>
-    <script src="./assets/libs/lenis.min.js"></script>
-    <script src="./assets/libs/gsap.min.js"></script>
-    <script src="./assets/libs/ScrollTrigger.min.js"></script>
-    <script src="./assets/libs/SplitText.min.js"></script>
-    <script src="./assets/libs/bootstrap.bundle.min.js"></script>
-    <script src="./assets/libs/imagesloaded.pkgd.min.js"></script>
-    <script src="./assets/libs/swiper-bundle.min.js"></script>
-    <script src="./assets/libs/moment.min.js"></script>
-    <script src="./assets/libs/lightpick.min.js"></script>
-    <!-- import custom js -->
-    <script type="module" src="./assets/main/js/page.min.js"></script>
-    <script type="module" src="./assets/main/js/script.min.js"></script>
+  <script src="./assets/libs/jquery-3.7.1.js"></script>
+  <script src="./assets/libs/lenis.min.js"></script>
+  <script src="./assets/libs/gsap.min.js"></script>
+  <script src="./assets/libs/ScrollTrigger.min.js"></script>
+  <script src="./assets/libs/SplitText.min.js"></script>
+  <script src="./assets/libs/bootstrap.bundle.min.js"></script>
+  <script src="./assets/libs/imagesloaded.pkgd.min.js"></script>
+  <script src="./assets/libs/swiper-bundle.min.js"></script>
+  <script src="./assets/libs/moment.min.js"></script>
+  <script src="./assets/libs/lightpick.min.js"></script>
+  <!-- import custom js -->
+  <script type="module" src="./assets/main/js/page.min.js"></script>
+  <script type="module" src="./assets/main/js/script.min.js"></script>
 
-    <!-- end import custom js -->
-  </body>
+  <!-- end import custom js -->
+</body>
+
 </html>
 <!-- https://gsap.com/community/forums/topic/30338-circular-carouselslider/ -->

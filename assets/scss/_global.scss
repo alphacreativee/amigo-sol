@@ -60,9 +60,15 @@
 
 .spacing-120 {
   height: 120px;
+  @media (max-width: 991px) {
+    height: 80px;
+  }
 }
 .spacing-16x {
   height: 160px;
+  @media (max-width: 991px) {
+    height: 80px;
+  }
 }
 
 .animation-image-clip {
