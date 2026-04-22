@@ -1547,6 +1547,11 @@ footer .footer-alpha a:hover {
   flex-direction: column;
   gap: 12px;
 }
+@media (max-width: 991px) {
+  .intro-detail-page .intro-page-wrap.contact-content ul {
+    width: 80%;
+  }
+}
 .intro-detail-page .intro-page-wrap h3 {
   margin-bottom: 24px;
 }
@@ -2566,7 +2571,7 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
 @media (max-width: 991px) {
   .section-offer__top {
     padding: 0 24px;
-    margin-bottom: 64px;
+    margin-bottom: 48px;
   }
 }
 .section-offer__top--tag {
