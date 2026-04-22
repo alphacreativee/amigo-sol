@@ -203,11 +203,13 @@ export function sliderAmigo() {
 
         if (contentContainer) animateIn(contentContainer, 0.3);
 
-        // imageSwiper.params.autoplay = {
-        //   delay: 3000,
-        //   disableOnInteraction: false,
-        // };
-        // imageSwiper.autoplay.start();
+        if (!isMobile) {
+          imageSwiper.params.autoplay = {
+            delay: 3000,
+            disableOnInteraction: false,
+          };
+          imageSwiper.autoplay.start();
+        }
       },
     });
 
