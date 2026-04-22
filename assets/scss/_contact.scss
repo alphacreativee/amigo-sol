@@ -136,7 +136,9 @@
     padding: 40px 24px 40px;
     position: relative;
     z-index: 2;
-
+    @media (max-width: 991px) {
+      padding: 24px 0;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -146,6 +148,10 @@
       height: 1px;
       background-color: var(--color-primary);
       opacity: 0.1;
+      @media (max-width: 991px) {
+        width: 100%;
+        left: 0;
+      }
     }
     &::after {
       content: "";
@@ -156,6 +162,10 @@
       height: 1px;
       background-color: var(--color-primary);
       opacity: 0.1;
+      @media (max-width: 991px) {
+        width: 100%;
+        left: 0;
+      }
     }
     .group-form {
       margin-bottom: 24px;

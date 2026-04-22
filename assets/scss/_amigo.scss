@@ -19,6 +19,9 @@
   }
   .other-room-title {
     margin-bottom: 72px;
+    @media (max-width: 991px) {
+      margin-bottom: 48px;
+    }
   }
 
   &.service-section {

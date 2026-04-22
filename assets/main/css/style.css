@@ -398,6 +398,11 @@ body {
 .e-card-list.list-even {
   margin-bottom: 200px;
 }
+@media (max-width: 991px) {
+  .e-card-list {
+    margin-bottom: 80px !important;
+  }
+}
 
 .hover-scale {
   overflow: hidden;
@@ -692,11 +697,6 @@ body {
   visibility: hidden;
   z-index: 94;
 }
-@media (max-width: 991px) {
-  .header-sub-menu {
-    top: 55px;
-  }
-}
 .header-sub-menu.show {
   opacity: 1;
   visibility: visible;
@@ -723,7 +723,7 @@ body {
     overflow-y: scroll;
     height: calc(100vh - 100px);
     padding-bottom: 100px;
-    padding-top: 100px;
+    padding-top: 140px;
   }
   .header-sub-menu__container .sub-menu::-webkit-scrollbar {
     display: none;
@@ -782,7 +782,8 @@ body {
 }
 @media (max-width: 991px) {
   .header-sub-menu .sub-menu-container::before {
-    height: 0;
+    height: 64px;
+    background-color: var(--color-secondary);
   }
 }
 @media (max-width: 991px) {
@@ -1479,6 +1480,11 @@ footer .footer-alpha a:hover {
 .intro.not-home {
   padding: 120px 0;
 }
+@media (max-width: 991px) {
+  .intro.not-home {
+    padding: 80px 0;
+  }
+}
 .intro-wrapper {
   display: flex;
   justify-content: center;
@@ -1520,9 +1526,19 @@ footer .footer-alpha a:hover {
   padding: 200px 40px 0;
   position: relative;
 }
+@media (max-width: 991px) {
+  .intro-detail-page {
+    padding: 140px 24px 0;
+  }
+}
 .intro-detail-page .intro-page-wrap {
   text-align: center;
   margin-bottom: 120px;
+}
+@media (max-width: 991px) {
+  .intro-detail-page .intro-page-wrap {
+    margin-bottom: 80px;
+  }
 }
 .intro-detail-page .intro-page-wrap.contact-content ul {
   width: 70%;
@@ -1559,6 +1575,11 @@ footer .footer-alpha a:hover {
 }
 .amigo-content .other-room-title {
   margin-bottom: 72px;
+}
+@media (max-width: 991px) {
+  .amigo-content .other-room-title {
+    margin-bottom: 48px;
+  }
 }
 .amigo-content.service-section .amigo-content-top .content-left {
   width: 40%;
@@ -2092,6 +2113,11 @@ footer .footer-alpha a:hover {
   position: relative;
   z-index: 2;
 }
+@media (max-width: 991px) {
+  .form-contact__container {
+    padding: 24px 0;
+  }
+}
 .form-contact__container::before {
   content: "";
   position: absolute;
@@ -2102,6 +2128,12 @@ footer .footer-alpha a:hover {
   background-color: var(--color-primary);
   opacity: 0.1;
 }
+@media (max-width: 991px) {
+  .form-contact__container::before {
+    width: 100%;
+    left: 0;
+  }
+}
 .form-contact__container::after {
   content: "";
   position: absolute;
@@ -2111,6 +2143,12 @@ footer .footer-alpha a:hover {
   height: 1px;
   background-color: var(--color-primary);
   opacity: 0.1;
+}
+@media (max-width: 991px) {
+  .form-contact__container::after {
+    width: 100%;
+    left: 0;
+  }
 }
 .form-contact__container .group-form {
   margin-bottom: 24px;
@@ -3080,10 +3118,23 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
   flex-direction: column;
   gap: 12px;
 }
+@media (max-width: 991px) {
+  .c-row-list .list-item__info {
+    margin-bottom: 0;
+  }
+}
+.c-row-list .list-item__btn {
+  margin-top: 32px;
+}
 
 .section-story {
   padding: 120px 0;
   position: relative;
+}
+@media (max-width: 991px) {
+  .section-story {
+    padding: 80px 0;
+  }
 }
 .section-story .amigo-artwork {
   position: absolute;

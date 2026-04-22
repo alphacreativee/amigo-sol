@@ -227,9 +227,7 @@
     opacity: 0;
     visibility: hidden;
     z-index: 94;
-    @media (max-width: 991px) {
-      top: 55px;
-    }
+
     &.show {
       opacity: 1;
       visibility: visible;
@@ -251,7 +249,7 @@
           overflow-y: scroll;
           height: calc(100vh - 100px);
           padding-bottom: 100px;
-          padding-top: 100px;
+          padding-top: 140px;
           &::-webkit-scrollbar {
             display: none;
           }
@@ -358,7 +356,8 @@
         height: 80px;
         background-color: #282828;
         @media (max-width: 991px) {
-          height: 0;
+          height: 64px;
+          background-color: var(--color-secondary);
         }
       }
       @media (max-width: 991px) {
