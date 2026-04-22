@@ -2,7 +2,9 @@
   position: relative;
   width: 100%;
   padding: 175px 0;
-
+  @media (max-width: 991px) {
+    padding: 80px 0;
+  }
   &.not-home {
     padding: 120px 0;
   }

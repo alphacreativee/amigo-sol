@@ -37,7 +37,7 @@
       width: auto;
       height: 40px;
       @media (max-width: 991px) {
-        height: 48px;
+        height: 32px;
         width: auto;
       }
     }
@@ -223,7 +223,7 @@
     min-height: calc(100svh - 80px);
     will-change: transform;
     transition: all 0.5s ease;
-    background-color: #282828;
+    // background-color: #282828;
     opacity: 0;
     visibility: hidden;
     z-index: 94;
@@ -368,7 +368,7 @@
       }
     }
     .sub-menu-overlay {
-      background-color: #282828;
+      background-color: rgba(0, 0, 0, 0.8);
     }
   }
   .lang {

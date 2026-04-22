@@ -534,7 +534,7 @@ body {
 }
 @media (max-width: 991px) {
   .header-logo img {
-    height: 48px;
+    height: 32px;
     width: auto;
   }
 }
@@ -688,7 +688,6 @@ body {
   min-height: calc(100svh - 80px);
   will-change: transform;
   transition: all 0.5s ease;
-  background-color: #282828;
   opacity: 0;
   visibility: hidden;
   z-index: 94;
@@ -789,7 +788,7 @@ body {
   left: 0;
 }
 .header-sub-menu .sub-menu-overlay {
-  background-color: #282828;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .header .lang {
   margin-left: 32px;
@@ -1003,10 +1002,16 @@ body {
   z-index: 5;
   top: 50%;
   transform: translateY(calc(-50% + 40px));
-  width: 440px;
   height: auto;
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
+}
+@media (max-width: 991px) {
+  .booking-form {
+    width: calc(100% - 48px);
+    left: 24px;
+    transform: translateY(calc(-50% + 24px));
+  }
 }
 .booking-form-head {
   display: flex;
@@ -1455,6 +1460,11 @@ footer .footer-alpha a:hover {
   position: relative;
   width: 100%;
   padding: 175px 0;
+}
+@media (max-width: 991px) {
+  .intro {
+    padding: 80px 0;
+  }
 }
 .intro.not-home {
   padding: 120px 0;
