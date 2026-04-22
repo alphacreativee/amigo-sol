@@ -37,6 +37,9 @@
       bottom: 0;
       left: 0;
       transform: translateY(50%);
+      @media (max-width: 991px) {
+        bottom: -50%;
+      }
     }
   }
   &-detail-page {

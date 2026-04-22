@@ -766,6 +766,11 @@ body {
   position: relative;
   padding-top: 80px;
 }
+@media (max-width: 991px) {
+  .header-sub-menu .sub-menu-container {
+    padding-top: 0;
+  }
+}
 .header-sub-menu .sub-menu-container::before {
   content: "";
   position: absolute;
@@ -774,6 +779,11 @@ body {
   width: 100%;
   height: 80px;
   background-color: #282828;
+}
+@media (max-width: 991px) {
+  .header-sub-menu .sub-menu-container::before {
+    height: 0;
+  }
 }
 @media (max-width: 991px) {
   .header-sub-menu .sub-menu-container {
@@ -833,7 +843,7 @@ body {
 .header .lang .dropdown-custom-menu.dropdown--active {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
-.header-sub-menu-bottom {
+.header-sub-menu__bottom {
   background-color: var(--color-secondary);
   display: flex;
   justify-content: center;
@@ -845,29 +855,29 @@ body {
   right: 0;
   height: 50px;
 }
-.header-sub-menu-bottom .bottom-wrapper {
+.header-sub-menu__bottom .bottom-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   width: calc(100% - 48px);
 }
-.header-sub-menu-bottom .lang {
+.header-sub-menu__bottom .lang {
   margin-left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.header-sub-menu-bottom .lang .dropdown-custom-menu {
+.header-sub-menu__bottom .lang .dropdown-custom-menu {
   top: -16px;
   bottom: unset;
   transform: translateY(-100%);
   clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
 }
-.header-sub-menu-bottom .lang .dropdown-custom-btn img {
-  transform: rotate(180deg);
+.header-sub-menu__bottom .lang span {
+  color: var(--color-white) !important;
 }
-.header-sub-menu-bottom .virtual-link {
+.header-sub-menu__bottom .virtual-link {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1500,6 +1510,11 @@ footer .footer-alpha a:hover {
   bottom: 0;
   left: 0;
   transform: translateY(50%);
+}
+@media (max-width: 991px) {
+  .intro-artwork.left-bottom {
+    bottom: -50%;
+  }
 }
 .intro-detail-page {
   padding: 200px 40px 0;

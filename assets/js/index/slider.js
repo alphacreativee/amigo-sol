@@ -34,74 +34,53 @@ export function sliderAmigo() {
       return html;
     }
 
-    function animateOut(container) {
-      const currentSub = container.querySelector(".current-sub");
-      const currentName = container.querySelector(".current-name");
-      const currentUsb = container.querySelector(".current-usb");
-      const currentDesc = container.querySelector(".current-description");
-      const currentBtn = container.querySelector(".current-button");
+    function animateOut(container, onComplete) {
+      const els = [
+        container.querySelector(".current-sub"),
+        container.querySelector(".current-name"),
+        container.querySelector(".current-usb"),
+        container.querySelector(".current-description"),
+        container.querySelector(".current-button"),
+      ].filter(Boolean);
 
-      if (currentSub) {
-        gsap.to(currentSub, {
-          autoAlpha: 0,
-          y: -5,
-          ease: "power2.out",
-          duration: 0.3,
-        });
+      if (!els.length) {
+        onComplete?.();
+        return;
       }
-      if (currentName) {
-        gsap.to(currentName, {
-          autoAlpha: 0,
-          y: -5,
-          ease: "power2.out",
-          duration: 0.3,
-          delay: 0.05,
-        });
-      }
-      if (currentUsb) {
-        gsap.to(currentUsb, {
-          autoAlpha: 0,
-          y: -5,
-          ease: "power2.out",
-          duration: 0.3,
-          delay: 0.1,
-        });
-      }
-      if (currentDesc) {
-        gsap.to(currentDesc, {
-          autoAlpha: 0,
-          y: -5,
-          ease: "power2.out",
-          duration: 0.3,
-          delay: 0.15,
-        });
-      }
-      if (currentBtn) {
-        gsap.to(currentBtn, {
-          autoAlpha: 0,
-          y: -5,
-          ease: "power2.out",
-          duration: 0.3,
-          delay: 0.2,
-        });
-      }
+
+      gsap.timeline({ onComplete }).to(els, {
+        autoAlpha: 0,
+        y: -5,
+        ease: "power2.out",
+        duration: 0.25,
+        stagger: 0.04,
+      });
     }
 
     function animateIn(container, delay = 0) {
-      const newSub = container.querySelector(".current-sub");
-      const newName = container.querySelector(".current-name");
-      const newUsb = container.querySelector(".current-usb");
-      const newDesc = container.querySelector(".current-description");
-      const newBtn = container.querySelector(".current-button");
+      const els = [
+        container.querySelector(".current-sub"),
+        container.querySelector(".current-usb"),
+        container.querySelector(".current-description"),
+        container.querySelector(".current-button"),
+      ].filter(Boolean);
 
-      if (newSub) {
+      if (els.length) {
         gsap.fromTo(
-          newSub,
+          els,
           { autoAlpha: 0, y: 20 },
-          { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.4, delay },
+          {
+            autoAlpha: 1,
+            y: 0,
+            ease: "power2.out",
+            duration: 0.4,
+            delay,
+            stagger: 0.07,
+          },
         );
       }
 
+      const newName = container.querySelector(".current-name");
       if (newName && typeof SplitText !== "undefined") {
         gsap.set(newName, { autoAlpha: 1 });
         const split = new SplitText(newName, {
@@ -139,48 +118,6 @@ export function sliderAmigo() {
           },
         );
       }
-
-      if (newUsb) {
-        gsap.fromTo(
-          newUsb,
-          { autoAlpha: 0, y: 20 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            ease: "power2.out",
-            duration: 0.4,
-            delay: delay + 0.25,
-          },
-        );
-      }
-
-      if (newDesc) {
-        gsap.fromTo(
-          newDesc,
-          { autoAlpha: 0, y: 20 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            ease: "power2.out",
-            duration: 0.4,
-            delay: delay + 0.35,
-          },
-        );
-      }
-
-      if (newBtn) {
-        gsap.fromTo(
-          newBtn,
-          { autoAlpha: 0, y: 20 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            ease: "power2.out",
-            duration: 0.4,
-            delay: delay + 0.45,
-          },
-        );
-      }
     }
 
     const imageSwiper = new Swiper(
@@ -204,21 +141,25 @@ export function sliderAmigo() {
             const contentContainer = wrapper.querySelector(
               ".slider-amigo-content-import",
             );
-            if (contentContainer) animateOut(contentContainer);
+            if (!contentContainer) return;
 
             const swiper = this;
-            setTimeout(() => {
+
+            animateOut(contentContainer, () => {
               const nextSlide = swiper.slides[swiper.activeIndex];
               const slideContent = nextSlide?.querySelector(
                 ".amigo-slide-content",
               );
-              if (!slideContent || !contentContainer) return;
+              if (!slideContent) return;
 
-              contentContainer.innerHTML = buildHTML(
-                getSlideData(slideContent),
-              );
-              animateIn(contentContainer, 0.1);
-            }, 400);
+              // gsap.delayedCall sync với render pipeline
+              gsap.delayedCall(0, () => {
+                contentContainer.innerHTML = buildHTML(
+                  getSlideData(slideContent),
+                );
+                animateIn(contentContainer, 0);
+              });
+            });
           },
 
           slideChangeTransitionEnd: function () {
@@ -262,11 +203,11 @@ export function sliderAmigo() {
 
         if (contentContainer) animateIn(contentContainer, 0.3);
 
-        imageSwiper.params.autoplay = {
-          delay: 3000,
-          disableOnInteraction: false,
-        };
-        imageSwiper.autoplay.start();
+        // imageSwiper.params.autoplay = {
+        //   delay: 3000,
+        //   disableOnInteraction: false,
+        // };
+        // imageSwiper.autoplay.start();
       },
     });
 
@@ -308,6 +249,7 @@ export function sliderAmigo() {
     const realSlideCount = imageSwiper.slides.filter(
       (s) => !s.classList.contains("swiper-slide-duplicate"),
     ).length;
+
     if (!isMobile && imageEl && realSlideCount > 1) {
       const cursor = document.createElement("div");
       cursor.classList.add("amigo-cursor");

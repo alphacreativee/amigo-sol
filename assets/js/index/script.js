@@ -4,8 +4,12 @@ import { sliderAmigo } from "../../main/js/slider.min.js";
 ("use strict");
 $ = jQuery;
 
-const lenis = new Lenis();
+const lenis = new Lenis({
+  autoRaf: false,
+});
+
 lenis.on("scroll", ScrollTrigger.update);
+
 gsap.ticker.add((time) => {
   lenis.raf(time * 1000);
 });
@@ -964,8 +968,10 @@ const init = () => {
   accomodationnFilter();
   scrollCTA();
 };
-document.addEventListener("DOMContentLoaded", init);
 
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+});
 // event click element a
 let isLinkClicked = false;
 
