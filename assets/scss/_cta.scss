@@ -1,0 +1,55 @@
+.cta-group {
+  position: fixed;
+  bottom: 65px;
+  right: 40px;
+  z-index: 19;
+  transition: right 0.3s ease;
+  @media (max-width: 991px) {
+    right: 24px;
+    bottom: 110px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &.hide {
+    .cta-item {
+      transform: translateX(70%);
+      opacity: 0;
+    }
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .cta-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    transition:
+      background-color 0.3s ease,
+      transform 0.5s ease,
+      opacity 0.4s ease;
+
+    &.mess {
+      background-color: var(--color-secondary);
+      &:hover {
+        background-color: var(--color-primary);
+      }
+    }
+    &.phone {
+      background-color: var(--color-primary);
+      transition:
+        background-color 0.3s ease,
+        transform 0.7s ease,
+        opacity 0.4s ease;
+      &:hover {
+        background-color: var(--color-secondary);
+      }
+    }
+  }
+}

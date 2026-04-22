@@ -3910,3 +3910,51 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
 .section-note__item--desc a:hover {
   color: var(--color-secondary);
 }
+
+.cta-group {
+  position: fixed;
+  bottom: 65px;
+  right: 40px;
+  z-index: 19;
+  transition: right 0.3s ease;
+}
+@media (max-width: 991px) {
+  .cta-group {
+    right: 24px;
+    bottom: 110px;
+  }
+}
+.cta-group:hover {
+  cursor: pointer;
+}
+.cta-group.hide .cta-item {
+  transform: translateX(70%);
+  opacity: 0;
+}
+.cta-group__container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.cta-group .cta-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.5s ease, opacity 0.4s ease;
+}
+.cta-group .cta-item.mess {
+  background-color: var(--color-secondary);
+}
+.cta-group .cta-item.mess:hover {
+  background-color: var(--color-primary);
+}
+.cta-group .cta-item.phone {
+  background-color: var(--color-primary);
+  transition: background-color 0.3s ease, transform 0.7s ease, opacity 0.4s ease;
+}
+.cta-group .cta-item.phone:hover {
+  background-color: var(--color-secondary);
+}

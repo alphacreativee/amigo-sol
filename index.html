@@ -661,8 +661,7 @@
                 <div class="swiper-wrapper">
                   <div class="swiper-slide" data-cursor-text="Chi tiết">
                     <div class="section-offer__item">
-                      <a href="./offer-detail.html"
-                        class="section-offer__img d-block animation-image">
+                      <a href="./offer-detail.html" class="section-offer__img d-block animation-image">
                         <img src="./assets/images/del/offer-1.jpg" alt="" />
                       </a>
                       <div class="section-offer__content">
@@ -678,8 +677,7 @@
                   </div>
                   <div class="swiper-slide" data-cursor-text="Chi tiết">
                     <div class="section-offer__item">
-                      <a href="./offer-detail.html"
-                        class="section-offer__img d-block animation-image">
+                      <a href="./offer-detail.html" class="section-offer__img d-block animation-image">
                         <img src="./assets/images/del/offer-1.jpg" alt="" />
                       </a>
                       <div class="section-offer__content">
@@ -695,8 +693,7 @@
                   </div>
                   <div class="swiper-slide" data-cursor-text="Chi tiết">
                     <div class="section-offer__item">
-                      <a href="./offer-detail.html"
-                        class="section-offer__img d-block animation-image">
+                      <a href="./offer-detail.html" class="section-offer__img d-block animation-image">
                         <img src="./assets/images/del/offer-1.jpg" alt="" />
                       </a>
                       <div class="section-offer__content">
@@ -1026,6 +1023,14 @@
       <div class="spacing-120"></div>
     </div>
   </main>
+  <script>
+    fetch("./components/cta.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("cta").innerHTML = data;
+      });
+  </script>
+  <div id="cta"></div>
   <!-- layout -->
   <!-- footer -->
   <script>

@@ -931,6 +931,20 @@ function accomodationnFilter() {
     });
   }
 }
+function scrollCTA() {
+  ScrollTrigger.refresh();
+
+  ScrollTrigger.create({
+    start: "top top",
+    end: 99999,
+    paused: true,
+    onUpdate: (self) => {
+      self.direction === 1
+        ? $(".cta-group").addClass("hide")
+        : $(".cta-group").removeClass("hide");
+    },
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -948,6 +962,7 @@ const init = () => {
   detailSlider();
   gallery();
   accomodationnFilter();
+  scrollCTA();
 };
 document.addEventListener("DOMContentLoaded", init);
 
