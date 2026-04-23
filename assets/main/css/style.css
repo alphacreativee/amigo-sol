@@ -251,11 +251,13 @@ body {
 }
 
 .hover-underline-black,
-.hover-underline-white {
+.hover-underline-white,
+.animation-text-v3 {
   position: relative;
 }
 .hover-underline-black::before,
-.hover-underline-white::before {
+.hover-underline-white::before,
+.animation-text-v3::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -268,12 +270,14 @@ body {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hover-underline-black:hover::before,
-.hover-underline-white:hover::before {
+.hover-underline-white:hover::before,
+.animation-text-v3:hover::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 .hover-underline-black.active::before,
-.hover-underline-white.active::before {
+.hover-underline-white.active::before,
+.animation-text-v3.active::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
@@ -779,7 +783,7 @@ body {
 }
 .header .menu .menu-item-has-children .sub-menu {
   transition: all 0.4s ease;
-  background-color: var(--color-bg);
+  background-color: var(--color-white);
   padding: 24px;
   position: absolute;
   left: -24px;
