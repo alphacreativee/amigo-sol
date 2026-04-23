@@ -1620,7 +1620,7 @@ footer .footer-alpha a:hover {
 @media (max-width: 991px) {
   .amigo-content-top {
     flex-direction: column;
-    gap: 48px;
+    gap: 32px;
   }
 }
 .amigo-content-top .content-left,
