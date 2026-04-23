@@ -499,6 +499,123 @@ body {
   margin-bottom: 24px;
 }
 
+.lightpick {
+  padding: 15px;
+  font-family: var(--font-body);
+  color: var(--color-black);
+  border-radius: 0 !important;
+}
+
+.lightpick__month-title-bar {
+  margin-bottom: 15px;
+}
+
+.lightpick__day.is-today {
+  color: var(--color-secondary);
+  font-weight: 900;
+  background-image: none;
+}
+
+.lightpick__day.is-start-date {
+  background-image: none;
+  background-color: var(--color-pattern);
+  color: var(--color-secondary) !important;
+}
+
+.lightpick__day.is-available:hover {
+  background-image: none;
+}
+
+.lightpick__day.is-in-range:hover {
+  background-image: none;
+}
+
+.lightpick__day:not(.is-disabled):hover,
+.lightpick__day.is-start-date.is-end-date {
+  background-image: none;
+}
+
+.lightpick__day.is-in-range {
+  background-color: var(--color-pattern);
+  color: var(--color-secondary);
+}
+
+.lightpick__day.is-end-date.is-in-range.is-flipped,
+.lightpick__day.is-start-date.is-in-range,
+.lightpick__day.is-end-date.is-in-range,
+.lightpick__day.is-start-date.is-in-range.is-flipped {
+  background-color: var(--color-secondary);
+  font-weight: 900;
+  color: var(--color-white) !important;
+}
+
+.lightpick__month-title > .lightpick__select-months,
+.lightpick__day-of-the-week {
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.lightpick__month-title {
+  padding: 0;
+  margin-left: 8px;
+}
+
+.lightpick__month-title > .lightpick__select-months,
+.lightpick__day-of-the-week {
+  text-align: left;
+}
+
+.lightpick__toolbar {
+  display: flex;
+  gap: 5px;
+}
+
+.lightpick__month-title > .lightpick__select {
+  color: var(--color-black);
+}
+
+.lightpick__month-title > .lightpick__select.lightpick__select-years {
+  font-weight: 600;
+}
+
+.lightpick__next-action,
+.lightpick__previous-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0;
+  background-repeat: no-repeat;
+  background-position: 55% 50%;
+  background-size: 40%;
+  margin: 0;
+  position: relative;
+  background-color: var(--color-secondary);
+  transition: all 0.3s ease;
+}
+.lightpick__next-action:hover,
+.lightpick__previous-action:hover {
+  background-color: var(--color-primary);
+}
+.lightpick__next-action::before,
+.lightpick__previous-action::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-image: url("../../images/icons/icon-arrow-white.svg");
+  background-repeat: no-repeat;
+  background-position: 55% 50%;
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.lightpick__previous-action {
+  transform: rotate(180deg);
+}
+
 #header {
   position: fixed;
   top: 0;
@@ -1566,12 +1683,30 @@ footer .footer-alpha a:hover {
 .amigo-content.content-chef {
   padding-left: calc(8.3333333333% + 40px);
 }
+@media (max-width: 991px) {
+  .amigo-content.content-chef {
+    padding-left: 24px;
+  }
+}
+.amigo-content.content-chef .amigo-image img {
+  object-position: top;
+}
 .amigo-content.content-chef .amigo-artwork.left-bottom {
   top: -120%;
   bottom: auto;
 }
 .amigo-content.content-chef .amigo-artwork.top-right {
   display: none;
+}
+@media (max-width: 991px) {
+  .amigo-content.content-chef .amigo-content-top {
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 991px) {
+  .amigo-content.content-chef .description {
+    margin-bottom: 0 !important;
+  }
 }
 @media (max-width: 991px) {
   .amigo-content {
@@ -1652,6 +1787,11 @@ footer .footer-alpha a:hover {
   width: 75%;
   aspect-ratio: 1;
 }
+@media (max-width: 991px) {
+  .amigo-content .slider-amigo-image.chef-sec {
+    width: 100%;
+  }
+}
 .amigo-content .slider-amigo-image {
   height: 500px;
 }
@@ -1689,6 +1829,11 @@ footer .footer-alpha a:hover {
 }
 .amigo-content .slider-amigo-content-import .current-sub {
   margin-bottom: 24px;
+}
+@media (max-width: 991px) {
+  .amigo-content .slider-amigo-content-import .current-sub {
+    text-align: center;
+  }
 }
 .amigo-content .slider-amigo-content-import .current-button {
   margin-top: 100px;
@@ -2869,6 +3014,9 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
 .accomodation-list .accomodation-card:hover .card-title {
   color: var(--color-primary);
 }
+.accomodation-list .accomodation-card:hover .card-top img {
+  transform: scale(1.03);
+}
 .accomodation-list .accomodation-card:nth-child(even) {
   transform: translateY(80px);
 }
@@ -2900,6 +3048,7 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease;
 }
 .accomodation-list .accomodation-card .card-bottom {
   display: flex;

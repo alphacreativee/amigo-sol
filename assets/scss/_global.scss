@@ -266,3 +266,121 @@
     }
   }
 }
+.lightpick {
+  padding: 15px;
+  font-family: var(--font-body);
+  color: var(--color-black);
+  border-radius: 0 !important;
+}
+
+.lightpick__month-title-bar {
+  margin-bottom: 15px;
+}
+
+.lightpick__day.is-today {
+  color: var(--color-secondary);
+  font-weight: 900;
+  background-image: none;
+}
+
+.lightpick__day.is-start-date {
+  background-image: none;
+  background-color: var(--color-pattern);
+  color: var(--color-secondary) !important;
+  // border-radius: 50%;
+}
+
+.lightpick__day.is-available {
+  // border-radius: 50%;
+  // transition: all 0.4s ease;
+}
+
+.lightpick__day.is-available:hover {
+  background-image: none;
+  // background-color: var(--color-pattern);
+  // color: var(--color-secondary) !important;
+}
+
+.lightpick__day.is-in-range:hover {
+  background-image: none;
+  // background-color: var(--color-secondary);
+}
+
+.lightpick__day:not(.is-disabled):hover,
+.lightpick__day.is-start-date.is-end-date {
+  background-image: none;
+}
+
+.lightpick__day.is-in-range {
+  background-color: var(--color-pattern);
+  color: var(--color-secondary);
+}
+
+.lightpick__day.is-end-date.is-in-range.is-flipped,
+.lightpick__day.is-start-date.is-in-range,
+.lightpick__day.is-end-date.is-in-range,
+.lightpick__day.is-start-date.is-in-range.is-flipped {
+  background-color: var(--color-secondary);
+  font-weight: 900;
+  color: var(--color-white) !important;
+}
+
+.lightpick__month-title > .lightpick__select-months,
+.lightpick__day-of-the-week {
+  font-weight: 600;
+  color: var(--color-black);
+}
+.lightpick__month-title {
+  padding: 0;
+  margin-left: 8px;
+}
+.lightpick__month-title > .lightpick__select-months,
+.lightpick__day-of-the-week {
+  text-align: left;
+}
+.lightpick__toolbar {
+  display: flex;
+  gap: 5px;
+}
+.lightpick__month-title > .lightpick__select {
+  color: var(--color-black);
+}
+.lightpick__month-title > .lightpick__select.lightpick__select-years {
+  font-weight: 600;
+}
+.lightpick__next-action,
+.lightpick__previous-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0;
+  // background-image: url("../../images/icons/icon-arrow-white.svg");
+  background-repeat: no-repeat;
+  background-position: 55% 50%;
+  // background-color: var(--color-secondary);
+  background-size: 40%;
+  margin: 0;
+  position: relative;
+  background-color: var(--color-secondary);
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: var(--color-primary);
+  }
+  &::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-image: url("../../images/icons/icon-arrow-white.svg");
+    background-repeat: no-repeat;
+    background-position: 55% 50%;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+.lightpick__previous-action {
+  transform: rotate(180deg);
+}

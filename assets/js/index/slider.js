@@ -4,7 +4,6 @@ export function sliderAmigo() {
 
     let isTransitioning = false;
 
-    // ✅ Khai báo isMobile sớm, trước khi dùng
     const isMobile = window.matchMedia("(max-width: 991px)").matches;
 
     function getSlideData(slideContent) {
@@ -61,41 +60,63 @@ export function sliderAmigo() {
     }
 
     function animateIn(container, delay = 0) {
-      const els = [
-        container.querySelector(".current-sub"),
-        container.querySelector(".current-usb"),
-        container.querySelector(".current-description"),
-        container.querySelector(".current-button"),
-      ].filter(Boolean);
+      const selectors = [
+        ".current-sub",
+        ".current-name",
+        ".current-usb",
+        ".current-description",
+        ".current-button",
+      ];
 
-      if (els.length) {
+      // Giữ đúng thứ tự sub → name → usb → description → button
+      const els = selectors
+        .map((sel) => container.querySelector(sel))
+        .filter(Boolean);
+
+      if (!els.length) return;
+
+      const nameEl = container.querySelector(".current-name");
+      const hasNameSplit = nameEl && typeof SplitText !== "undefined";
+
+      const staggerStep = 0.1;
+
+      // Animate tất cả elements trừ name (nếu dùng SplitText)
+      const elsWithoutName = hasNameSplit
+        ? els.filter((el) => el !== nameEl)
+        : els;
+
+      elsWithoutName.forEach((el) => {
+        const index = els.indexOf(el);
         gsap.fromTo(
-          els,
+          el,
           { autoAlpha: 0, y: 20 },
           {
             autoAlpha: 1,
             y: 0,
             ease: "power2.out",
             duration: 0.4,
-            delay,
-            stagger: 0.07,
+            delay: delay + index * staggerStep,
           },
         );
-      }
+      });
 
-      const newName = container.querySelector(".current-name");
-      if (newName && typeof SplitText !== "undefined") {
-        gsap.set(newName, { autoAlpha: 1 });
-        const split = new SplitText(newName, {
+      // Animate name với SplitText, đúng thứ tự dựa theo index
+      if (hasNameSplit) {
+        const nameIndex = els.indexOf(nameEl);
+        gsap.set(nameEl, { autoAlpha: 1 });
+
+        const split = new SplitText(nameEl, {
           type: "lines",
           linesClass: "line",
         });
+
         split.lines.forEach((line) => {
           const wrapEl = document.createElement("div");
           wrapEl.style.overflow = "hidden";
           line.parentNode.insertBefore(wrapEl, line);
           wrapEl.appendChild(line);
         });
+
         gsap.fromTo(
           split.lines,
           { autoAlpha: 0, y: 30 },
@@ -104,26 +125,13 @@ export function sliderAmigo() {
             y: 0,
             ease: "power2.out",
             duration: 0.5,
-            delay: delay + 0.1,
+            delay: delay + nameIndex * staggerStep,
             stagger: 0.08,
-          },
-        );
-      } else if (newName) {
-        gsap.fromTo(
-          newName,
-          { autoAlpha: 0, y: 20 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            ease: "power2.out",
-            duration: 0.4,
-            delay: delay + 0.1,
           },
         );
       }
     }
 
-    // ✅ Khai báo autoplay config sẵn trong constructor, dùng enabled: false để tạm tắt
     const imageSwiper = new Swiper(
       wrapper.querySelector(".slider-amigo-image"),
       {
@@ -136,7 +144,7 @@ export function sliderAmigo() {
         autoplay: {
           delay: 3000,
           disableOnInteraction: false,
-          enabled: false, // ✅ config sẵn nhưng chưa chạy
+          enabled: false,
         },
         pagination: {
           el: wrapper.querySelector(".slider-amigo-image .swiper-pagination"),
@@ -210,7 +218,6 @@ export function sliderAmigo() {
 
         if (contentContainer) animateIn(contentContainer, 0.3);
 
-        // ✅ Chỉ cần gọi .start() vì params đã được config sẵn từ constructor
         if (!isMobile) {
           imageSwiper.autoplay.start();
         }

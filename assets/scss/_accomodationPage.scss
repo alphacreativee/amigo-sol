@@ -169,6 +169,11 @@
         .card-title {
           color: var(--color-primary);
         }
+        .card-top {
+          img {
+            transform: scale(1.03);
+          }
+        }
       }
 
       &:nth-child(even) {
@@ -204,6 +209,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.4s ease;
           }
         }
 
