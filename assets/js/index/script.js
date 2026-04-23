@@ -548,11 +548,13 @@ function animationText() {
     const sub = el.querySelector(".text-e-sub");
     const title = el.querySelector(".text-e-title");
     const desc = el.querySelector(".text-e-desc");
+    const list = el.querySelector(".text-e-list");
     const btn = el.querySelector(".text-e-btn");
 
     const startVal = el.dataset.start ?? "70";
     const triggerStart = `top ${startVal}%`;
-    const toHide = [sub, desc, btn].filter(Boolean);
+    const toHide = [sub, desc, list, btn].filter(Boolean); // [!] thêm list vào đây
+
     gsap.set(toHide, { autoAlpha: 0 });
 
     let splitLines = null;
@@ -570,7 +572,6 @@ function animationText() {
       trigger: el,
       start: triggerStart,
       once: true,
-      // markers: true,
       onEnter: () => {
         const tl = gsap.timeline();
 
@@ -592,6 +593,15 @@ function animationText() {
               stagger: 0.05,
             },
             sub ? "-=0.1" : 0,
+          );
+        }
+        // [!] animate cả list như các element khác
+        if (list) {
+          tl.fromTo(
+            list,
+            { autoAlpha: 0, y: 20 },
+            { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
+            "-=0.2",
           );
         }
 
