@@ -4,6 +4,9 @@ export function sliderAmigo() {
 
     let isTransitioning = false;
 
+    // ✅ Khai báo isMobile sớm, trước khi dùng
+    const isMobile = window.matchMedia("(max-width: 991px)").matches;
+
     function getSlideData(slideContent) {
       return {
         sub: slideContent.querySelector(".amigo-sub")?.innerHTML || "",
@@ -120,6 +123,7 @@ export function sliderAmigo() {
       }
     }
 
+    // ✅ Khai báo autoplay config sẵn trong constructor, dùng enabled: false để tạm tắt
     const imageSwiper = new Swiper(
       wrapper.querySelector(".slider-amigo-image"),
       {
@@ -129,7 +133,11 @@ export function sliderAmigo() {
         spaceBetween: 0,
         loop: true,
         speed: 1100,
-        autoplay: false,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+          enabled: false, // ✅ config sẵn nhưng chưa chạy
+        },
         pagination: {
           el: wrapper.querySelector(".slider-amigo-image .swiper-pagination"),
         },
@@ -152,7 +160,6 @@ export function sliderAmigo() {
               );
               if (!slideContent) return;
 
-              // gsap.delayedCall sync với render pipeline
               gsap.delayedCall(0, () => {
                 contentContainer.innerHTML = buildHTML(
                   getSlideData(slideContent),
@@ -203,17 +210,12 @@ export function sliderAmigo() {
 
         if (contentContainer) animateIn(contentContainer, 0.3);
 
+        // ✅ Chỉ cần gọi .start() vì params đã được config sẵn từ constructor
         if (!isMobile) {
-          imageSwiper.params.autoplay = {
-            delay: 3000,
-            disableOnInteraction: false,
-          };
           imageSwiper.autoplay.start();
         }
       },
     });
-
-    const isMobile = window.matchMedia("(max-width: 991px)").matches;
 
     if (isMobile) {
       const contentEl = wrapper.querySelector(".slider-amigo-content-import");
