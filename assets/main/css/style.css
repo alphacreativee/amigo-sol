@@ -2612,18 +2612,18 @@ section.image-with-text .content {
     transform: none !important;
   }
 }
-section.image-with-text .content h1 {
+section.image-with-text .content h2 {
   margin-bottom: 24px;
   text-align: center;
 }
 @media (max-width: 991px) {
-  section.image-with-text .content h1 {
+  section.image-with-text .content h2 {
     margin: 0 auto 24px;
     max-width: 80%;
   }
 }
 @media (max-width: 480px) {
-  section.image-with-text .content h1 {
+  section.image-with-text .content h2 {
     max-width: 280px;
   }
 }
