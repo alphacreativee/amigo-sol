@@ -440,6 +440,9 @@ body {
 .modal-booking .modal-close {
   cursor: pointer;
 }
+.modal-booking .modal-close .btn-close {
+  opacity: 1;
+}
 .modal-booking .modal-close .btn-close:focus {
   box-shadow: none;
 }
@@ -449,6 +452,7 @@ body {
   background: transparent;
   color: transparent;
   opacity: 1;
+  padding-right: 0;
 }
 .modal-booking .modal-body {
   padding: 0;
@@ -469,6 +473,10 @@ body {
 }
 .modal-booking-success .modal-dialog {
   gap: 24px;
+  height: 100%;
+}
+.modal-booking-success .modal-dialog .modal-close button {
+  padding-right: 0;
 }
 .modal-booking-success .modal-close {
   cursor: pointer;
@@ -482,13 +490,13 @@ body {
   border: none;
   border-radius: unset;
   position: relative;
-  background-image: url("../../images/culinary-detail/bg-modal.png");
+  background-image: url("../../images/icons/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
 .modal-booking-success .modal-content .content-logo {
-  width: 65px;
-  height: 66px;
+  width: 173px;
+  height: 36px;
   margin: 0 auto;
 }
 .modal-booking-success .modal-content .content-logo img {
@@ -501,6 +509,16 @@ body {
 }
 .modal-booking-success .modal-content .content-box .title {
   margin-bottom: 24px;
+}
+
+.modal.modal-booking-success {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.modal.modal-booking-success .btn-close {
+  opacity: 1;
+}
+.modal.modal-booking-success .btn-close:focus {
+  box-shadow: none;
 }
 
 .lightpick {
