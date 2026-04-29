@@ -1079,6 +1079,110 @@ function togglePlayMusic() {
     }
   });
 }
+
+function bookingForm() {
+  if ($(".booking-form .booking-form-accommodation").length < 1) return;
+
+  $(".booking-form .booking-form-accommodation form").on(
+    "submit",
+    function (e) {
+      e.preventDefault();
+
+      console.log("submit");
+
+      let isValid = true;
+      const form = $(this);
+
+      // Remove previous errors
+      form.find(".error").removeClass("error");
+
+      // Required fields
+      const requiredFields = [
+        "booking-name",
+        "booking-phone",
+        "booking-startday",
+        "booking-endday",
+        "booking-adult"
+      ];
+
+      requiredFields.forEach((fieldName) => {
+        const input = form.find(`[name="${fieldName}"]`);
+
+        if (!input.length || !input.val() || input.val().trim() === "") {
+          input.closest(".input-item").addClass("error");
+          isValid = false;
+        }
+      });
+
+      if (!$(this).find(".dropdown-custom-select").hasClass("selected")) {
+        $(this).find(".dropdown-custom-select").addClass("error");
+        isValid = false;
+      }
+
+      // Validate phone number
+      const phone = form.find('[name="booking-phone"]').val();
+      if (phone && !/^[0-9]{10,11}$/.test(phone)) {
+        form
+          .find('[name="booking-phone"]')
+          .closest(".input-item")
+          .addClass("error");
+        isValid = false;
+      }
+
+      // Stop if invalid
+      if (!isValid) return;
+
+      // Collect form data
+      const formData = {
+        action: "submit_booking_accommodation_form",
+        booking_name: form.find('[name="booking-name"]').val(),
+        booking_phone: form.find('[name="booking-phone"]').val(),
+        booking_startday: form.find('[name="booking-startday"]').val(),
+        booking_endday: form.find('[name="booking-endday"]').val(),
+        booking_adult: form.find('[name="booking-adult"]').val(),
+        booking_child: form.find('[name="booking-child"]').val(),
+        booking_roomtype: form
+          .find('[name="booking-roomtype"] .dropdown-custom-text')
+          .text()
+          .trim(),
+        booking_message: form.find('[name="booking-message"]').val()
+      };
+
+      $.ajax({
+        url: ajaxUrl,
+        type: "POST",
+        data: formData,
+
+        beforeSend: function () {
+          form.find("button[type='submit']").addClass("aloading");
+        },
+
+        success: function (response) {
+          form.find("button[type='submit']").removeClass("aloading");
+
+          if (response.success) {
+            console.log("Đặt phòng thành công:", response.data);
+
+            form[0].reset();
+
+            // Reset custom dropdown text
+            form.find(".value-select span").text("Loại phòng");
+
+            $(".booking-success").modal("show");
+          } else {
+            console.error("Lỗi server:", response.data);
+          }
+        },
+
+        error: function (xhr, status, error) {
+          form.find("button[type='submit']").removeClass("aloading");
+          console.error("Lỗi AJAX:", status, error);
+        }
+      });
+    }
+  );
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -1098,7 +1202,7 @@ const init = () => {
   accomodationnFilter();
   scrollCTA();
   togglePlayMusic();
-  customDropdown();
+  bookingForm();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
