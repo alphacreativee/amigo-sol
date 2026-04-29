@@ -107,7 +107,9 @@ section.image-with-text {
       width: auto;
       height: auto;
 
-      stroke: var(--color-white);
+      path {
+        stroke: var(--color-white);
+      }
     }
   }
 
