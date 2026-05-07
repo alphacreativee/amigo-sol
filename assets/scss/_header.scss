@@ -153,6 +153,12 @@
     align-items: center;
     gap: 32px;
 
+    a {
+      &:hover {
+        color: var(--color-black);
+      }
+    }
+
     .menu-item-has-children {
       gap: 8px;
       position: relative;
@@ -410,7 +416,7 @@
     }
     .dropdown-custom-menu {
       position: absolute;
-      background-color: var(--color-bg);
+      background-color: var(--color-white);
       padding: 12px 24px;
       bottom: -29px;
       left: -24px;

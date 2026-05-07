@@ -55,6 +55,7 @@ footer {
     &-alpha {
       display: flex;
       align-items: center;
+      font-weight: 400;
     }
     &-logo {
       width: 233px;
@@ -257,6 +258,10 @@ footer {
         }
       }
 
+      .title {
+        font-weight: 700;
+      }
+
       p {
         margin-bottom: 8px;
       }
@@ -354,6 +359,7 @@ footer {
 
     &-alpha {
       a {
+        font-weight: 400;
         &:hover {
           color: var(--color-white);
         }

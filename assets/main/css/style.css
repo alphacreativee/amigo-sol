@@ -826,6 +826,9 @@ body {
   align-items: center;
   gap: 32px;
 }
+.header .menu a:hover {
+  color: var(--color-black);
+}
 .header .menu .menu-item-has-children {
   gap: 8px;
   position: relative;
@@ -1021,7 +1024,7 @@ body {
 }
 .header .lang .dropdown-custom-menu {
   position: absolute;
-  background-color: var(--color-bg);
+  background-color: var(--color-white);
   padding: 12px 24px;
   bottom: -29px;
   left: -24px;
@@ -1426,6 +1429,7 @@ footer .footer-top .title {
 footer .footer-copyright, footer .footer-alpha {
   display: flex;
   align-items: center;
+  font-weight: 400;
 }
 footer .footer-logo {
   width: 233px;
@@ -1619,6 +1623,9 @@ footer .footer-location::after {
     left: 0;
   }
 }
+footer .footer-location .title {
+  font-weight: 700;
+}
 footer .footer-location p {
   margin-bottom: 8px;
 }
@@ -1710,6 +1717,9 @@ footer .footer-bottom .menu a {
   line-height: 20px;
   font-weight: 500;
   color: var(--color-white);
+}
+footer .footer-alpha a {
+  font-weight: 400;
 }
 footer .footer-alpha a:hover {
   color: var(--color-white);
@@ -1889,13 +1899,19 @@ footer .footer-alpha a:hover {
     gap: 32px;
   }
 }
-.amigo-content-top .content-left,
 .amigo-content-top .content-right {
   width: 33.3333333333%;
 }
 @media (max-width: 991px) {
-  .amigo-content-top .content-left,
   .amigo-content-top .content-right {
+    width: 100%;
+  }
+}
+.amigo-content-top .content-left {
+  width: 50%;
+}
+@media (max-width: 991px) {
+  .amigo-content-top .content-left {
     width: 100%;
   }
 }
@@ -2890,7 +2906,7 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
 .section-offer__item:hover .section-offer__content--title {
   color: var(--color-primary);
 }
-.section-offer__item:hover img:hover {
+.section-offer__item:hover img {
   transform: scale(1.05);
 }
 .section-offer__img {
@@ -3159,6 +3175,9 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
 .accomodation-list .accomodation-card:hover .card-title {
   color: var(--color-primary);
 }
+.accomodation-list .accomodation-card:hover img {
+  transform: scale(1.05);
+}
 .accomodation-list .accomodation-card:nth-child(even) {
   transform: translateY(80px);
 }
@@ -3203,7 +3222,8 @@ section.image-with-text .swiper-pagination .swiper-pagination-bullet-active {
   }
 }
 .accomodation-list .accomodation-card .card-info {
-  gap: 24px;
+  gap: 12px 24px;
+  flex-wrap: wrap;
   margin-bottom: 24px;
 }
 @media (max-width: 991px) {

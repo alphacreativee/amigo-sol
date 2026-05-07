@@ -178,6 +178,10 @@
         .card-title {
           color: var(--color-primary);
         }
+
+        img {
+          transform: scale(1.05);
+        }
       }
 
       &:nth-child(even) {
@@ -227,7 +231,8 @@
         }
 
         &-info {
-          gap: 24px;
+          gap: 12px 24px;
+          flex-wrap: wrap;
           margin-bottom: 24px;
           @media (max-width: 991px) {
             flex-wrap: wrap;
