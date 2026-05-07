@@ -1006,6 +1006,7 @@ body {
 }
 .header .lang .dropdown-custom-item span {
   color: var(--color-black);
+  text-transform: uppercase;
 }
 .header .lang .dropdown-custom-text {
   font-weight: 600;
@@ -2459,6 +2460,9 @@ footer .footer-alpha a:hover {
   color: var(--color-black);
   font-size: 16px;
   line-height: 28px;
+}
+.form-contact__container .group-form input.error::placeholder {
+  color: red;
 }
 .form-contact__container .group-form textarea {
   border: none;
