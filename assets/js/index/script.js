@@ -453,6 +453,8 @@ function sliderService() {
   });
 }
 function fadeTextFooter() {
+  if ($(".page-template-template-accommodation").length > 0) return;
+
   gsap.set("data-text-footer", {
     opacity: 0,
     y: 20

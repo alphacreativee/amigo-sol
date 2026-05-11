@@ -390,20 +390,22 @@
     .dropdown-custom {
       position: relative;
       &-item {
-        color: var(--color-primary) !important;
+        color: var(--color-black) !important;
         font-weight: 600;
+        text-transform: uppercase;
 
         &:not(:first-child) {
           margin-top: 8px;
         }
         span {
-          color: var(--color-black);
+          color: var(--color-black) !important;
           text-transform: uppercase;
         }
       }
 
       &-text {
         font-weight: 600;
+        text-transform: uppercase;
         span {
           color: var(--color-black);
         }
@@ -426,6 +428,10 @@
       will-change: clip-path;
       &.dropdown--active {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      @media (max-width: 991px) {
+        color: var(--color-black);
       }
     }
   }
