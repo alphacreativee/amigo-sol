@@ -1460,7 +1460,7 @@ const init = () => {
   detailSlider();
   gallery();
   accomodationnFilter();
-  scrollCTA();
+  // scrollCTA();
   togglePlayMusic();
   bookingForm();
   bookingFormTable();
