@@ -257,12 +257,14 @@ body {
 
 .hover-underline-black,
 .hover-underline-white,
-.animation-text-v3 {
+.animation-text-v3,
+.amimation-text-v4 {
   position: relative;
 }
 .hover-underline-black::before,
 .hover-underline-white::before,
-.animation-text-v3::before {
+.animation-text-v3::before,
+.amimation-text-v4::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -276,19 +278,22 @@ body {
 }
 .hover-underline-black:hover::before,
 .hover-underline-white:hover::before,
-.animation-text-v3:hover::before {
+.animation-text-v3:hover::before,
+.amimation-text-v4:hover::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 .hover-underline-black.active::before,
 .hover-underline-white.active::before,
-.animation-text-v3.active::before {
+.animation-text-v3.active::before,
+.amimation-text-v4.active::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 .hover-underline-black:hover,
 .hover-underline-white:hover,
-.animation-text-v3:hover {
+.animation-text-v3:hover,
+.amimation-text-v4:hover {
   color: inherit;
 }
 
