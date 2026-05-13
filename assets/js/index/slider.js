@@ -68,7 +68,6 @@ export function sliderAmigo() {
         ".current-button",
       ];
 
-      // Giữ đúng thứ tự sub → name → usb → description → button
       const els = selectors
         .map((sel) => container.querySelector(sel))
         .filter(Boolean);
@@ -80,7 +79,6 @@ export function sliderAmigo() {
 
       const staggerStep = 0.1;
 
-      // Animate tất cả elements trừ name (nếu dùng SplitText)
       const elsWithoutName = hasNameSplit
         ? els.filter((el) => el !== nameEl)
         : els;
@@ -100,7 +98,6 @@ export function sliderAmigo() {
         );
       });
 
-      // Animate name với SplitText, đúng thứ tự dựa theo index
       if (hasNameSplit) {
         const nameIndex = els.indexOf(nameEl);
         gsap.set(nameEl, { autoAlpha: 1 });
@@ -278,6 +275,7 @@ export function sliderAmigo() {
       `;
       document.body.appendChild(cursor);
 
+      // ✅ Bỏ transform inline, dùng xPercent/yPercent trong GSAP để tránh xung đột
       Object.assign(cursor.style, {
         position: "fixed",
         top: "0",
@@ -292,19 +290,24 @@ export function sliderAmigo() {
         alignItems: "center",
         justifyContent: "center",
         color: "#fff",
-        transform: "translate(-50%, -50%)",
       });
 
-      gsap.set(cursor, { scale: 0, opacity: 0 });
+      // ✅ xPercent/yPercent thay thế translate(-50%, -50%)
+      gsap.set(cursor, { scale: 0, opacity: 0, xPercent: -50, yPercent: -50 });
 
       let isLeft = true;
+
+      // ✅ quickSetter giúp mousemove mượt hơn, không bị queue
+      const setX = gsap.quickSetter(cursor, "x", "px");
+      const setY = gsap.quickSetter(cursor, "y", "px");
 
       imageEl.addEventListener("mousemove", (e) => {
         const rect = imageEl.getBoundingClientRect();
         const x = e.clientX - rect.left;
         isLeft = x < rect.width / 2;
 
-        gsap.set(cursor, { x: e.clientX, y: e.clientY });
+        setX(e.clientX);
+        setY(e.clientY);
 
         cursor.querySelector(".amigo-cursor-prev").style.display = isLeft
           ? "flex"
@@ -316,6 +319,8 @@ export function sliderAmigo() {
 
       imageEl.addEventListener("mouseenter", () => {
         imageEl.style.cursor = "none";
+        // ✅ Kill animation cũ trước khi chạy cái mới, tránh bị đơ
+        gsap.killTweensOf(cursor);
         gsap.to(cursor, {
           opacity: 1,
           scale: 1,
@@ -326,6 +331,8 @@ export function sliderAmigo() {
 
       imageEl.addEventListener("mouseleave", () => {
         imageEl.style.cursor = "";
+        // ✅ Kill animation cũ trước khi chạy cái mới, tránh bị đơ
+        gsap.killTweensOf(cursor);
         gsap.to(cursor, {
           opacity: 0,
           scale: 0,
