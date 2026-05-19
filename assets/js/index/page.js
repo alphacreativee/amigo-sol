@@ -239,13 +239,154 @@ function stickyNav() {
     },
   });
 }
+function sliderEvent() {
+  const galleries = document.querySelectorAll(".swiper-event-gallery");
+
+  galleries.forEach((swiperEl) => {
+    if (swiperEl.swiper) return;
+
+    const wrapper =
+      swiperEl.closest(".event-gallery-wrapper") || swiperEl.parentElement;
+
+    const imageSwiper = new Swiper(swiperEl, {
+      effect: "fade",
+      fadeEffect: { crossFade: true },
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      speed: 1100,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+        enabled: false,
+      },
+      pagination: {
+        el: swiperEl.querySelector(".swiper-pagination"),
+        clickable: true,
+      },
+      navigation: {
+        nextEl: swiperEl.querySelector(".swiper-button-next"),
+        prevEl: swiperEl.querySelector(".swiper-button-prev"),
+      },
+      observer: true,
+      observeParents: true,
+    });
+
+    // ==================== CUSTOM CURSOR RIÊNG CHO TỪNG SWIPER ====================
+    const isMobile = window.matchMedia("(max-width: 991px)").matches;
+
+    if (!isMobile) {
+      // Tạo cursor riêng cho từng gallery
+      const cursor = document.createElement("div");
+      cursor.classList.add("amigo-cursor", "event-gallery-cursor");
+      cursor.innerHTML = `
+        <span class="amigo-cursor-arrow amigo-cursor-prev">
+          <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.95117 10.5L0.532566 5.57399C0.488922 5.53432 0.488922 5.46568 0.532566 5.42601L5.95117 0.5" stroke="#ffffff" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="amigo-cursor-arrow amigo-cursor-next">
+          <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.5 10.5L5.91861 5.57399C5.96225 5.53432 5.96225 5.46568 5.91861 5.42601L0.5 0.5" stroke="#ffffff" stroke-linecap="round"/>
+          </svg>
+        </span>
+      `;
+      document.body.appendChild(cursor);
+
+      Object.assign(cursor.style, {
+        position: "fixed",
+        top: "0",
+        left: "0",
+        pointerEvents: "none",
+        zIndex: "9999",
+        width: "50px",
+        height: "50px",
+        borderRadius: "50%",
+        background: "#ca6627",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#fff",
+        opacity: 0,
+        scale: 0,
+      });
+
+      gsap.set(cursor, { xPercent: -50, yPercent: -50 });
+
+      let isLeft = true;
+      const setX = gsap.quickSetter(cursor, "x", "px");
+      const setY = gsap.quickSetter(cursor, "y", "px");
+
+      // Mousemove
+      swiperEl.addEventListener("mousemove", (e) => {
+        const rect = swiperEl.getBoundingClientRect();
+        isLeft = e.clientX - rect.left < rect.width / 2;
+
+        setX(e.clientX);
+        setY(e.clientY);
+
+        cursor.querySelector(".amigo-cursor-prev").style.display = isLeft
+          ? "flex"
+          : "none";
+        cursor.querySelector(".amigo-cursor-next").style.display = isLeft
+          ? "none"
+          : "flex";
+      });
+
+      // Mouse enter
+      swiperEl.addEventListener("mouseenter", () => {
+        swiperEl.style.cursor = "none";
+        gsap.killTweensOf(cursor);
+        gsap.to(cursor, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.25,
+          ease: "back.out(1.5)",
+        });
+      });
+
+      // Mouse leave
+      swiperEl.addEventListener("mouseleave", () => {
+        swiperEl.style.cursor = "";
+        gsap.killTweensOf(cursor);
+        gsap.to(cursor, {
+          opacity: 0,
+          scale: 0,
+          duration: 0.2,
+          ease: "power2.in",
+        });
+      });
+
+      // Click chuyển slide
+      swiperEl.addEventListener("click", () => {
+        if (isLeft) {
+          imageSwiper.slidePrev();
+        } else {
+          imageSwiper.slideNext();
+        }
+      });
+    }
+
+    // ==================== Scroll Trigger ====================
+    ScrollTrigger.create({
+      trigger: wrapper || swiperEl,
+      start: "top 60%",
+      once: true,
+      onEnter: () => {
+        if (!isMobile) imageSwiper.autoplay.start();
+      },
+    });
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   eCardList();
   eFadeTextPageDetail();
   cRowList();
   stickyNav();
+  sliderEvent();
 };
+
 document.addEventListener("DOMContentLoaded", () => {
   init();
 });
