@@ -5,7 +5,7 @@ import { sliderAmigo } from "../../main/js/slider.min.js";
 $ = jQuery;
 
 const lenis = new Lenis({
-  autoRaf: false,
+  autoRaf: false
 });
 
 lenis.on("scroll", ScrollTrigger.update);
@@ -29,20 +29,20 @@ function headerMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.4,
-      ease: "power2.out",
+      ease: "power2.out"
     });
 
     tl2.from(
       $(wrapper).find(
-        ".sub-menu-container .sub-menu > ul > li.menu-item-has-children li",
+        ".sub-menu-container .sub-menu > ul > li.menu-item-has-children li"
       ),
       {
         opacity: 0,
         y: 20,
         stagger: 0.1,
         duration: 0.3,
-        ease: "power2.out",
-      },
+        ease: "power2.out"
+      }
     );
 
     // ✅ return timeline để dùng bên ngoài
@@ -97,7 +97,7 @@ function headerMenu() {
   // btnBack chỉ dùng cho mobile
   if ($(window).width() <= 992) {
     let btnBack = $(".header-sub-menu.d-block.d-lg-none").find(
-      ".menu-item-has-children .return",
+      ".menu-item-has-children .return"
     );
     btnBack.on("click", function (e) {
       e.preventDefault();
@@ -119,11 +119,11 @@ function bannerSlider() {
     speed: 1500,
     autoplay: {
       delay: 1500,
-      disableOnInteraction: false,
+      disableOnInteraction: false
     },
     pagination: {
-      el: ".section-banner .swiper-pagination",
-    },
+      el: ".section-banner .swiper-pagination"
+    }
   });
 }
 function bookingTime() {
@@ -152,7 +152,7 @@ function bookingTime() {
       secondField: document.getElementById("checkOutDate"),
       singleDate: false,
       minDate: moment().startOf("now"),
-      numberOfMonths: 2,
+      numberOfMonths: 1,
       startDate: moment().startOf("day").toDate(),
       endDate: moment().startOf("day").add(1, "days").toDate(),
 
@@ -177,7 +177,7 @@ function bookingTime() {
 
       onYearChange: function () {
         setTimeout(positionCalendar, 10);
-      },
+      }
     });
   }
 
@@ -219,7 +219,7 @@ function bookingTime() {
 
       onYearChange: function () {
         setTimeout(positionCalendar, 10);
-      },
+      }
     });
   }
 }
@@ -402,7 +402,7 @@ function sliderService() {
   if (!document.querySelector(".swiper-serivce")) return;
 
   const titleService = document.querySelectorAll(
-    ".amigo-service-titles .item-title",
+    ".amigo-service-titles .item-title"
   );
   let activeElms = titleService[0];
 
@@ -419,13 +419,13 @@ function sliderService() {
     loop: true,
     speed: 1500,
     pagination: {
-      el: ".swiper-serivce .swiper-pagination",
+      el: ".swiper-serivce .swiper-pagination"
     },
     on: {
       slideChange: function () {
         setActiveTitle(this.realIndex);
-      },
-    },
+      }
+    }
   });
 
   setActiveTitle(0);
@@ -447,7 +447,7 @@ function sliderService() {
     const split = new SplitText(el, {
       type: "lines",
       linesClass: "line",
-      mask: "lines",
+      mask: "lines"
     });
     allSplitLines.push(...split.lines);
     gsap.set(split.lines, { yPercent: 100 });
@@ -463,7 +463,7 @@ function sliderService() {
           autoAlpha: 1,
           y: 0,
           ease: "power2.out",
-          duration: 0.8,
+          duration: 0.8
         });
       }
 
@@ -472,9 +472,9 @@ function sliderService() {
         ease: "power3.out",
         duration: 0.8,
         stagger: 0.1,
-        delay: 0.2,
+        delay: 0.2
       });
-    },
+    }
   });
 }
 function fadeTextFooter() {
@@ -482,7 +482,7 @@ function fadeTextFooter() {
 
   gsap.set("data-text-footer", {
     opacity: 0,
-    y: 20,
+    y: 20
   });
   let tlf = gsap.timeline({ paused: true });
 
@@ -490,22 +490,22 @@ function fadeTextFooter() {
     "[data-text-footer]",
     {
       opacity: 0,
-      y: 20,
+      y: 20
     },
     {
       opacity: 1,
       y: 0,
       stagger: 0.05,
       duration: 0.6,
-      ease: "power2.out",
-    },
+      ease: "power2.out"
+    }
   );
   ScrollTrigger.create({
     trigger: "footer",
     start: "top 80%",
     // markers: true,
     animation: tlf,
-    toggleActions: "play none none none",
+    toggleActions: "play none none none"
   });
 
   return tlf;
@@ -523,21 +523,21 @@ function imgWithText() {
       scrollTrigger: {
         trigger: section,
         scrub: true,
-        pin: false,
+        pin: false
         // markers: true
-      },
+      }
     });
 
     tl.fromTo(
       img,
       {
         yPercent: -15,
-        ease: "none",
+        ease: "none"
       },
       {
         yPercent: 15,
-        ease: "none",
-      },
+        ease: "none"
+      }
     );
   });
 }
@@ -550,11 +550,11 @@ function swiperOffer() {
     speed: 1000,
     navigation: {
       nextEl: ".section-offer__slider .swiper-button-next",
-      prevEl: ".section-offer__slider .swiper-button-prev",
+      prevEl: ".section-offer__slider .swiper-button-prev"
     },
     pagination: {
       el: ".section-offer__slider .swiper-pagination",
-      type: "progressbar",
+      type: "progressbar"
     },
     slidesOffsetAfter: 24,
     slidesOffsetBefore: 24,
@@ -563,9 +563,9 @@ function swiperOffer() {
         slidesPerView: 3,
         spaceBetween: 40,
         slidesOffsetAfter: 0,
-        slidesOffsetBefore: 0,
-      },
-    },
+        slidesOffsetBefore: 0
+      }
+    }
   });
 }
 function animationText() {
@@ -589,7 +589,7 @@ function animationText() {
       const split = new SplitText(title, {
         type: "lines",
         linesClass: "line",
-        mask: "lines",
+        mask: "lines"
       });
       splitLines = split.lines;
       gsap.set(splitLines, { yPercent: 100 });
@@ -606,7 +606,7 @@ function animationText() {
           tl.fromTo(
             sub,
             { autoAlpha: 0, y: 20 },
-            { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
+            { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 }
           );
         }
 
@@ -617,9 +617,9 @@ function animationText() {
               yPercent: 0,
               ease: "power3.out",
               duration: 0.8,
-              stagger: 0.05,
+              stagger: 0.05
             },
-            sub ? "-=0.1" : 0,
+            sub ? "-=0.1" : 0
           );
         }
         // [!] animate cả list như các element khác
@@ -628,7 +628,7 @@ function animationText() {
             list,
             { autoAlpha: 0, y: 20 },
             { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
-            "-=0.2",
+            "-=0.2"
           );
         }
 
@@ -637,7 +637,7 @@ function animationText() {
             desc,
             { autoAlpha: 0, y: 20 },
             { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
-            "-=0.2",
+            "-=0.2"
           );
         }
 
@@ -646,10 +646,10 @@ function animationText() {
             btn,
             { autoAlpha: 0, y: 20 },
             { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.3 },
-            "-=0.2",
+            "-=0.2"
           );
         }
-      },
+      }
     });
   });
 }
@@ -666,8 +666,8 @@ function eLeaf() {
         trigger: leaf,
         scrub: true,
         start: "top bottom",
-        end: "bottom top",
-      },
+        end: "bottom top"
+      }
     });
   });
 }
@@ -688,13 +688,13 @@ function detailSlider() {
 
   const interleaveOffset = 0.9;
   const swiperButton = document.querySelector(
-    ".image-with-text .detail-slider__arrows",
+    ".image-with-text .detail-slider__arrows"
   );
 
   // Kiểm tra swiperButton tồn tại
   if (!swiperButton) {
     console.warn(
-      "Swiper button (.image-with-text .detail-slider__arrows) not found",
+      "Swiper button (.image-with-text .detail-slider__arrows) not found"
     );
     return;
   }
@@ -709,12 +709,12 @@ function detailSlider() {
     allowTouchMove: true,
     autoplay: false,
     pagination: {
-      el: ".image-with-text .swiper-pagination",
+      el: ".image-with-text .swiper-pagination"
     },
     breakpoints: {
       991: {
-        allowTouchMove: false,
-      },
+        allowTouchMove: false
+      }
     },
     // Loại bỏ navigation vì không dùng nút mặc định
     on: {
@@ -746,8 +746,8 @@ function detailSlider() {
             slideInner.style.transition = `${speed}ms ${easing}`;
           }
         });
-      },
-    },
+      }
+    }
   });
 
   let lastMouseX = null;
@@ -778,13 +778,13 @@ function detailSlider() {
       rotateDeg = 180; // Nửa trái: prev
       buttonPosX = Math.max(
         offset,
-        Math.min(halfWidth - buttonWidth, buttonPosX),
+        Math.min(halfWidth - buttonWidth, buttonPosX)
       );
     } else if (mouseX >= halfWidth + transitionZone) {
       rotateDeg = 0; // Nửa phải: next
       buttonPosX = Math.max(
         halfWidth,
-        Math.min(rect.width - buttonWidth - offset, buttonPosX),
+        Math.min(rect.width - buttonWidth - offset, buttonPosX)
       );
     } else {
       const progress =
@@ -792,14 +792,14 @@ function detailSlider() {
       rotateDeg = 180 - progress * 180; // Vùng chuyển tiếp
       buttonPosX = Math.max(
         offset,
-        Math.min(rect.width - buttonWidth - offset, buttonPosX),
+        Math.min(rect.width - buttonWidth - offset, buttonPosX)
       );
     }
 
     // Giới hạn vị trí Y với offset 40px
     buttonPosY = Math.max(
       offset,
-      Math.min(rect.height - buttonHeight - offset, buttonPosY),
+      Math.min(rect.height - buttonHeight - offset, buttonPosY)
     );
 
     // Áp dụng transform
@@ -859,7 +859,7 @@ function gallery() {
 
 function customDropdown() {
   const dropdowns = document.querySelectorAll(
-    ".dropdown-custom, .dropdown-custom-select",
+    ".dropdown-custom, .dropdown-custom-select"
   );
 
   dropdowns.forEach((dropdown) => {
@@ -949,8 +949,8 @@ function initGallery(galleryEl) {
     mobileSettings: {
       controls: true,
       showCloseIcon: true,
-      download: false,
-    },
+      download: false
+    }
   });
 
   galleryEl.dataset.inited = "true";
@@ -1028,7 +1028,7 @@ function accomodationnFilter() {
 
   gsap.set(".accomodation-list .nav-tabs", {
     opacity: 0,
-    y: 50,
+    y: 50
   });
 
   ScrollTrigger.create({
@@ -1038,7 +1038,7 @@ function accomodationnFilter() {
     onEnter: showTabs,
     onEnterBack: showTabs,
     onLeave: hideTabs,
-    onLeaveBack: hideTabs,
+    onLeaveBack: hideTabs
   });
 
   function showTabs() {
@@ -1046,7 +1046,7 @@ function accomodationnFilter() {
       opacity: 1,
       y: 0,
       duration: 0.3,
-      ease: "none",
+      ease: "none"
     });
   }
 
@@ -1055,7 +1055,7 @@ function accomodationnFilter() {
       opacity: 0,
       y: 50,
       duration: 0.3,
-      ease: "none",
+      ease: "none"
     });
   }
 }
@@ -1070,7 +1070,7 @@ function scrollCTA() {
       self.direction === 1
         ? $(".cta-group").addClass("hide")
         : $(".cta-group").removeClass("hide");
-    },
+    }
   });
 }
 function togglePlayMusic() {
@@ -1110,6 +1110,10 @@ function togglePlayMusic() {
 function bookingForm() {
   if ($(".booking-form .form-booking-room").length < 1) return;
 
+  function formatDate(dateStr) {
+    return dateStr.replaceAll("/", "-");
+  }
+
   $(".booking-form .form-booking-room").on("submit", function (e) {
     e.preventDefault();
 
@@ -1121,84 +1125,41 @@ function bookingForm() {
 
     // Required fields
     const requiredFields = [
-      "booking-name",
-      "booking-phone",
       "booking-startday",
       "booking-endday",
-      "booking-adult",
+      "booking-adult"
     ];
 
     requiredFields.forEach((fieldName) => {
       const input = form.find(`[name="${fieldName}"]`);
 
-      if (!input.length || !input.val() || input.val().trim() === "") {
+      if (!input.length || !input.val()?.trim()) {
         input.closest(".input-item").addClass("error");
         isValid = false;
       }
     });
 
-    if (!$(this).find(".dropdown-custom-select").hasClass("selected")) {
-      $(this).find(".dropdown-custom-select").addClass("error");
-      isValid = false;
-    }
-
-    // Validate phone number
-    const phone = form.find('[name="booking-phone"]').val();
-    if (phone && !/^[0-9]{10,11}$/.test(phone)) {
-      form
-        .find('[name="booking-phone"]')
-        .closest(".input-item")
-        .addClass("error");
-      isValid = false;
-    }
-
-    // Stop if invalid
     if (!isValid) return;
 
-    // Collect form data
-    const formData = {
-      action: "submit_booking_accommodation_form",
-      booking_name: form.find('[name="booking-name"]').val(),
-      booking_phone: form.find('[name="booking-phone"]').val(),
-      booking_startday: form.find('[name="booking-startday"]').val(),
-      booking_endday: form.find('[name="booking-endday"]').val(),
-      booking_adult: form.find('[name="booking-adult"]').val(),
-      booking_child: form.find('[name="booking-child"]').val(),
-      booking_roomtype: form
-        .find('[name="booking-roomtype"] .dropdown-custom-text')
-        .text()
-        .trim(),
-      booking_message: form.find('[name="booking-message"]').val(),
-    };
+    const hotelId = form.find('[name="hotel_id"]').val();
+    const checkIn = formatDate(form.find('[name="booking-startday"]').val());
+    const checkOut = formatDate(form.find('[name="booking-endday"]').val());
 
-    $.ajax({
-      url: ajaxUrl,
-      type: "POST",
-      data: formData,
+    const adult = form.find('[name="booking-adult"]').val() || 1;
+    const child = form.find('[name="booking-child"]').val() || 0;
 
-      beforeSend: function () {
-        form.find("button[type='submit']").addClass("aloading");
-      },
+    const lang = form.find('[name="booking-lang"]').val();
 
-      success: function (response) {
-        form.find("button[type='submit']").removeClass("aloading");
+    const url = new URL(form.attr("action"));
 
-        if (response.success) {
-          console.log("Đặt phòng thành công:", response.data);
+    url.searchParams.set("id", hotelId);
+    url.searchParams.set("check_in", checkIn);
+    url.searchParams.set("check_out", checkOut);
+    url.searchParams.set("filter_adult", adult);
+    url.searchParams.set("filter_child", child);
+    url.searchParams.set("lang", lang);
 
-          form[0].reset();
-
-          $("#modalBookingSuccess").modal("show");
-        } else {
-          console.error("Lỗi server:", response.data);
-        }
-      },
-
-      error: function (xhr, status, error) {
-        form.find("button[type='submit']").removeClass("aloading");
-        console.error("Lỗi AJAX:", status, error);
-      },
-    });
+    window.location.href = url.toString();
   });
 }
 
@@ -1219,7 +1180,7 @@ function bookingFormTable() {
       "booking-name",
       "booking-phone",
       "booking-startday",
-      "booking-adult",
+      "booking-adult"
     ];
 
     requiredFields.forEach((fieldName) => {
@@ -1265,7 +1226,7 @@ function bookingFormTable() {
         .find('[name="booking-menu"] .dropdown-custom-text')
         .text()
         .trim(),
-      booking_message: form.find('[name="booking-message"]').val(),
+      booking_message: form.find('[name="booking-message"]').val()
     };
 
     $.ajax({
@@ -1298,7 +1259,7 @@ function bookingFormTable() {
       error: function (xhr, status, error) {
         form.find("button[type='submit']").removeClass("aloading");
         console.error("Lỗi AJAX:", status, error);
-      },
+      }
     });
   });
 }
@@ -1375,7 +1336,7 @@ function contactForm() {
         email: emailField.val().trim(),
         phone: phoneField.val().trim(),
         messageNote: messageField.val().trim(),
-        getNewletter: checkbox.is(":checked") ? "true" : "false",
+        getNewletter: checkbox.is(":checked") ? "true" : "false"
       },
       beforeSend: function () {
         $(".contact-message").remove();
@@ -1392,9 +1353,9 @@ function contactForm() {
         console.error("Lỗi khi gửi form:", error);
         $(".contact-message").remove();
         contactForm.append(
-          '<span class="contact-message" style="color: red;">Có lỗi xảy ra, vui lòng thử lại sau.</span>',
+          '<span class="contact-message" style="color: red;">Có lỗi xảy ra, vui lòng thử lại sau.</span>'
         );
-      },
+      }
     });
   });
 }
@@ -1426,7 +1387,7 @@ function getNewletter() {
       url: ajaxUrl,
       data: {
         action: "costamigo_receive_newletter",
-        email: email,
+        email: email
       },
       beforeSend: function () {
         console.log("Đang gửi dữ liệu...");
@@ -1438,7 +1399,7 @@ function getNewletter() {
       error: function (xhr, status, error) {
         console.error("Lỗi khi gửi form:", error);
         alert("Có lỗi xảy ra, vui lòng thử lại sau.");
-      },
+      }
     });
   });
 }
