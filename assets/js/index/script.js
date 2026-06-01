@@ -127,7 +127,7 @@ function bookingTime() {
       secondField: document.getElementById("checkOutDate"),
       singleDate: false,
       minDate: moment().startOf("now"),
-      numberOfMonths: 2,
+      numberOfMonths: 1,
       startDate: moment().startOf("day").toDate(),
       endDate: moment().startOf("day").add(1, "days").toDate(),
 
@@ -1085,6 +1085,10 @@ function togglePlayMusic() {
 function bookingForm() {
   if ($(".booking-form .form-booking-room").length < 1) return;
 
+  function formatDate(dateStr) {
+    return dateStr.replaceAll("/", "-");
+  }
+
   $(".booking-form .form-booking-room").on("submit", function (e) {
     e.preventDefault();
 
@@ -1096,8 +1100,6 @@ function bookingForm() {
 
     // Required fields
     const requiredFields = [
-      "booking-name",
-      "booking-phone",
       "booking-startday",
       "booking-endday",
       "booking-adult"
@@ -1106,74 +1108,33 @@ function bookingForm() {
     requiredFields.forEach((fieldName) => {
       const input = form.find(`[name="${fieldName}"]`);
 
-      if (!input.length || !input.val() || input.val().trim() === "") {
+      if (!input.length || !input.val()?.trim()) {
         input.closest(".input-item").addClass("error");
         isValid = false;
       }
     });
 
-    if (!$(this).find(".dropdown-custom-select").hasClass("selected")) {
-      $(this).find(".dropdown-custom-select").addClass("error");
-      isValid = false;
-    }
-
-    // Validate phone number
-    const phone = form.find('[name="booking-phone"]').val();
-    if (phone && !/^[0-9]{10,11}$/.test(phone)) {
-      form
-        .find('[name="booking-phone"]')
-        .closest(".input-item")
-        .addClass("error");
-      isValid = false;
-    }
-
-    // Stop if invalid
     if (!isValid) return;
 
-    // Collect form data
-    const formData = {
-      action: "submit_booking_accommodation_form",
-      booking_name: form.find('[name="booking-name"]').val(),
-      booking_phone: form.find('[name="booking-phone"]').val(),
-      booking_startday: form.find('[name="booking-startday"]').val(),
-      booking_endday: form.find('[name="booking-endday"]').val(),
-      booking_adult: form.find('[name="booking-adult"]').val(),
-      booking_child: form.find('[name="booking-child"]').val(),
-      booking_roomtype: form
-        .find('[name="booking-roomtype"] .dropdown-custom-text')
-        .text()
-        .trim(),
-      booking_message: form.find('[name="booking-message"]').val()
-    };
+    const hotelId = form.find('[name="hotel_id"]').val();
+    const checkIn = formatDate(form.find('[name="booking-startday"]').val());
+    const checkOut = formatDate(form.find('[name="booking-endday"]').val());
 
-    $.ajax({
-      url: ajaxUrl,
-      type: "POST",
-      data: formData,
+    const adult = form.find('[name="booking-adult"]').val() || 1;
+    const child = form.find('[name="booking-child"]').val() || 0;
 
-      beforeSend: function () {
-        form.find("button[type='submit']").addClass("aloading");
-      },
+    const lang = form.find('[name="booking-lang"]').val();
 
-      success: function (response) {
-        form.find("button[type='submit']").removeClass("aloading");
+    const url = new URL(form.attr("action"));
 
-        if (response.success) {
-          console.log("Đặt phòng thành công:", response.data);
+    url.searchParams.set("id", hotelId);
+    url.searchParams.set("check_in", checkIn);
+    url.searchParams.set("check_out", checkOut);
+    url.searchParams.set("filter_adult", adult);
+    url.searchParams.set("filter_child", child);
+    url.searchParams.set("lang", lang);
 
-          form[0].reset();
-
-          $("#modalBookingSuccess").modal("show");
-        } else {
-          console.error("Lỗi server:", response.data);
-        }
-      },
-
-      error: function (xhr, status, error) {
-        form.find("button[type='submit']").removeClass("aloading");
-        console.error("Lỗi AJAX:", status, error);
-      }
-    });
+    window.location.href = url.toString();
   });
 }
 

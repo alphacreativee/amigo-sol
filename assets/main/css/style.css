@@ -1247,6 +1247,9 @@ body {
   gap: 12px;
   padding: 24px;
 }
+.booking-form-main.form-booking-room {
+  min-width: 347px;
+}
 @media (max-width: 991px) {
   .booking-form-main {
     display: grid;
